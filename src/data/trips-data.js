@@ -1,5 +1,5 @@
 const tripsDataSet = [
-  {
+    {
       "id": 1,
       "userID": 44,
       "destinationID": 49,

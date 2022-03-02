@@ -13,7 +13,22 @@ describe('Trips', () => {
     expect(tripsTest).to.be.an.instanceOf(Trips);
   });
 
-  it("shoudld store Trips objects", function () {
-    expect(tripsTest.tripsData).to.deep.equal(tripsDataSet)
-  })
+  it("should store Trips objects", function () {
+    expect(tripsTest.tripsData).to.deep.equal(tripsDataSet);
+  });
+
+  it.only("it should be able to find a Trip by its ID", function () {
+    expect(tripsTest.findTrip(1)).to.deep.equal({
+      "id": 1,
+      "userID": 44,
+      "destinationID": 49,
+      "travelers": 1,
+      "date": "2022/09/16",
+      "duration": 8,
+      "status": "approved",
+      "suggestedActivities": [
+
+      ]
+    });
+  });
 });
