@@ -21,10 +21,24 @@ class Trips {
     return result;
   }
 
+  todaysDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    let newToday = `${yyyy}/${mm}/${dd}`;
+    return newToday;
+  }
+
   requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
     const newTripID = this.tripsData.length + 1;
-    const today = new Date();
-    console.log(today)
+    const today = this.todaysDate();
+
+    if(startDate < today) {
+      return `Cannot request a trip beginning earlier than today.`
+    }
+
     const newTrip = {
       "id": newTripID,
       "userID": userId,
@@ -42,6 +56,8 @@ class Trips {
 
     return newTrip;
   }
+
+
 }
 
 export default Trips;
