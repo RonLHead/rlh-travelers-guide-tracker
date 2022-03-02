@@ -13,12 +13,12 @@ describe('Destinations', () => {
     expect(destinationsTest).to.be.an.instanceOf(Destinations);
   });
 
-  it.only("should store Destinations objects", function () {
+  it("should store Destinations objects", function () {
     expect(destinationsTest.destinationsData).to.deep.equal(destinationsDataSet)
   });
 
   it("it should be able to find a Destination object by its ID", function () {
-    expect(destinationsTest.findDestination(1)).to.equal({
+    expect(destinationsTest.findDestination(1)).to.deep.equal({
         "id": 1,
         "destination": "Lima, Peru",
         "estimatedLodgingCostPerDay": 70,
