@@ -6,6 +6,10 @@ class Trips {
   }
 
   findTrip(tripID) {
+    if(!this.tripsData.map(trip => trip.id).includes(tripID)) {
+      return `Trip ${tripID} doesn't exist!`;
+    }
+
     let result = this.tripsData.reduce((a, b) => {
       if(tripID === b.id) {
         a = b;

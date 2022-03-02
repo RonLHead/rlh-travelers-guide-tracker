@@ -17,7 +17,7 @@ describe('Trips', () => {
     expect(tripsTest.tripsData).to.deep.equal(tripsDataSet);
   });
 
-  it.only("it should be able to find a Trip by its ID", function () {
+  it("it should be able to find a Trip by its ID", function () {
     expect(tripsTest.findTrip(1)).to.deep.equal({
       "id": 1,
       "userID": 44,
@@ -31,4 +31,9 @@ describe('Trips', () => {
       ]
     });
   });
+
+  it.only("it should return an error message if a Trips doesn't exist", function () {
+    expect(tripsTest.findTrip(10)).to.equal("Trip 10 doesn't exist!");
+  });
+
 });
