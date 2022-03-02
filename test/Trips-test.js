@@ -58,4 +58,8 @@ describe('Trips', () => {
   it("should return an error message if a requested trip includes over 9 travelers", function () {
     expect(tripsTest.requestNewTrip(7, "2022/03/02", 10, 15, 1)).to.equal("Can only request a trip for 9 travelers or less.");
   });
+
+  it("it should return an error message if a request trip lasts over 1 year (365 days)", function () {
+    expect(tripsTest.requestNewTrip(6, "2022/12/25", 400, 5, 5)).to.equal("Cannot request a trip to last more than one year.")
+  });
 });

@@ -39,6 +39,8 @@ class Trips {
       return `Cannot request a trip beginning earlier than today.`;
     } else if(numTravelers > 9) {
       return "Can only request a trip for 9 travelers or less.";
+    } else if(tripLength > 365) {
+      return "Cannot request a trip to last more than one year.";
     }
 
     const newTrip = {
