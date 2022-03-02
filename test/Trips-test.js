@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Trips from '../src/Trips';
-import tripsDataSet from '../src/data/trips-data'
+import tripsDataSet from '../src/data/trips-data';
 
 describe('Trips', () => {
   const tripsTest = new Trips(tripsDataSet);
@@ -59,7 +59,11 @@ describe('Trips', () => {
     expect(tripsTest.requestNewTrip(7, "2022/03/02", 10, 15, 1)).to.equal("Can only request a trip for 9 travelers or less.");
   });
 
-  it("it should return an error message if a request trip lasts over 1 year (365 days)", function () {
+  it("should return an error message if a request trip lasts over 1 year (365 days)", function () {
     expect(tripsTest.requestNewTrip(6, "2022/12/25", 400, 5, 5)).to.equal("Cannot request a trip to last more than one year.")
+  });
+
+  it("should return an error message if a request trip has an invalid destination", function () {
+    expect(tripsTest.requestNewTrip(1, "2022/10/28", 3, 1, 30)).to.equal("Destination doesn't exist. Please choose a different destination.")
   });
 });

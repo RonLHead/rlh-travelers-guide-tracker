@@ -1,4 +1,5 @@
-import Destinations from '../src/Destinations';
+const Destinations = require('./Destinations');
+import destinationsDataSet from '../src/data/destinations-data';
 
 class Trips {
   constructor(tripsAPI) {
@@ -41,6 +42,8 @@ class Trips {
       return "Can only request a trip for 9 travelers or less.";
     } else if(tripLength > 365) {
       return "Cannot request a trip to last more than one year.";
+    } else if(!destinationsDataSet.find(dest => dest.id === destID)) {
+      return "Destination doesn't exist. Please choose a different destination."
     }
 
     const newTrip = {
@@ -60,8 +63,6 @@ class Trips {
 
     return newTrip;
   }
-
-
 }
 
 export default Trips;
