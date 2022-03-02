@@ -51,7 +51,11 @@ describe('Trips', () => {
     });
   });
 
-  it.only("should return an error message if a request trip includes a start date earlier than today", function () {
+  it("should return an error message if a request trip includes a start date earlier than today", function () {
     expect(tripsTest.requestNewTrip(7, "2022/01/01", 10, 2, 1)).to.equal("Cannot request a trip beginning earlier than today.");
+  });
+
+  it("should return an error message if a requested trip includes over 9 travelers", function () {
+    expect(tripsTest.requestNewTrip(7, "2022/03/02", 10, 15, 1)).to.equal("Can only request a trip for 9 travelers or less.");
   });
 });

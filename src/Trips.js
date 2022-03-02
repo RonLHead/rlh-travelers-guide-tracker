@@ -36,7 +36,9 @@ class Trips {
     const today = this.todaysDate();
 
     if(startDate < today) {
-      return `Cannot request a trip beginning earlier than today.`
+      return `Cannot request a trip beginning earlier than today.`;
+    } else if(numTravelers > 9) {
+      return "Can only request a trip for 9 travelers or less.";
     }
 
     const newTrip = {
