@@ -23,7 +23,8 @@ class Trips {
 
   requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
     const newTripID = this.tripsData.length + 1;
-
+    const today = new Date();
+    console.log(today)
     const newTrip = {
       "id": newTripID,
       "userID": userId,
@@ -38,7 +39,7 @@ class Trips {
     }
 
     this.pendingTrips.push(newTrip);
-    
+
     return newTrip;
   }
 }

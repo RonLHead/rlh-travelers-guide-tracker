@@ -36,18 +36,22 @@ describe('Trips', () => {
     expect(tripsTest.findTrip(10)).to.equal("Trip 10 doesn't exist!");
   });
 
-  it.only("should be able to request a new trip", function () {
-    expect(tripsTest.requestNewTrip(24, "2022/12/19", 19, 5, 19)).to.deep.equal({
+  it("should be able to request a new trip", function () {
+    expect(tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4)).to.deep.equal({
       "id": 9,
-      "userID": 24,
-      "destinationID": 19,
+      "userID": 8,
+      "destinationID": 4,
       "travelers": 5,
-      "date": "2022/12/19",
+      "date": "2022/03/02",
       "duration": 19,
       "status": "pending",
       "suggestedActivities": [
 
       ]
     });
+  });
+
+  it.only("should return an error message if a request trip includes a start date earlier than today", function () {
+    expect(tripsTest.requestNewTrip(7, "2022/01/01", 10, 2, 1)).to.equal("Cannot request a trip beginning earlier than today.");
   });
 });
