@@ -17,7 +17,7 @@ describe('Trips', () => {
     expect(tripsTest.tripsData).to.deep.equal(tripsDataSet);
   });
 
-  it("it should be able to find a Trip by its ID", function () {
+  it("should be able to find a Trip by its ID", function () {
     expect(tripsTest.findTrip(1)).to.deep.equal({
       "id": 1,
       "userID": 44,
@@ -32,8 +32,22 @@ describe('Trips', () => {
     });
   });
 
-  it.only("it should return an error message if a Trips doesn't exist", function () {
+  it("should return an error message if a Trips doesn't exist", function () {
     expect(tripsTest.findTrip(10)).to.equal("Trip 10 doesn't exist!");
   });
 
+  it.only("should be able to request a new trip", function () {
+    expect(tripsTest.requestNewTrip(24, "2022/12/19", 19, 5, 19)).to.deep.equal({
+      "id": 9,
+      "userID": 24,
+      "destinationID": 19,
+      "travelers": 5,
+      "date": "2022/12/19",
+      "duration": 19,
+      "status": "pending",
+      "suggestedActivities": [
+
+      ]
+    });
+  });
 });

@@ -3,6 +3,7 @@ import Destinations from '../src/Destinations';
 class Trips {
   constructor(tripsAPI) {
     this.tripsData = tripsAPI;
+    this.pendingTrips = [];
   }
 
   findTrip(tripID) {
@@ -18,6 +19,27 @@ class Trips {
     }, {});
 
     return result;
+  }
+
+  requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
+    const newTripID = this.tripsData.length + 1;
+
+    const newTrip = {
+      "id": newTripID,
+      "userID": userId,
+      "destinationID": destID,
+      "travelers": numTravelers,
+      "date": startDate,
+      "duration": tripLength,
+      "status": "pending",
+      "suggestedActivities": [
+
+      ]
+    }
+
+    this.pendingTrips.push(newTrip);
+    
+    return newTrip;
   }
 }
 
