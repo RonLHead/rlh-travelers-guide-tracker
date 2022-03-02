@@ -4,13 +4,17 @@ class Destinations {
   }
 
   findDestination(destID) {
-    let result = this.destinationsData.filter(dest => {
-      if(destID === dest.id) {
-        return dest
-      }
-    });
-    
-    return result[0];
+    let result = this.destinationsData.reduce((a, b) => {
+      if(destID === b.id) {
+        // console.log("Filtered Destination", b)
+        a = b;
+      } 
+      // console.log(a)
+      return a;
+    }, {})
+      // else return "Destination doesn't exist!"
+    // console.log("result", result)
+    return result;
   }
 }
 

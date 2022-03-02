@@ -25,6 +25,10 @@ describe('Destinations', () => {
         "estimatedFlightCostPerPerson": 400,
         "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
         "alt": "overview of city buildings with a clear sky"
-      })
-  })
-})
+      });
+  });
+
+  it("it should return an error message if a Destination doesn't exist", function () {
+    expect(destinationsTest.findDestination(10)).to.equal("Destination doesn't exist!");
+  });
+});
