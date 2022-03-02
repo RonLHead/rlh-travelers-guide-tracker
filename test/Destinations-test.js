@@ -29,6 +29,6 @@ describe('Destinations', () => {
   });
 
   it("it should return an error message if a Destination doesn't exist", function () {
-    expect(destinationsTest.findDestination(10)).to.equal("Destination doesn't exist!");
+    expect(destinationsTest.findDestination(10)).to.equal("Destination 10 doesn't exist!");
   });
 });
