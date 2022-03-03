@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import Destinations from '../src/Destinations';
+=======
+const Destinations = require('./Destinations');
+import destinationsDataSet from '../src/data/destinations-data';
+>>>>>>> 9856ae38b6157c0a4e3450f0905709e12c02fe45
 
 class Trips {
   constructor(tripsAPI) {
@@ -21,10 +26,37 @@ class Trips {
     return result;
   }
 
+<<<<<<< HEAD
   requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
     const newTripID = this.tripsData.length + 1;
     const today = new Date();
     console.log(today)
+=======
+  todaysDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    let newToday = `${yyyy}/${mm}/${dd}`;
+    return newToday;
+  }
+
+  requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
+    const newTripID = this.tripsData.length + 1;
+    const today = this.todaysDate();
+
+    if(startDate < today) {
+      return `Cannot request a trip beginning earlier than today.`;
+    } else if(numTravelers > 9) {
+      return "Can only request a trip for 9 travelers or less.";
+    } else if(tripLength > 365) {
+      return "Cannot request a trip to last more than one year.";
+    } else if(!destinationsDataSet.find(dest => dest.id === destID)) {
+      return "Destination doesn't exist. Please choose a different destination."
+    }
+
+>>>>>>> 9856ae38b6157c0a4e3450f0905709e12c02fe45
     const newTrip = {
       "id": newTripID,
       "userID": userId,
@@ -42,6 +74,30 @@ class Trips {
 
     return newTrip;
   }
+<<<<<<< HEAD
+=======
+
+  estimatedCostNewTrip(tripID) {
+    let newTrip = this.pendingTrips.find(trip => {
+      return trip.id === tripID;
+    });
+
+    if(!newTrip) {
+      return "Pending trip request doesn't exist. Please request a new trip.";
+    }
+    
+    let tripDestination = destinationsDataSet.find(dest => {
+      return dest.id === newTrip.destinationID;
+    });
+
+    let flightCost = newTrip.travelers * tripDestination.estimatedFlightCostPerPerson;
+    let lodgingCost = newTrip.duration * tripDestination.estimatedLodgingCostPerDay;
+    let totalEstimatedCost = flightCost + lodgingCost;
+    totalEstimatedCost = totalEstimatedCost + (totalEstimatedCost * 0.10)
+
+    return `$${totalEstimatedCost}`;
+  }
+>>>>>>> 9856ae38b6157c0a4e3450f0905709e12c02fe45
 }
 
 export default Trips;

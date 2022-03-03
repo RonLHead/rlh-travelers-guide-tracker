@@ -5,7 +5,7 @@ import destinationsDataSet from '../src/data/destinations-data';
 describe('Destinations', () => {
   const destinationsTest = new Destinations(destinationsDataSet);
 
-  it('should be a function', function () {
+  it("should be a function", function () {
     expect(Destinations).to.be.a('function');
   });
 

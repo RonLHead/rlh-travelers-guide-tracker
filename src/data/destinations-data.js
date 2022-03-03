@@ -63,6 +63,6 @@ const destinationsDataSet = [
       "image": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1971&q=80",
       "alt": "city with people walking in crosswalk and brightly lit shops at night"
     }
-]
+];
 
 export default destinationsDataSet;
