@@ -69,11 +69,11 @@ describe('Trips', () => {
   });
 
   it("should calculate the estimated cost of a new trip request that is pending", function () {
-    tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4)
-    expect(tripsTest.estimatedCostNewTrip(9)).to.equal("$3283.5");
+    tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4);
+    expect(tripsTest.estimatedTripCost(9)).to.equal(3283.5);
   });
 
   it("should return an error message if a pending trip request doesn't exist", function () {
-    expect(tripsTest.estimatedCostNewTrip(20)).to.equal("Pending trip request doesn't exist. Please request a new trip.")
+    expect(tripsTest.estimatedTripCost(20)).to.equal("Pending trip request doesn't exist. Please request a new trip.")
   })
 });

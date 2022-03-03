@@ -3,7 +3,8 @@ import destinationsDataSet from '../src/data/destinations-data';
 class Trips {
   constructor(tripsAPI) {
     this.tripsData = tripsAPI;
-    this.pendingTrips = [];
+    // this.pendingTrips = [];
+
   }
 
   findTrip(tripID) {
@@ -33,17 +34,17 @@ class Trips {
 
   requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
     const newTripID = this.tripsData.length + 1;
-    const today = this.todaysDate();
-
-    if(startDate < today) {
-      return `Cannot request a trip beginning earlier than today.`;
-    } else if(numTravelers > 9) {
-      return "Can only request a trip for 9 travelers or less.";
-    } else if(tripLength > 365) {
-      return "Cannot request a trip to last more than one year.";
-    } else if(!destinationsDataSet.find(dest => dest.id === destID)) {
-      return "Destination doesn't exist. Please choose a different destination."
-    }
+    // const today = this.todaysDate();
+    //
+    // if(startDate < today) {
+    //   return `Cannot request a trip beginning earlier than today.`;
+    // } else if(numTravelers > 9) {
+    //   return "Can only request a trip for 9 travelers or less.";
+    // } else if(tripLength > 365) {
+    //   return "Cannot request a trip to last more than one year.";
+    // } else if(!destinationsDataSet.find(dest => dest.id === destID)) {
+    //   return "Destination doesn't exist. Please choose a different destination."
+    // }
 
     const newTrip = {
       "id": newTripID,
@@ -58,13 +59,13 @@ class Trips {
       ]
     }
 
-    this.pendingTrips.push(newTrip);
+    this.tripsData.push(newTrip);
 
     return newTrip;
   }
 
-  estimatedCostNewTrip(tripID) {
-    let newTrip = this.pendingTrips.find(trip => {
+  estimatedTripCost(tripID) {
+    let newTrip = this.tripsData.find(trip => {
       return trip.id === tripID;
     });
 
@@ -79,9 +80,9 @@ class Trips {
     let flightCost = newTrip.travelers * tripDestination.estimatedFlightCostPerPerson;
     let lodgingCost = newTrip.duration * tripDestination.estimatedLodgingCostPerDay;
     let totalEstimatedCost = flightCost + lodgingCost;
-    totalEstimatedCost = totalEstimatedCost + (totalEstimatedCost * 0.10)
-
-    return `$${totalEstimatedCost}`;
+    totalEstimatedCost = totalEstimatedCost + (totalEstimatedCost * 0.10);
+    
+    return totalEstimatedCost;
   }
 }
 

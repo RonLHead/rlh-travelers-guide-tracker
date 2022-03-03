@@ -26,7 +26,7 @@ const tripsDataSet = [
     {
       "id": 3,
       "userID": 3,
-      "destinationID": 22,
+      "destinationID": 7,
       "travelers": 4,
       "date": "2022/05/22",
       "duration": 17,
@@ -38,7 +38,7 @@ const tripsDataSet = [
     {
       "id": 4,
       "userID": 3,
-      "destinationID": 14,
+      "destinationID": 8,
       "travelers": 2,
       "date": "2022/02/25",
       "duration": 10,

@@ -30,12 +30,12 @@ describe('Travelers', () => {
     expect(travelers.findTraveler(10)).to.equal("Traveler 10 doesn't exist!");
   });
 
-  it.only("should return all the trips for an individual Traveler", function () {
+  it("should return all the trips for an individual Traveler", function () {
     expect(travelers.travelerAllTrips(3)).to.deep.equal([
       {
         "id": 3,
         "userID": 3,
-        "destinationID": 22,
+        "destinationID": 7,
         "travelers": 4,
         "date": "2022/05/22",
         "duration": 17,
@@ -47,7 +47,7 @@ describe('Travelers', () => {
       {
         "id": 4,
         "userID": 3,
-        "destinationID": 14,
+        "destinationID": 8,
         "travelers": 2,
         "date": "2022/02/25",
         "duration": 10,
@@ -57,5 +57,9 @@ describe('Travelers', () => {
         ]
       }
     ]);
+  });
+
+  it.only("should return the total amount spent on trips this year", function () {
+    expect(travelers.totalSpentYear(3)).to.equal(7183)
   });
 });
