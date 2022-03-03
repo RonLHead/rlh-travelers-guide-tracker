@@ -1,5 +1,5 @@
 class Travelers {
-  constructor(tavelersAPI) {
+  constructor(travelersAPI) {
     this.travelersData = travelersAPI;
   }
 }
