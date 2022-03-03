@@ -29,4 +29,33 @@ describe('Travelers', () => {
   it("should return an error message if a Traveler doesn't exist", function () {
     expect(travelers.findTraveler(10)).to.equal("Traveler 10 doesn't exist!");
   });
+
+  it.only("should return all the trips for an individual Traveler", function () {
+    expect(travelers.travelerAllTrips(3)).to.deep.equal([
+      {
+        "id": 3,
+        "userID": 3,
+        "destinationID": 22,
+        "travelers": 4,
+        "date": "2022/05/22",
+        "duration": 17,
+        "status": "approved",
+        "suggestedActivities": [
+
+        ]
+      },
+      {
+        "id": 4,
+        "userID": 3,
+        "destinationID": 14,
+        "travelers": 2,
+        "date": "2022/02/25",
+        "duration": 10,
+        "status": "approved",
+        "suggestedActivities": [
+
+        ]
+      }
+    ]);
+  });
 });

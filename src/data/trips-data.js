@@ -37,7 +37,7 @@ const tripsDataSet = [
     },
     {
       "id": 4,
-      "userID": 43,
+      "userID": 3,
       "destinationID": 14,
       "travelers": 2,
       "date": "2022/02/25",

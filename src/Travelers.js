@@ -1,3 +1,6 @@
+import tripsDataSet from '../src/data/trips-data';
+import travelersDataSet from '../src/data/travelers-data';
+
 class Travelers {
   constructor(travelersAPI) {
     this.travelersData = travelersAPI;
@@ -14,6 +17,16 @@ class Travelers {
       }
       return acc;
     }, {});
+
+    return result;
+  }
+
+  travelerAllTrips(travelerId) {
+    let result = tripsDataSet.filter(trip => {
+      if(trip.userID === travelerId) {
+        return trip;
+      }
+    });
 
     return result;
   }
