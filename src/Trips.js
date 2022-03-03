@@ -68,6 +68,11 @@ class Trips {
     let newTrip = this.pendingTrips.find(trip => {
       return trip.id === tripID;
     });
+
+    if(!newTrip) {
+      return "Pending trip request doesn't exist. Please request a new trip.";
+    }
+    
     let tripDestination = destinationsDataSet.find(dest => {
       return dest.id === newTrip.destinationID;
     });

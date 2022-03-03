@@ -64,11 +64,16 @@ describe('Trips', () => {
   });
 
   it("should return an error message if a request trip has an invalid destination", function () {
+    // console.log(tripsTest.errorInvalidDestination(30))
     expect(tripsTest.requestNewTrip(1, "2022/10/28", 3, 1, 30)).to.equal("Destination doesn't exist. Please choose a different destination.");
   });
 
-  it.only("should calculate the estimated cost of a new trip request that is pending", function () {
+  it("should calculate the estimated cost of a new trip request that is pending", function () {
     tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4)
     expect(tripsTest.estimatedCostNewTrip(9)).to.equal("$3283.5");
   });
+
+  it("should return an error message if a pending trip request doesn't exist", function () {
+    expect(tripsTest.estimatedCostNewTrip(20)).to.equal("Pending trip request doesn't exist. Please request a new trip.")
+  })
 });
