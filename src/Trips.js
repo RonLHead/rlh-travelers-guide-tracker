@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import Destinations from '../src/Destinations';
-=======
-const Destinations = require('./Destinations');
 import destinationsDataSet from '../src/data/destinations-data';
->>>>>>> 9856ae38b6157c0a4e3450f0905709e12c02fe45
 
 class Trips {
   constructor(tripsAPI) {
@@ -26,12 +21,6 @@ class Trips {
     return result;
   }
 
-<<<<<<< HEAD
-  requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
-    const newTripID = this.tripsData.length + 1;
-    const today = new Date();
-    console.log(today)
-=======
   todaysDate() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
@@ -56,7 +45,6 @@ class Trips {
       return "Destination doesn't exist. Please choose a different destination."
     }
 
->>>>>>> 9856ae38b6157c0a4e3450f0905709e12c02fe45
     const newTrip = {
       "id": newTripID,
       "userID": userId,
@@ -74,8 +62,6 @@ class Trips {
 
     return newTrip;
   }
-<<<<<<< HEAD
-=======
 
   estimatedCostNewTrip(tripID) {
     let newTrip = this.pendingTrips.find(trip => {
@@ -85,7 +71,7 @@ class Trips {
     if(!newTrip) {
       return "Pending trip request doesn't exist. Please request a new trip.";
     }
-    
+
     let tripDestination = destinationsDataSet.find(dest => {
       return dest.id === newTrip.destinationID;
     });
@@ -97,7 +83,6 @@ class Trips {
 
     return `$${totalEstimatedCost}`;
   }
->>>>>>> 9856ae38b6157c0a4e3450f0905709e12c02fe45
 }
 
 export default Trips;
