@@ -10,7 +10,12 @@ describe('Travelers', () => {
     expect(Travelers).to.be.a('function');
   });
 
-  it.only("should be a instance of Travelers", function () {
+  it("should be a instance of Travelers", function () {
     expect(travelers).to.be.an.instanceOf(Travelers);
   });
+
+  it.only("should store Travelers objects", function () {
+    expect(travelers.travelersData).to.deep.equal(travelersDataSet);
+  });
+
 });
