@@ -63,6 +63,22 @@ class Trips {
 
     return newTrip;
   }
+
+  estimatedCostNewTrip(tripID) {
+    let newTrip = this.pendingTrips.find(trip => {
+      return trip.id === tripID;
+    });
+    let tripDestination = destinationsDataSet.find(dest => {
+      return dest.id === newTrip.destinationID;
+    });
+
+    let flightCost = newTrip.travelers * tripDestination.estimatedFlightCostPerPerson;
+    let lodgingCost = newTrip.duration * tripDestination.estimatedLodgingCostPerDay;
+    let totalEstimatedCost = flightCost + lodgingCost;
+    totalEstimatedCost = totalEstimatedCost + (totalEstimatedCost * 0.10)
+
+    return `$${totalEstimatedCost}`;
+  }
 }
 
 export default Trips;
