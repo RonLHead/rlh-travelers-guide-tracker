@@ -1,4 +1,4 @@
-class Travlers {
+class Travelers {
   constructor(tavelersAPI) {
     this.travelersData = travelersAPI;
   }
