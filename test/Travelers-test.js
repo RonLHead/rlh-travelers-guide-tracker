@@ -14,8 +14,19 @@ describe('Travelers', () => {
     expect(travelers).to.be.an.instanceOf(Travelers);
   });
 
-  it.only("should store Travelers objects", function () {
+  it("should store Travelers objects", function () {
     expect(travelers.travelersData).to.deep.equal(travelersDataSet);
   });
 
+  it.only("should be able to find a Traveler by its ID", function () {
+    expect(travelers.findTraveler(1)).to.deep.equal({
+      "id": 1,
+      "name": "Ham Leadbeater",
+      "travelerType": "relaxer"
+    });
+  });
+
+  it("should return an error message if a Traveler doesn't exist", function () {
+    expect(travelers.findTrip(10)).to.equal("Trip 10 doesn't exist!");
+  });
 });
