@@ -1,10 +1,10 @@
-import tripsDataSet from '../src/data/trips-data';
-import travelersDataSet from '../src/data/travelers-data';
 import Trips from './Trips';
 
 class Travelers {
-  constructor(travelersAPI) {
+  constructor(travelersAPI, tripsAPI, destData) {
     this.travelersData = travelersAPI;
+    this.tripsObj = new Trips(tripsAPI, destData)
+    // this.destObj = new Destinations(destData)
   }
 
   findTraveler(travelerId) {
@@ -23,11 +23,12 @@ class Travelers {
   }
 
   travelerAllTrips(travelerId) {
-    let result = tripsDataSet.filter(trip => {
+    let result = this.tripsObj.tripsData.filter(trip => {
       if(trip.userID === travelerId) {
         return trip;
       }
     });
+    // console.log(result)
 
     return result;
   }
@@ -35,12 +36,13 @@ class Travelers {
   totalSpentYear(travelerId) {
     let today = new Date();
     let thisYear = today.getFullYear();
-    const travelerTrips = new Trips(this.travelerAllTrips(travelerId));
+    const travelerTrips = this.travelerAllTrips(travelerId);
+
     let result = 0;
 
-    travelerTrips.tripsData.forEach(trip => {
+    travelerTrips.forEach(trip => {
       if(trip.date.includes(thisYear)) {
-        result = result + travelerTrips.estimatedTripCost(trip.id);
+        result = result + this.tripsObj.estimatedTripCost(trip.id);
       }
     });
 

@@ -1,10 +1,12 @@
 import { expect } from 'chai';
 import Travelers from '../src/Travelers';
 import travelersDataSet from '../src/data/travelers-data';
+import tripsDataSet from '../src/data/trips-data';
+import destinationsDataSet from '../src/data/destinations-data';
 
 describe('Travelers', () => {
 
-  let travelers = new Travelers(travelersDataSet);
+  let travelers = new Travelers(travelersDataSet, tripsDataSet, destinationsDataSet);
 
   it("should be a function", function () {
     expect(Travelers).to.be.a('function');
