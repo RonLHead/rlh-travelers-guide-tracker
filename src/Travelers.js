@@ -38,12 +38,15 @@ class Travelers {
     const travelerTrips = new Trips(this.travelerAllTrips(travelerId));
     let result = 0;
 
-    if(travelerTrips.tripsData.map(trip => trip.date.includes(thisYear))) {
-      travelerTrips.tripsData.forEach(trip => {
-        result = result + travelerTrips.estimatedTripCost(trip.id)
-      })
-    }
-    return result
+    travelerTrips.tripsData.forEach(trip => {
+      if(trip.date.includes(thisYear)) {
+        result = result + travelerTrips.estimatedTripCost(trip.id);
+      }
+    });
+
+    if(result > 0) {
+      return result;
+    } else return "There are no trips for this year.";
   }
 }
 

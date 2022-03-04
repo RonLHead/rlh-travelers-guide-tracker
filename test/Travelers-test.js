@@ -59,7 +59,11 @@ describe('Travelers', () => {
     ]);
   });
 
-  it.only("should return the total amount spent on trips this year", function () {
-    expect(travelers.totalSpentYear(3)).to.equal(7183)
+  it("should return the total amount spent on trips this year", function () {
+    expect(travelers.totalSpentYear(3)).to.equal(7183);
   });
+
+  it("should return an error message if there are no trips for this year", function () {
+    expect(travelers.totalSpentYear(100)).to.equal("There are no trips for this year.")
+  })
 });
