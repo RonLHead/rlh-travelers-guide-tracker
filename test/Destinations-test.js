@@ -17,7 +17,7 @@ describe('Destinations', () => {
     expect(destinationsTest.destinationsData).to.deep.equal(destinationsDataSet)
   });
 
-  it("it should be able to find a Destination object by its ID", function () {
+  it("should be able to find a Destination object by its ID", function () {
     expect(destinationsTest.findDestination(1)).to.deep.equal({
         "id": 1,
         "destination": "Lima, Peru",
@@ -28,7 +28,7 @@ describe('Destinations', () => {
       });
   });
 
-  it("it should return an error message if a Destination doesn't exist", function () {
+  it("should return an error message if a Destination doesn't exist", function () {
     expect(destinationsTest.findDestination(10)).to.equal("Destination 10 doesn't exist!");
   });
 });
