@@ -58,7 +58,7 @@ class Trips {
     if(!newTrip) {
       return "Pending trip request doesn't exist. Please request a new trip.";
     }
-    console.log(this.destinationsObj.destinationsData)
+
     let tripDestination = this.destinationsObj.destinationsData.find(dest => dest.id === newTrip.destinationID);
 
     let flightCost = newTrip.travelers * tripDestination.estimatedFlightCostPerPerson;

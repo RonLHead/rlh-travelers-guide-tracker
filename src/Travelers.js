@@ -28,6 +28,7 @@ class Travelers {
         return trip;
       }
     });
+    // console.log(result)
 
     return result;
   }
@@ -35,13 +36,13 @@ class Travelers {
   totalSpentYear(travelerId) {
     let today = new Date();
     let thisYear = today.getFullYear();
-    const travelerTrips = new Trips(this.travelerAllTrips(travelerId), this.tripsObj.destinationsObj);
+    const travelerTrips = this.travelerAllTrips(travelerId);
 
     let result = 0;
 
-    travelerTrips.tripsData.forEach(trip => {
+    travelerTrips.forEach(trip => {
       if(trip.date.includes(thisYear)) {
-        result = result + travelerTrips.estimatedTripCost(trip.id);
+        result = result + this.tripsObj.estimatedTripCost(trip.id);
       }
     });
 
