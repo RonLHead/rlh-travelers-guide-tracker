@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 import Trips from '../src/Trips';
 import tripsDataSet from '../src/data/trips-data';
+import destinationsDataSet from '../src/data/destinations-data';
 
 describe('Trips', () => {
-  const tripsTest = new Trips(tripsDataSet);
+  const tripsTest = new Trips(tripsDataSet, destinationsDataSet);
 
   it("should be a function", function () {
     expect(Trips).to.be.a('function');
@@ -32,27 +33,23 @@ describe('Trips', () => {
     });
   });
 
-  it("should return an error message if a Trips doesn't exist", function () {
+  it("should return an error message if a Trip doesn't exist", function () {
     expect(tripsTest.findTrip(10)).to.equal("Trip 10 doesn't exist!");
   });
 
   it("should be able to request a new trip", function () {
-    expect(tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4)).to.deep.equal({
-      "id": 9,
+    expect(tripsTest.requestNewTrip(8, "2022/03/03", 19, 5, 4)).to.deep.equal({
+      "id": 10,
       "userID": 8,
       "destinationID": 4,
       "travelers": 5,
-      "date": "2022/03/02",
+      "date": "2022/03/03",
       "duration": 19,
       "status": "pending",
       "suggestedActivities": [
 
       ]
     });
-  });
-
-  it("should return an error message if a request trip includes a start date earlier than today", function () {
-    expect(tripsTest.requestNewTrip(7, "2022/01/01", 10, 2, 1)).to.equal("Cannot request a trip beginning earlier than today.");
   });
 
   it("should return an error message if a requested trip includes over 9 travelers", function () {
@@ -64,13 +61,12 @@ describe('Trips', () => {
   });
 
   it("should return an error message if a request trip has an invalid destination", function () {
-    // console.log(tripsTest.errorInvalidDestination(30))
     expect(tripsTest.requestNewTrip(1, "2022/10/28", 3, 1, 30)).to.equal("Destination doesn't exist. Please choose a different destination.");
   });
 
   it("should calculate the estimated cost of a new trip request that is pending", function () {
     tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4);
-    expect(tripsTest.estimatedTripCost(9)).to.equal(3283.5);
+    expect(tripsTest.estimatedTripCost(10)).to.equal(3283.5);
   });
 
   it("should return an error message if a pending trip request doesn't exist", function () {

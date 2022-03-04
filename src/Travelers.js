@@ -1,5 +1,4 @@
 import tripsDataSet from '../src/data/trips-data';
-import travelersDataSet from '../src/data/travelers-data';
 import Trips from './Trips';
 
 class Travelers {

@@ -8,11 +8,11 @@ class Destinations {
       return `Destination ${destID} doesn't exist!`;
     }
 
-    let result = this.destinationsData.reduce((a, b) => {
-      if(destID === b.id) {
-        a = b;
+    let result = this.destinationsData.reduce((acc, data) => {
+      if(destID === data.id) {
+        acc = data;
       }
-      return a;
+      return acc;
     }, {});
 
     return result;
