@@ -63,7 +63,7 @@ class Trips {
 
     let flightCost = newTrip.travelers * tripDestination.estimatedFlightCostPerPerson;
     let lodgingCost = newTrip.duration * tripDestination.estimatedLodgingCostPerDay;
-    let totalEstimatedCost = flightCost + lodgingCost;
+    let totalEstimatedCost = (flightCost * 2) + lodgingCost;
 
     totalEstimatedCost = totalEstimatedCost + (totalEstimatedCost * 0.10);
 
