@@ -8,21 +8,21 @@
   <title>Traveler's Guide Trip Tracker</title>
 </head>
 <header>
-  <h1 class="welcomeBanner">Welcome User!</h1>
+  <h1 class="welcomeBanner" id="welcomeBanner">Welcome User!</h1>
 </header>
 <body>
   <section class="allTravelersTripsContainer">
-    <section class="border tripsDisplay">
+    <section class="border tripsDisplay" id="pastTrips">
       <p>Past Trips</p>
     </section>
-    <section class="border tripsDisplay">
+    <section class="border tripsDisplay" id="upcomingTrips">
       <p>Upcoming Trips</p>
     </section>
-    <section class="border tripsDisplay">
+    <section class="border tripsDisplay" id="pendingTrips">
       <p>Pending Trips</p>
     </section>
   </section>
-  <section class="border tripsDisplay">
+  <section class="border tripsDisplay" id="totalSpentThisYear">
     <p>Total Amount: $_____</p>
   </section>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
