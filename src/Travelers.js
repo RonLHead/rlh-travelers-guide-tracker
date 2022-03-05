@@ -8,6 +8,7 @@ class Travelers {
   }
 
   findTraveler(travelerId) {
+    console.log(this.travelersData)
     if(!this.travelersData.map(traveler => traveler.id).includes(travelerId)) {
       return `Traveler ${travelerId} doesn't exist!`;
     }

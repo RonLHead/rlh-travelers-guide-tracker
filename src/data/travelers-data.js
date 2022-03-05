@@ -1,5 +1,6 @@
-const travelersDataSet = [
-  {
+const travelersDataSet = {
+  "travelers": [
+    {
       "id": 1,
       "name": "Ham Leadbeater",
       "travelerType": "relaxer"
@@ -39,6 +40,7 @@ const travelersDataSet = [
       "name": "Carlin O'Reilly",
       "travelerType": "history buff"
     }
-];
+  ]
+};
 
 export default travelersDataSet;
