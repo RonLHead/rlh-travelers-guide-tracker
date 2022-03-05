@@ -78,6 +78,10 @@ describe('Travelers', () => {
     ]);
   });
 
+  it("should return a message if a Traveler has no trips", function () {
+    expect(travelers.travelerAllTrips(9)).to.equal("No trips to display. Please request a trip.");
+  });
+
   it("should return all the upcoming trips for an individual Traveler", function () {
     expect(travelers.upcomingTrips(3)).to.deep.equal([
       {

@@ -39,6 +39,11 @@ const travelersDataSet = {
       "id": 8,
       "name": "Carlin O'Reilly",
       "travelerType": "history buff"
+    },
+    {
+      "id": 9,
+      "name": "Dwayne Johnson",
+      "travelerType": "movie star"
     }
   ]
 };

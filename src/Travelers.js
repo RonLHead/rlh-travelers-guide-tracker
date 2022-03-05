@@ -28,7 +28,9 @@ class Travelers {
       }
     });
 
-    return result;
+    if(result.length === 0) {
+      return "No trips to display. Please request a trip.";
+    } else return result;
   }
 
   todaysDate() {
