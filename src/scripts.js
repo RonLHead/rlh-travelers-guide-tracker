@@ -15,6 +15,18 @@ const pastTrips = document.getElementById("pastTrips");
 const upcomingTrips = document.getElementById("upcomingTrips");
 const pendingTrips = document.getElementById("pendingTrips");
 
+//global variables
+let travelersRepo;
+
+//onload display
+window.onload = (event) => {
+  Promise.all([destinations, trips, travelers])
+    .then((data) => {
+      travelersRepo = new Travelers(travelers, trips, destinations);
+      console.log(travelersRepo);
+    })
+    .catch((err) => console.log(err));
+};
 
 
 
