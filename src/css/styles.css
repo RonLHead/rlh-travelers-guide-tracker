@@ -1,16 +1,23 @@
 body,
 html {
-  background-color: #202020;
-  color: white;
+  background-color: #F5F5F5;
+  color: #181818;
   margin: 0;
+  font-family: sans-serif;
+}
+
+.blurAll {
+  filter: blur(25px);
 }
 
 .welcomeBanner {
+  color: white;
+  align-items: flex-end;
   margin-top: 0px;
   padding:10px;
   height: auto;
-  background-color: black;
-  width: 100%;
+  background-color: #5c5cd6;
+  width: 100;
 }
 
 .allTravelersTripsContainer {
@@ -26,17 +33,12 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid white 1px;
   padding: 50px;
   height: auto;
+  background-color: #F0F0F0
 }
 
-.totalSpentThisYearDisplay {
-  display: flex;
-  flex-direction: row;
-  margin: 50px;
-  align-items: center;
-  border: solid yellow 1px;
-  padding: 50px;
-  height: auto;
+.border {
+  /* border: 1px solid black; */
+  box-shadow: 0 8px 8px -4px darkgray;
 }
