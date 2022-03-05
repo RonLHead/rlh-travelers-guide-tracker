@@ -4,11 +4,9 @@ class Travelers {
   constructor(travelersAPI, tripsAPI, destData) {
     this.travelersData = travelersAPI;
     this.tripsObj = new Trips(tripsAPI, destData)
-    // this.destObj = new Destinations(destData)
   }
 
   findTraveler(travelerId) {
-    console.log(this.travelersData)
     if(!this.travelersData.travelers.map(traveler => traveler.id).includes(travelerId)) {
       return `Traveler ${travelerId} doesn't exist!`;
     }
@@ -29,7 +27,6 @@ class Travelers {
         return trip;
       }
     });
-    // console.log(result)
 
     return result;
   }

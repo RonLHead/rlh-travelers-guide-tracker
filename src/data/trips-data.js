@@ -1,4 +1,5 @@
-const tripsDataSet = [
+const tripsDataSet = {
+  "trips": [
     {
       "id": 1,
       "userID": 44,
@@ -107,6 +108,7 @@ const tripsDataSet = [
 
       ]
     }
-];
+  ]
+};
 
 export default tripsDataSet;

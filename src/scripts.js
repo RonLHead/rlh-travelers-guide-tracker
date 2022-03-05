@@ -23,10 +23,13 @@ const user = 1;
 
 function displayTraveler(userId) {
   const user = travelersRepo.findTraveler(userId);
+  console.log(user)
   const firstName = user.name.split(" ");
 
   welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
-}
+
+  pastTrips.innerHTML += `<p>${travelersRepo.travelerAllTrips(userId)}</p>`;
+  }
 
 
 console.log('This is the JavaScript entry file - your code begins here.');
