@@ -63,7 +63,7 @@ class Travelers {
     const today = this.todaysDate();
     const allTrips = this.travelerAllTrips(travelerId);
     let result = [];
-    
+
     allTrips.forEach(trip => {
       if(trip.date > today) {
         result.push(trip)
@@ -74,6 +74,8 @@ class Travelers {
       return "No upcoming trips to display. Please request a trip.";
     } else return result;
   }
+
+
 
   totalSpentYear(travelerId) {
     let today = new Date();

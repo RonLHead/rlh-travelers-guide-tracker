@@ -24,11 +24,11 @@ function displayTraveler(userId) {
   const firstName = user.name.split(" ");
 
   const previousTrips = travelersRepo.pastTrips(userId);
-
+  const futureTrips = travelersRepo.upcomingTrips(userId);
   welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
   //need to add logic to display message if no past trips to return
-  pastTrips.innerHTML = `
-  <p>${previousTrips.find(trip => trip).date}</p>`;
+  pastTrips.innerHTML = `<p>${previousTrips.find(trip => trip).date}</p>`;
+  upcomingTrips.innerHTML = `<p>${futureTrips}</p>`
 }
 
 //onload display
