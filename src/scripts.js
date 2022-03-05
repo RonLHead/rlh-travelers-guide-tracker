@@ -24,7 +24,7 @@ window.onload = (event) => {
   Promise.all([destinations, trips, travelers])
     .then((data) => {
       travelersRepo = new Travelers(travelers, trips, destinations);
-      // console.log(travelersRepo);
+      // console.log("traveler repo", travelersRepo);
       displayTraveler(user)
     })
     // .catch((err) => console.log(err));

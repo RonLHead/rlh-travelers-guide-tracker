@@ -8,12 +8,13 @@ class Travelers {
   }
 
   findTraveler(travelerId) {
-    console.log(this.travelersData)
-    if(!this.travelersData.map(traveler => traveler.id).includes(travelerId)) {
+    // console.log(this.travelersData.travelers.map(traveler => traveler.id))
+    if(!this.travelersData.travelers.map(traveler => traveler.id).includes(travelerId)) {
       return `Traveler ${travelerId} doesn't exist!`;
     }
 
-    let result = this.travelersData.reduce((acc, data) => {
+    let result = this.travelersData.travelers.reduce((acc, data) => {
+      console.log(data)
       if(travelerId === data.id) {
         acc = data;
       }

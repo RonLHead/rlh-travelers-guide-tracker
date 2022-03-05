@@ -20,7 +20,7 @@ describe('Travelers', () => {
     expect(travelers.travelersData).to.deep.equal(travelersDataSet);
   });
 
-  it("should be able to find a Traveler by its ID", function () {
+  it.only("should be able to find a Traveler by its ID", function () {
     expect(travelers.findTraveler(1)).to.deep.equal({
       "id": 1,
       "name": "Ham Leadbeater",
