@@ -15,12 +15,12 @@ h1 {
 }
 
 .welcomeBanner {
+  text-align: right;
   color: white;
   margin-top: 0px;
-  padding-top: 10px;
-  padding-bottom: 1px;
+  padding-top: 5px;
+  padding-right: 5px;
   background-color: #5c5cd6;
-  width: 100;
 }
 
 .allTravelersTripsContainer {
