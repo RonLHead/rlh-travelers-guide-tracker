@@ -10,12 +10,15 @@ html {
   filter: blur(25px);
 }
 
+h1 {
+  font-size: 35px;
+}
+
 .welcomeBanner {
   color: white;
-  align-items: flex-end;
   margin-top: 0px;
-  padding:10px;
-  height: auto;
+  padding-top: 10px;
+  padding-bottom: 1px;
   background-color: #5c5cd6;
   width: 100;
 }

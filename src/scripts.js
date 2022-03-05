@@ -19,23 +19,24 @@ const pendingTrips = document.getElementById("pendingTrips");
 let travelersRepo;
 const user = 1;
 
-//onload display
-window.onload = (event) => {
-  Promise.all([destinations, trips, travelers])
-    .then((data) => {
-      travelersRepo = new Travelers(travelers, trips, destinations);
-      // console.log("traveler repo", travelersRepo);
-      displayTraveler(user)
-    })
-    // .catch((err) => console.log(err));
-};
+
 
 function displayTraveler(userId) {
   const user = travelersRepo.findTraveler(userId);
   console.log(user);
 
-  welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Testing!</h1>`;
+  welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Welcome ${user.name}!</h1>`;
 }
 
 
 console.log('This is the JavaScript entry file - your code begins here.');
+
+//onload display
+window.onload = (event) => {
+  Promise.all([destinations, trips, travelers])
+  .then((data) => {
+    travelersRepo = new Travelers(data[2], data[1], data[0]);
+    displayTraveler(user);
+  })
+  .catch((err) => console.log(err));
+};
