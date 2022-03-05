@@ -61,7 +61,7 @@ describe('Travelers', () => {
     ]);
   });
 
-  it.only("should return all the past trips for an individual Traveler", function () {
+  it("should return all the past trips for an individual Traveler", function () {
     expect(travelers.pastTrips(3)).to.deep.equal([
       {
         "id": 4,
@@ -70,6 +70,23 @@ describe('Travelers', () => {
         "travelers": 2,
         "date": "2022/02/25",
         "duration": 10,
+        "status": "approved",
+        "suggestedActivities": [
+
+        ]
+      }
+    ]);
+  });
+
+  it("should return all the upcoming trips for an individual Traveler", function () {
+    expect(travelers.upcomingTrips(3)).to.deep.equal([
+      {
+        "id": 3,
+        "userID": 3,
+        "destinationID": 7,
+        "travelers": 4,
+        "date": "2022/05/22",
+        "duration": 17,
         "status": "approved",
         "suggestedActivities": [
 

@@ -24,8 +24,7 @@ function displayTraveler(userId) {
   const firstName = user.name.split(" ");
 
   const previousTrips = travelersRepo.pastTrips(userId);
-  // console.log(pastTrips)
-  console.log(previousTrips.find(trip => trip).date)
+
   welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
 
   pastTrips.innerHTML = `
