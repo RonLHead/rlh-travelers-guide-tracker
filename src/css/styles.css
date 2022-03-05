@@ -45,3 +45,9 @@ h1 {
   /* border: 1px solid black; */
   box-shadow: 0 8px 8px -4px darkgray;
 }
+
+.sectionTitle {
+  text-align: right;
+  text-decoration: underline;
+  
+}
