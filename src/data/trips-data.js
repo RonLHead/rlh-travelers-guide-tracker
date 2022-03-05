@@ -119,6 +119,18 @@ const tripsDataSet = {
       "suggestedActivities": [
 
       ]
+    },
+    {
+      "id": 13,
+      "userID": 4,
+      "destinationID": 49,
+      "travelers": 1,
+      "date": "2022/09/16",
+      "duration": 8,
+      "status": "pending",
+      "suggestedActivities": [
+
+      ]
     }
   ]
 };

@@ -111,6 +111,27 @@ describe('Travelers', () => {
     expect(travelers.upcomingTrips(1)).to.equal("No upcoming trips to display. Please request a trip.");
   });
 
+  it("should return all pending trips for an individual Traveler", function () {
+    expect(travelers.tripsPending(4)).to.deep.equal([
+      {
+        "id": 13,
+        "userID": 4,
+        "destinationID": 49,
+        "travelers": 1,
+        "date": "2022/09/16",
+        "duration": 8,
+        "status": "pending",
+        "suggestedActivities": [
+
+        ]
+      }
+    ]);
+  });
+
+  it("should return a message if a Traveler has no pending trips", function () {
+    expect(travelers.tripsPending(1)).to.equal("No pending trips to display. Please request a trip.");
+  });
+
   it("should return an error message if there are no trips for this year", function () {
     expect(travelers.totalSpentYear(100)).to.equal("There are no trips for this year.")
   })
