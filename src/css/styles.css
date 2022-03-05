@@ -1,5 +1,6 @@
 body,
 html {
+  height: 100%;
   background-color: #F5F5F5;
   color: #181818;
   margin: 0;
@@ -18,36 +19,71 @@ h1 {
   text-align: right;
   color: white;
   margin-top: 0px;
+  margin-bottom: 0px;
   padding-top: 5px;
   padding-right: 5px;
   background-color: #5c5cd6;
 }
 
 .allTravelersTripsContainer {
+  margin-top: 5%;
+  margin-left: 25%;
+  margin-right: 10%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  height: auto;
+  /* height: 100%; */
+}
+
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 10px;
+  /* width: auto; */
   justify-content: space-around;
+  align-items: center;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+}
+
+.trip-box {
+  height: 200px;
+  weight: 500px;
 }
 
 .tripsDisplay {
-  margin: 50px;
+  /* margin: 0px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
-  height: auto;
-  background-color: #F0F0F0
+  padding: 25px;
+  /* height: 100%; */
+  background-color: #F0F0F0;
+  /* position: fixed; */
 }
 
-.border {
-  /* border: 1px solid black; */
+.card-color {
+  background-color: #F0F0F0;
+}
+
+.shadow {
   box-shadow: 0 8px 8px -4px darkgray;
 }
 
 .sectionTitle {
   text-align: right;
   text-decoration: underline;
-  
+}
+
+.tripRequestNavigation {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  margin: auto;
+  /* margin-right: 20px; */
+}
+
+.flex-trips-boxes {
+
 }

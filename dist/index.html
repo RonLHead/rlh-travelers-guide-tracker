@@ -11,19 +11,38 @@
   <h1 class="welcomeBanner" id="welcome-banner">Welcome User!</h1>
 </header>
 <body>
+  <nav>
+    <form class="tripRequestNavigation card-color" id="trip-request-form">
+      <h3>Request a Trip</h3>
+      <input placeholder="Date: Year/Month/Day" type="text" name="date" value="" id="trip-request-start-date" required>
+      <input placeholder="Duration" type="number" name="duration" value="" id="trip-request-duration" required>
+      <input placeholder="Number of Travelers" type="number" name="number_of_travelers" value="" id="trip-request-traveler-amt" required>
+      <input placeholder="Destinations" list="destinationsList" name="destinations" value="">
+      <datalist id="destinationsList">
+        <option value="Peru">
+        <option value="Japan">
+        <option value="Africa">
+        <option value="South America">
+      <input type="submit" value="Submit">
+    </form>
+  </nav>
   <section class="allTravelersTripsContainer">
-    <section class="border tripsDisplay" id="past-trips">
-      <h3 class="sectionTitle">Past Trips</h3>
-    </section>
-    <section class="border tripsDisplay" id="upcoming-trips">
-      <h3 class="sectionTitle">Upcoming Trips</h3>
-    </section>
-    <section class="border tripsDisplay" id="pending-trips">
-      <h3 class="sectionTitle">Pending Trips</h3>
-    </section>
-  </section>
-  <section class="border tripsDisplay" id="total-spent-this-year">
-    <h3 class="sectionTitle">Total Spent This Year</h3>
+    <div class="flex-trips-boxes">
+      <section class="trips-grid">
+        <section class="shadow tripsDisplay trip-box" id="past-trips">
+          <h3 class="sectionTitle">Past Trips</h3>
+        </section>
+        <section class="shadow tripsDisplay trip-box" id="upcoming-trips">
+          <h3 class="sectionTitle">Upcoming Trips</h3>
+        </section>
+        <section class="shadow tripsDisplay trip-box" id="pending-trips">
+          <h3 class="sectionTitle">Pending Trips</h3>
+        </section>
+        <section class="shadow tripsDisplay trip-box" id="total-spent-this-year">
+          <h3 class="sectionTitle">Total Spent This Year</h3>
+        </section>
+      </section>
+    </div>
   </section>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
