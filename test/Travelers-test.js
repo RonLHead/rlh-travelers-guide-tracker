@@ -61,6 +61,23 @@ describe('Travelers', () => {
     ]);
   });
 
+  it.only("should return all the past trips for an individual Traveler", function () {
+    expect(travelers.pastTrips(3)).to.deep.equal([
+      {
+        "id": 4,
+        "userID": 3,
+        "destinationID": 8,
+        "travelers": 2,
+        "date": "2022/02/25",
+        "duration": 10,
+        "status": "approved",
+        "suggestedActivities": [
+
+        ]
+      }
+    ]);
+  });
+
   it("should return the total amount spent on trips this year", function () {
     expect(travelers.totalSpentYear(3)).to.equal(11121);
   });

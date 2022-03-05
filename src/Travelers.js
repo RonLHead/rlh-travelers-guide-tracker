@@ -31,6 +31,31 @@ class Travelers {
     return result;
   }
 
+  todaysDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    let newToday = `${yyyy}/${mm}/${dd}`;
+    return newToday;
+  }
+
+  pastTrips(travelerId) {
+    const today = this.todaysDate();
+
+    const allTrips = this.travelerAllTrips(travelerId);
+    
+    let result = [];
+    allTrips.forEach(trip => {
+      if(trip.date < today) {
+        result.push(trip)
+      }
+    });
+
+    return result;
+  }
+
   totalSpentYear(travelerId) {
     let today = new Date();
     let thisYear = today.getFullYear();

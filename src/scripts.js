@@ -19,19 +19,14 @@ const pendingTrips = document.getElementById("pendingTrips");
 let travelersRepo;
 const user = 1;
 
-
-
 function displayTraveler(userId) {
   const user = travelersRepo.findTraveler(userId);
   const firstName = user.name.split(" ");
 
   welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
-
+  console.log(travelersRepo.travelerAllTrips(userId))
   pastTrips.innerHTML += `<p>${travelersRepo.travelerAllTrips(userId)}</p>`;
-  }
-
-
-console.log('This is the JavaScript entry file - your code begins here.');
+}
 
 //onload display
 window.onload = (event) => {
