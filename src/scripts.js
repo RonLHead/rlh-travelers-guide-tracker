@@ -10,10 +10,11 @@ import Trips from './Trips';
 import Travelers from './Travelers';
 
 //querySelectors
-const welcomeBanner = document.getElementById("welcomeBanner");
-const pastTrips = document.getElementById("pastTrips");
-const upcomingTrips = document.getElementById("upcomingTrips");
-const pendingTrips = document.getElementById("pendingTrips");
+const welcomeBanner = document.getElementById("welcome-banner");
+const pastTrips = document.getElementById("past-trips");
+const upcomingTrips = document.getElementById("upcoming-trips");
+const pendingTrips = document.getElementById("pending-trips");
+const totalSpentThisYear = document.getElementById("total-spent-this-year")
 
 //global variables
 let travelersRepo;
@@ -27,11 +28,14 @@ function displayTraveler(userId) {
   const futureTrips = travelersRepo.upcomingTrips(userId);
   const unapprovedTrips = travelersRepo.tripsPending(userId);
 
+  const totalSpent = travelersRepo.totalSpentYear(userId);
+
   welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
   //need to add logic to display message if no past trips to return
   pastTrips.innerHTML += `<p>${previousTrips}</p>`;
   upcomingTrips.innerHTML += `<p>${futureTrips}</p>`;
   pendingTrips.innerHTML += `<p>${unapprovedTrips}</p>`;
+  totalSpentThisYear.innerHTML += `<p>${totalSpent}</p>`
 
 }
 
