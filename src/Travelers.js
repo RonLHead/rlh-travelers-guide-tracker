@@ -4,15 +4,14 @@ class Travelers {
   constructor(travelersAPI, tripsAPI, destData) {
     this.travelersData = travelersAPI;
     this.tripsObj = new Trips(tripsAPI, destData)
-    // this.destObj = new Destinations(destData)
   }
 
   findTraveler(travelerId) {
-    if(!this.travelersData.map(traveler => traveler.id).includes(travelerId)) {
+    if(!this.travelersData.travelers.map(traveler => traveler.id).includes(travelerId)) {
       return `Traveler ${travelerId} doesn't exist!`;
     }
 
-    let result = this.travelersData.reduce((acc, data) => {
+    let result = this.travelersData.travelers.reduce((acc, data) => {
       if(travelerId === data.id) {
         acc = data;
       }
@@ -23,14 +22,73 @@ class Travelers {
   }
 
   travelerAllTrips(travelerId) {
-    let result = this.tripsObj.tripsData.filter(trip => {
+    let result = this.tripsObj.tripsData.trips.filter(trip => {
       if(trip.userID === travelerId) {
         return trip;
       }
     });
-    // console.log(result)
 
-    return result;
+    if(result.length === 0) {
+      return "No trips to display. Please request a trip.";
+    } else return result;
+  }
+
+  todaysDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    let newToday = `${yyyy}/${mm}/${dd}`;
+    return newToday;
+  }
+
+  pastTrips(travelerId) {
+    const today = this.todaysDate();
+    const allTrips = this.travelerAllTrips(travelerId);
+    let result = [];
+
+    allTrips.forEach(trip => {
+      if(trip.date < today) {
+        result.push(trip)
+      }
+    });
+
+    if(result.length === 0) {
+      return "No previous trips to display.";
+    } else return result;
+  }
+
+  upcomingTrips(travelerId) {
+    const today = this.todaysDate();
+    const allTrips = this.travelerAllTrips(travelerId);
+    let result = [];
+
+    allTrips.forEach(trip => {
+      if(trip.date > today) {
+        result.push(trip)
+      }
+    });
+
+    if(result.length === 0) {
+      return "No upcoming trips to display. Please request a trip.";
+    } else return result;
+  }
+
+  tripsPending(travelerId) {
+    const today = this.todaysDate();
+    const allTrips = this.travelerAllTrips(travelerId);
+    let result = [];
+
+    allTrips.forEach(trip => {
+      if(trip.status === "pending") {
+        result.push(trip)
+      }
+    });
+
+    if(result.length === 0) {
+      return "No pending trips to display. Please request a trip.";
+    } else return result;
   }
 
   totalSpentYear(travelerId) {

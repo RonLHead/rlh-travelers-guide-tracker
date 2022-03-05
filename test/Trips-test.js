@@ -39,7 +39,7 @@ describe('Trips', () => {
 
   it("should be able to request a new trip", function () {
     expect(tripsTest.requestNewTrip(8, "2022/03/03", 19, 5, 4)).to.deep.equal({
-      "id": 10,
+      "id": 12,
       "userID": 8,
       "destinationID": 4,
       "travelers": 5,
@@ -66,7 +66,7 @@ describe('Trips', () => {
 
   it("should calculate the estimated cost of a new trip request that is pending", function () {
     tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4);
-    expect(tripsTest.estimatedTripCost(10)).to.equal(5208.5);
+    expect(tripsTest.estimatedTripCost(12)).to.equal(5208.5);
   });
 
   it("should return an error message if a pending trip request doesn't exist", function () {

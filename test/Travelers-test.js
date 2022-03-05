@@ -61,8 +61,75 @@ describe('Travelers', () => {
     ]);
   });
 
+  it("should return a message if a Traveler has no trips", function () {
+    expect(travelers.travelerAllTrips(9)).to.equal("No trips to display. Please request a trip.");
+  });
+
+  it("should return all the past trips for an individual Traveler", function () {
+    expect(travelers.pastTrips(3)).to.deep.equal([
+      {
+        "id": 4,
+        "userID": 3,
+        "destinationID": 8,
+        "travelers": 2,
+        "date": "2022/02/25",
+        "duration": 10,
+        "status": "approved",
+        "suggestedActivities": [
+
+        ]
+      }
+    ]);
+  });
+
+  it("should return a message if a Traveler has no past trips", function () {
+    expect(travelers.pastTrips(7)).to.equal("No previous trips to display.");
+  });
+
+  it("should return all the upcoming trips for an individual Traveler", function () {
+    expect(travelers.upcomingTrips(3)).to.deep.equal([
+      {
+        "id": 3,
+        "userID": 3,
+        "destinationID": 7,
+        "travelers": 4,
+        "date": "2022/05/22",
+        "duration": 17,
+        "status": "approved",
+        "suggestedActivities": [
+
+        ]
+      }
+    ]);
+  });
+
   it("should return the total amount spent on trips this year", function () {
     expect(travelers.totalSpentYear(3)).to.equal(11121);
+  });
+
+  it("should return a message if a Traveler has no upcoming trips", function () {
+    expect(travelers.upcomingTrips(1)).to.equal("No upcoming trips to display. Please request a trip.");
+  });
+
+  it("should return all pending trips for an individual Traveler", function () {
+    expect(travelers.tripsPending(4)).to.deep.equal([
+      {
+        "id": 13,
+        "userID": 4,
+        "destinationID": 49,
+        "travelers": 1,
+        "date": "2022/09/16",
+        "duration": 8,
+        "status": "pending",
+        "suggestedActivities": [
+
+        ]
+      }
+    ]);
+  });
+
+  it("should return a message if a Traveler has no pending trips", function () {
+    expect(travelers.tripsPending(1)).to.equal("No pending trips to display. Please request a trip.");
   });
 
   it("should return an error message if there are no trips for this year", function () {

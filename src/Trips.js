@@ -7,11 +7,11 @@ class Trips {
   }
 
   findTrip(tripID) {
-    if(!this.tripsData.map(trip => trip.id).includes(tripID)) {
+    if(!this.tripsData.trips.map(trip => trip.id).includes(tripID)) {
       return `Trip ${tripID} doesn't exist!`;
     }
 
-    let result = this.tripsData.reduce((acc, data) => {
+    let result = this.tripsData.trips.reduce((acc, data) => {
       if(tripID === data.id) {
         acc = data;
       }
@@ -22,7 +22,7 @@ class Trips {
   }
 
   requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
-    const newTripID = this.tripsData.length;
+    const newTripID = this.tripsData.trips.length;
 
     if(numTravelers > 9) {
       return "Can only request a trip for 9 travelers or less.";
@@ -45,13 +45,13 @@ class Trips {
       ]
     }
 
-    this.tripsData.push(newTrip);
+    this.tripsData.trips.push(newTrip);
 
     return newTrip;
   }
 
   estimatedTripCost(tripID) {
-    let newTrip = this.tripsData.find(trip => {
+    let newTrip = this.tripsData.trips.find(trip => {
       return trip.id === tripID;
     });
 

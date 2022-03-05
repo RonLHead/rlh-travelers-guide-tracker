@@ -1,4 +1,5 @@
-const tripsDataSet = [
+const tripsDataSet = {
+  "trips": [
     {
       "id": 1,
       "userID": 44,
@@ -13,7 +14,7 @@ const tripsDataSet = [
     },
     {
       "id": 2,
-      "userID": 35,
+      "userID": 7,
       "destinationID": 25,
       "travelers": 5,
       "date": "2022/10/04",
@@ -106,7 +107,32 @@ const tripsDataSet = [
       "suggestedActivities": [
 
       ]
+    },
+    {
+      "id": 100,
+      "userID": 1,
+      "destinationID": 20,
+      "travelers": 1,
+      "date": "2000/01/03",
+      "duration": 7,
+      "status": "approved",
+      "suggestedActivities": [
+
+      ]
+    },
+    {
+      "id": 13,
+      "userID": 4,
+      "destinationID": 49,
+      "travelers": 1,
+      "date": "2022/09/16",
+      "duration": 8,
+      "status": "pending",
+      "suggestedActivities": [
+
+      ]
     }
-];
+  ]
+};
 
 export default tripsDataSet;
