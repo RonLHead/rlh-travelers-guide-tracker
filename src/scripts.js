@@ -26,7 +26,7 @@ function displayTraveler(userId) {
   const previousTrips = travelersRepo.pastTrips(userId);
 
   welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
-
+  //need to add logic to display message if no past trips to return
   pastTrips.innerHTML = `
   <p>${previousTrips.find(trip => trip).date}</p>`;
 }

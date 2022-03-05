@@ -107,6 +107,10 @@ describe('Travelers', () => {
     expect(travelers.totalSpentYear(3)).to.equal(11121);
   });
 
+  it("should return a message if a Traveler has no upcoming trips", function () {
+    expect(travelers.upcomingTrips(1)).to.equal("No upcoming trips to display. Please request a trip.");
+  });
+
   it("should return an error message if there are no trips for this year", function () {
     expect(travelers.totalSpentYear(100)).to.equal("There are no trips for this year.")
   })

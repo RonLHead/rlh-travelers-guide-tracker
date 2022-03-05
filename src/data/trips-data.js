@@ -107,6 +107,18 @@ const tripsDataSet = {
       "suggestedActivities": [
 
       ]
+    },
+    {
+      "id": 100,
+      "userID": 1,
+      "destinationID": 20,
+      "travelers": 1,
+      "date": "2000/01/03",
+      "duration": 7,
+      "status": "approved",
+      "suggestedActivities": [
+
+      ]
     }
   ]
 };
