@@ -46,15 +46,17 @@ class Travelers {
   pastTrips(travelerId) {
     const today = this.todaysDate();
     const allTrips = this.travelerAllTrips(travelerId);
-
     let result = [];
+
     allTrips.forEach(trip => {
       if(trip.date < today) {
         result.push(trip)
       }
     });
 
-    return result;
+    if(result.length === 0) {
+      return "No previous trips to display.";
+    } else return result;
   }
 
   upcomingTrips(travelerId) {

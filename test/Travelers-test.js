@@ -61,6 +61,10 @@ describe('Travelers', () => {
     ]);
   });
 
+  it("should return a message if a Traveler has no trips", function () {
+    expect(travelers.travelerAllTrips(9)).to.equal("No trips to display. Please request a trip.");
+  });
+
   it("should return all the past trips for an individual Traveler", function () {
     expect(travelers.pastTrips(3)).to.deep.equal([
       {
@@ -78,8 +82,8 @@ describe('Travelers', () => {
     ]);
   });
 
-  it("should return a message if a Traveler has no trips", function () {
-    expect(travelers.travelerAllTrips(9)).to.equal("No trips to display. Please request a trip.");
+  it("should return a message if a Traveler has no past trips", function () {
+    expect(travelers.pastTrips(7)).to.equal("No previous trips to display.");
   });
 
   it("should return all the upcoming trips for an individual Traveler", function () {
