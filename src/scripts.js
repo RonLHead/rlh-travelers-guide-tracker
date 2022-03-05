@@ -1,3 +1,4 @@
+//imports
 import '../src/css/styles.css';
 import {
   destinations,
@@ -7,6 +8,12 @@ import {
 import Destinations from './Destinations';
 import Trips from './Trips';
 import Travelers from './Travelers';
+
+//querySelectors
+const welcomeBanner = document.getElementById("welcomeBanner");
+const pastTrips = document.getElementById("pastTrips");
+const upcomingTrips = document.getElementById("upcomingTrips");
+const pendingTrips = document.getElementById("pendingTrips");
 
 
 
