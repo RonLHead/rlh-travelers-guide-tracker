@@ -22,7 +22,7 @@ class Travelers {
   }
 
   travelerAllTrips(travelerId) {
-    let result = this.tripsObj.tripsData.filter(trip => {
+    let result = this.tripsObj.tripsData.trips.filter(trip => {
       if(trip.userID === travelerId) {
         return trip;
       }
