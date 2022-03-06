@@ -13,17 +13,17 @@
 <body>
   <nav>
     <form class="tripRequestNavigation card-color" id="trip-request-form">
-      <h3>Request a Trip</h3>
+      <h2>Request a Trip</h2>
       <input placeholder="Date: Year/Month/Day" type="text" name="date" value="" id="trip-request-start-date" required>
       <input placeholder="Duration" type="number" name="duration" value="" id="trip-request-duration" required>
       <input placeholder="Number of Travelers" type="number" name="number_of_travelers" value="" id="trip-request-traveler-amt" required>
       <input placeholder="Destinations" list="destinationsList" name="destinations" value="">
+      <input type="submit" value="Submit">
       <datalist id="destinationsList">
         <option value="Peru">
         <option value="Japan">
         <option value="Africa">
         <option value="South America">
-      <input type="submit" value="Submit">
     </form>
   </nav>
   <section class="allTravelersTripsContainer">
