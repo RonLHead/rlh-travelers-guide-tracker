@@ -4,11 +4,11 @@ class Destinations {
   }
 
   findDestination(destID) {
-    if(!this.destinationsData.map(dest => dest.id).includes(destID)) {
+    if(!this.destinationsData.destinations.map(dest => dest.id).includes(destID)) {
       return `Destination ${destID} doesn't exist!`;
     }
 
-    let result = this.destinationsData.reduce((acc, data) => {
+    let result = this.destinationsData.destinations.reduce((acc, data) => {
       if(destID === data.id) {
         acc = data;
       }
