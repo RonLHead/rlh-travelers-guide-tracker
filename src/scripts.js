@@ -18,7 +18,7 @@ const totalSpentThisYear = document.getElementById("total-spent-this-year")
 
 //global variables
 let travelersRepo;
-const user = 1;
+const user = 44;
 
 function displayTraveler(userId) {
   const user = travelersRepo.findTraveler(userId);

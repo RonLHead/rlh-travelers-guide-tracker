@@ -16,8 +16,10 @@ h1 {
 }
 
 .welcomeBanner {
-  text-align: right;
+  /* text-align: justify; */
+  /* width: 100%; */
   color: white;
+  /* margin-left: 10px; */
   margin-top: 0px;
   margin-bottom: 0px;
   padding-top: 5px;
