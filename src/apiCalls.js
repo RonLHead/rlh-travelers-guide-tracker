@@ -13,7 +13,7 @@ const travelers = fetch("http://localhost:3001/api/v1/travelers").then((response
 
 //POST requests
 const addTrip = (newTrip) => {
-  fetch("http://localhost:3001/api/v1/trips	", {
+  fetch("http://localhost:3001/api/v1/trips", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newTrip),

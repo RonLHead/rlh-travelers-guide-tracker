@@ -21,6 +21,7 @@ const tripRequestStartDate = document.getElementById("tripRequestStartDate");
 const tripRequestDuration = document.getElementById("tripRequestDuration");
 const tripRequestTravelerNum = document.getElementById("tripRequestTravelerNum");
 const destinationId = document.getElementById("destinationId");
+const errorTag = document.getElementById("errorTag");
 
 //global variables
 let travelersRepo;
@@ -52,12 +53,22 @@ function displayTraveler(userId) {
 
 submitButton.addEventListener("submit", (e) => {
   e.preventDefault();
+  console.log("click")
   const formData = new FormData(e.target);
   const newTraveler = instantNewTraveler(user);
-  // console.log(newTraveler)
-  const newTripRequest = newTraveler.tripsObj.trips.requestNewTrip(user, tripRequestStartDate.value, parseInt(tripRequestDuration.value), parseInt(tripRequestTravelerNum.value), parseInt(destinationId.value));
+  const newTripDate = tripRequestStartDate.value;
+  console.log(newTripDate)
+  const newTripDuration = parseInt(tripRequestDuration.value);
+  console.log(newTripDuration)
+  const newTripNumTravelers = parseInt(tripRequestTravelerNum.value);
+  console.log(newTripNumTravelers)
+  const newTripDestId = parseInt(destinationId.value);
+  console.log(newTripDestId)
+  const newTripRequest = newTraveler.tripsObj.trips.requestNewTrip(user, newTripDate, newTripDuration, newTripNumTravelers, );
+  addTrip(newTripRequest)
   console.log("The new trip request", newTripRequest);
   pendingTrips.innerHTML += `<p class="no-trip-info">${newTripRequest}</p>`;
+  e.target.reset();
 });
 
 //onload display
