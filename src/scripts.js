@@ -17,13 +17,14 @@ const upcomingTrips = document.getElementById("upcomingTrips");
 const pendingTrips = document.getElementById("pendingTrips");
 const totalSpentThisYear = document.getElementById("totalSpentThisYear");
 const requestForm = document.getElementById("requestForm");
+const tripsContainer = document.getElementById("tripsContainer");
 const tripRequestStartDate = document.getElementById("tripRequestStartDate");
 const tripRequestDuration = document.getElementById("tripRequestDuration");
 const tripRequestTravelerNum = document.getElementById("tripRequestTravelerNum");
 const destinationId = document.getElementById("destinationId");
 const errorTag = document.getElementById("errorTag");
 const destinationsList = document.getElementById("destinationsList");
-
+const confirmTripDisplay = document.getElementById("confirmTripDisplay");
 //global variables
 let travelersRepo;
 const user = 45;
@@ -93,9 +94,6 @@ function displayTravelersUpcomingTrips(userId) {
 function displayTravelersPendingTrips(userId) {
   // const newTraveler = instantNewTraveler(user);
   const unapprovedTrips = travelersRepo.tripsPending(userId);
-  // console.log(unapprovedTrips)
-  // console.log(futureTrips)
-  // const getDestination =
   if(unapprovedTrips === "No pending trips to display. Please request a trip.") {
     pendingTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="pendingTrips">
       <h2 class="trip-title" >Pending Trips</h2>
@@ -125,13 +123,38 @@ function displayTravelersTotalSpent(userId) {
   }
 }
 
+function hide(e) {
+  e.classList.add("remove");
+}
+
+function show(e) {
+  e.classList.remove("remove")
+}
+
+function blur(e) {
+  e.classList.add("blur-all")
+}
+
+function confirmTripRequest(trip) {
+  blur(tripsContainer);
+  show(confirmTripDisplay);
+  confirmTripDisplay.innerHTML = `
+  <section class="confirm-trip-display" id="confirmTripDisplay">
+    <section class="trip-box shadow">
+      <p>Confirm Trip</p>
+      <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
+      <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
+      <p class="trip-display">Date: ${trip.date}</p>
+      <p class="trip-display">Duration: ${trip.date} Days</p>
+      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>
+      <button type="submit" name="yes_button">Yes</button>
+      <button type="submit" name="no_button">No</button>
+    </section>
+  `
+}
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
   // const formData = new FormData(e.target);
-  console.log("date", tripRequestStartDate.value.replaceAll("-", "/"))
-  console.log("number of travelers", parseInt(tripRequestTravelerNum.value))
-  console.log("trip duration", parseInt(tripRequestDuration.value))
-  console.log("destination", parseInt(destinationId.value))
   const newTrip = travelersRepo.tripsObj.requestNewTrip(
     user,
     tripRequestStartDate.value.replaceAll("-", "/"),
@@ -140,14 +163,7 @@ requestForm.addEventListener("submit", (e) => {
     parseInt(destinationId.value)
   );
 
-  // {
-  //
-  //   date: tripRequestStartDate.value.replaceAll("-", "/"),
-  //   travelers: parseInt(tripRequestTravelerNum.value),
-  //   destinationID: parseInt(destinationId.value.split('.')[0]),
-  // };
-  console.log("The new trip request", newTrip);
-
+  confirmTripRequest(newTrip);
   addTrip(newTrip);
   // console.log(travelersRepo.tripsObj.pendingTrips)
   displayTravelersPendingTrips(user);

@@ -180,6 +180,16 @@ h1 {
   /* color: #F93C43 */
 }
 
-.blurAll {
+.blur-all {
   filter: blur(25px);
+}
+
+.remove {
+  display: none;
+}
+
+.confirm-trip-display {
+  width: auto;
+  margin: auto;
+
 }
