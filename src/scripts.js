@@ -135,7 +135,7 @@ requestForm.addEventListener("submit", (e) => {
     travelers: parseInt(tripRequestTravelerNum.value),
     destinationID: parseInt(destinationId.value.split('.')[0]),
   };
-  console.log("The new trip request", newTrip);
+  console.log("The new trip request", travelersRepo.tripsPending(newTrip));
 
   addTrip(travelersRepo.tripsPending(newTrip));
   // console.log(travelersRepo.tripsObj.pendingTrips)

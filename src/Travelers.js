@@ -82,7 +82,6 @@ class Travelers {
 
   tripsPending(travelerId) {
     const result = this.filterPendingTrips(travelerId);
-
     if(result.length === 0) {
       return "No pending trips to display. Please request a trip.";
     } else return result;

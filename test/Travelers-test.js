@@ -112,7 +112,7 @@ describe('Travelers', () => {
   });
 
   it("should return all pending trips for an individual Traveler", function () {
-    // travelers.tripsObj.requestNewTrip(8, "2022/03/02", 19, 5, 4);
+    travelers.tripsObj.requestNewTrip(4, "2022/10/15", 8, 2, 4);
     expect(travelers.tripsPending(4)).to.deep.equal([
       {
         "id": 13,
@@ -122,6 +122,18 @@ describe('Travelers', () => {
         "date": "2022/09/16",
         "duration": 8,
         "status": "pending",
+        "suggestedActivities": [
+
+        ]
+      },
+      {
+        "id": 12,
+        "userID": 4,
+        "destinationID": 4,
+        "travelers": 2,
+        "date": '2022/10/15',
+        "duration": 8,
+        "status": 'pending',
         "suggestedActivities": [
 
         ]
