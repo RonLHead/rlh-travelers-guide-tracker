@@ -52,20 +52,29 @@ function displayTravelersFName(userId) {
 
 function noTripDisplay(selector, trips) {
   if(selector === pastTrips) {
-    return selector.innerHTML = `<section class="scroll-content shadow trip-box" id="pastTrips">
+    return selector.innerHTML += `
+    <p class="no-trip-info">${trips}</p>
+    <!-- <section class="scroll-content shadow trip-box" id="pastTrips">
     <h2 class="trip-title" >Past Trips</h2>
     <p class="no-trip-info">${trips}</p>
-    </section>`;
+    </section> -->
+    `;
   } else if(selector === upcomingTrips) {
-    return selector.innerHTML = `<section class="scroll-content shadow trip-box" id="upcomingTrips">
+    return selector.innerHTML += `
+    <p class="no-trip-info">${trips}</p>
+    <!-- <section class="scroll-content shadow trip-box" id="upcomingTrips">
       <h2 class="trip-title" >Upcoming Trips</h2>
       <p class="no-trip-info">${trips}</p>
-    </section>`;
+    </section> -->
+    `;
   } else if(selector === pendingTrips) {
-    return selector.innerHTML = `<section class="scroll-content shadow trip-box" id="pendingTrips">
+    return selector.innerHTML += `
+    <p class="no-trip-info">${trips}</p>
+    <!-- <section class="scroll-content shadow trip-box" id="pendingTrips">
       <h2 class="trip-title" >Pending Trips</h2>
       <p class="no-trip-info">${trips}</p>
-    </section>`;
+    </section> -->
+    `;
   }
 }
 
@@ -119,7 +128,7 @@ function displayTravelersTotalSpent(userId) {
   if(totalSpent === "There are no trips for this year.") {
     totalSpentThisYear.innerHTML += `<p class="no-trip-info">${totalSpent}</p>`;
   } else {
-    totalSpentThisYear.innerHTML += `<p>$${totalSpent}</p>`
+    totalSpentThisYear.innerHTML += `<p class="trip-title">$${totalSpent}</p>`
   }
 }
 
@@ -165,7 +174,6 @@ requestForm.addEventListener("submit", (e) => {
 
   confirmTripRequest(newTrip);
   addTrip(newTrip);
-  // console.log(travelersRepo.tripsObj.pendingTrips)
   displayTravelersPendingTrips(user);
   e.target.reset();
 });
