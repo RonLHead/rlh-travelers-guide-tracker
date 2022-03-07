@@ -76,19 +76,9 @@ class Travelers {
   }
 
   tripsPending(travelerId) {
-    const today = this.todaysDate();
-    const allTrips = this.travelerAllTrips(travelerId);
-    let result = [];
-
-    allTrips.forEach(trip => {
-      if(trip.status === "pending") {
-        result.push(trip)
-      }
-    });
-
-    if(result.length === 0) {
+    if(!this.tripsObj.pendingTrips.find(trip => trip.userID === travelerId)) {
       return "No pending trips to display. Please request a trip.";
-    } else return result;
+    } else return this.tripsObj.pendingTrips.filter(trip => trip.userID === travelerId);
   }
 
   totalSpentYear(travelerId) {

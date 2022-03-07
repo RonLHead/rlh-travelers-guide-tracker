@@ -25,7 +25,7 @@ const errorTag = document.getElementById("errorTag");
 
 //global variables
 let travelersRepo;
-const user = 35;
+const user = 45;
 
 function instantNewTraveler(userId) {
   const traveler = travelersRepo.findTraveler(userId);
@@ -53,10 +53,12 @@ function displayTravelersPastTrips(userId) {
     pastTrips.innerHTML += `<p class="no-trip-info">${previousTrips}</p>`;
   } else {
     previousTrips.forEach(trip => {
-      pastTrips.innerHTML += `<p>Date: ${trip.date}</p>
-      <p>Destination: ${trip.destinationID}</p>
-      <p>Duration: ${trip.date} Days</p>
-      <p>Number of Travelers: ${previousTrips.travelers}</p>`
+      pastTrips.innerHTML += `
+      <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
+      <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
+      <p class="trip-display">Date: ${trip.date}</p>
+      <p class="trip-display">Duration: ${trip.date} Days</p>
+      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>`
     });
   }
 }
@@ -67,7 +69,7 @@ function displayTravelersUpcomingTrips(userId) {
   // console.log(futureTrips)
   // const getDestination =
   if(futureTrips === "No upcoming trips to display. Please request a trip.") {
-    pastTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
+    upcomingTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
   } else {
     futureTrips.forEach(trip => {
       upcomingTrips.innerHTML += `
@@ -80,23 +82,51 @@ function displayTravelersUpcomingTrips(userId) {
   }
 }
 
+function displayTravelersPendingTrips(userId) {
+  // const newTraveler = instantNewTraveler(user);
+  const unapprovedTrips = travelersRepo.tripsPending(userId);
+  console.log(unapprovedTrips)
+  // console.log(futureTrips)
+  // const getDestination =
+  if(unapprovedTrips === "No pending trips to display. Please request a trip.") {
+    pendingTrips.innerHTML += `<p class="no-trip-info">${unapprovedTrips}</p>`;
+  } else {
+    unapprovedTrips.forEach(trip => {
+      pendingTrips.innerHTML += `
+      <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
+      <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
+      <p class="trip-display">Date: ${trip.date}</p>
+      <p class="trip-display">Duration: ${trip.date} Days</p>
+      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>`
+    });
+  }
+}
+
 submitButton.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("click")
-  const formData = new FormData(e.target);
-  const newTraveler = instantNewTraveler(user);
-  const newTripDate = tripRequestStartDate.value;
-  console.log(newTripDate)
-  const newTripDuration = parseInt(tripRequestDuration.value);
-  console.log(newTripDuration)
-  const newTripNumTravelers = parseInt(tripRequestTravelerNum.value);
-  console.log(newTripNumTravelers)
-  const newTripDestId = parseInt(destinationId.value);
-  console.log(newTripDestId)
-  const newTripRequest = newTraveler.tripsObj.trips.requestNewTrip(user, newTripDate, newTripDuration, newTripNumTravelers, );
-  addTrip(newTripRequest)
-  console.log("The new trip request", newTripRequest);
-  pendingTrips.innerHTML += `<p class="no-trip-info">${newTripRequest}</p>`;
+  // const formData = new FormData(e.target);
+  const newTrip = {
+    userID: user,
+    date: tripRequestStartDate.value.replaceAll("-", "/"),
+    duration: parseInt(tripRequestDuration.value),
+    travelers: parseInt(tripRequestTravelerNum.value),
+    destinationID: parseInt(destinationId.value),
+  };
+  // const newTraveler = instantNewTraveler(user);
+  // const newTripDate = tripRequestStartDate.value.replaceAll("-", "/");
+  // console.log(newTripDate)
+  // const newTripDuration = parseInt(tripRequestDuration.value);
+  // console.log(newTripDuration)
+  // const newTripNumTravelers = parseInt(tripRequestTravelerNum.value);
+  // console.log(newTripNumTravelers)
+  // const newTripDestId = parseInt(destinationId.value);
+  // console.log(newTripDestId)
+  // const newTripRequest = newTraveler.tripsObj.requestNewTrip(user, newTripDate, newTripDuration, newTripNumTravelers, );
+  console.log("The new trip request", newTrip);
+
+  addTrip(newTrip);
+  displayTravelersPendingTrips(user);
   e.target.reset();
 });
 
@@ -108,6 +138,7 @@ window.onload = (event) => {
     displayTravelersFName(user);
     displayTravelersPastTrips(user);
     displayTravelersUpcomingTrips(user);
+    displayTravelersPendingTrips(user)
   })
   .catch((err) => console.log(err));
 };

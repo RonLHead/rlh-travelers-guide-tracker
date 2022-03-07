@@ -112,14 +112,15 @@ describe('Travelers', () => {
   });
 
   it("should return all pending trips for an individual Traveler", function () {
-    expect(travelers.tripsPending(4)).to.deep.equal([
+    travelers.tripsObj.requestNewTrip(8, "2022/03/02", 19, 5, 4);
+    expect(travelers.tripsPending(8)).to.deep.equal([
       {
-        "id": 13,
-        "userID": 4,
-        "destinationID": 49,
-        "travelers": 1,
-        "date": "2022/09/16",
-        "duration": 8,
+        "id": 12,
+        "userID": 8,
+        "destinationID": 4,
+        "travelers": 5,
+        "date": "2022/03/02",
+        "duration": 19,
         "status": "pending",
         "suggestedActivities": [
 
@@ -129,7 +130,7 @@ describe('Travelers', () => {
   });
 
   it("should return a message if a Traveler has no pending trips", function () {
-    expect(travelers.tripsPending(1)).to.equal("No pending trips to display. Please request a trip." );
+    expect(travelers.tripsPending(3)).to.equal("No pending trips to display. Please request a trip." );
   });
 
   it("should return an error message if there are no trips for this year", function () {
