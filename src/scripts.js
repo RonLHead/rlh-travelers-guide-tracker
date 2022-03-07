@@ -25,9 +25,10 @@ const destinationId = document.getElementById("destinationId");
 const errorTag = document.getElementById("errorTag");
 const destinationsList = document.getElementById("destinationsList");
 const confirmTripDisplay = document.getElementById("confirmTripDisplay");
+
 //global variables
 let travelersRepo;
-const user = 28;
+const user = 45;
 
 function instantNewTraveler(userId) {
   const traveler = travelersRepo.findTraveler(userId);
@@ -49,66 +50,65 @@ function displayTravelersFName(userId) {
   welcomeBanner.innerHTML = `<h1 class="welcome-banner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
 }
 
+function noTripDisplay(selector, trips) {
+  if(selector === pastTrips) {
+    return selector.innerHTML = `<section class="scroll-content shadow trip-box" id="pastTrips">
+    <h2 class="trip-title" >Past Trips</h2>
+    <p class="no-trip-info">${trips}</p>
+    </section>`;
+  } else if(selector === upcomingTrips) {
+    return selector.innerHTML = `<section class="scroll-content shadow trip-box" id="upcomingTrips">
+      <h2 class="trip-title" >Upcoming Trips</h2>
+      <p class="no-trip-info">${trips}</p>
+    </section>`;
+  } else if(selector === pendingTrips) {
+    return selector.innerHTML = `<section class="scroll-content shadow trip-box" id="pendingTrips">
+      <h2 class="trip-title" >Pending Trips</h2>
+      <p class="no-trip-info">${trips}</p>
+    </section>`;
+  }
+}
+
+function tripDisplay(selector, trips) {
+  return selector.innerHTML += `
+  <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trips.destinationID).image} alt="${travelersRepo.tripsObj.destinationsObj.findDestination(trips.destinationID).destination}">
+  <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trips.destinationID).destination}</p>
+  <p class="trip-display">Date: ${trips.date}</p>
+  <p class="trip-display">Duration: ${trips.date} Days</p>
+  <p class="trip-display">Number of Travelers: ${trips.travelers}</p>`;
+}
+
 function displayTravelersPastTrips(userId) {
   const previousTrips = travelersRepo.pastTrips(userId);
 
   if(previousTrips === "No previous trips to display.") {
-    pastTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="pastTrips">
-      <h2 class="trip-title" >Past Trips</h2>
-      <p class="no-trip-info">${previousTrips}</p>
-    </section>`;
+    noTripDisplay(pastTrips, previousTrips);
   } else {
     previousTrips.forEach(trip => {
-      pastTrips.innerHTML += `
-      <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
-      <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
-      <p class="trip-display">Date: ${trip.date}</p>
-      <p class="trip-display">Duration: ${trip.date} Days</p>
-      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>`
+      tripDisplay(pastTrips, trip);
     });
   }
 }
 
 function displayTravelersUpcomingTrips(userId) {
-  // const newTraveler = instantNewTraveler(user);
   const futureTrips = travelersRepo.upcomingTrips(userId);
-  // console.log(futureTrips)
-  // const getDestination =
+
   if(futureTrips === "No upcoming trips to display. Please request a trip.") {
-    upcomingTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="upcomingTrips">
-      <h2 class="trip-title" >Upcoming Trips</h2>
-      <p class="no-trip-info">${futureTrips}</p>
-    </section>`;
+    noTripDisplay(upcomingTrips, futureTrips);
   } else {
     futureTrips.forEach(trip => {
-      upcomingTrips.innerHTML += `
-      <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
-      <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
-      <p class="trip-display">Date: ${trip.date}</p>
-      <p class="trip-display">Duration: ${trip.date} Days</p>
-      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>`
+      tripDisplay(upcomingTrips, trip);
     });
   }
 }
 
 function displayTravelersPendingTrips(userId) {
-  // const newTraveler = instantNewTraveler(user);
   const unapprovedTrips = travelersRepo.tripsPending(userId);
   if(unapprovedTrips === "No pending trips to display. Please request a trip.") {
-    pendingTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="pendingTrips">
-      <h2 class="trip-title" >Pending Trips</h2>
-      <p class="no-trip-info">${unapprovedTrips}</p>
-    </section>`;
+    noTripDisplay(pendingTrips, unapprovedTrips);
   } else {
     unapprovedTrips.forEach(trip => {
-      pendingTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="pendingTrips">
-        <h2 class="trip-title" >Pending Trips</h2>
-      <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
-      <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
-      <p class="trip-display">Date: ${trip.date}</p>
-      <p class="trip-display">Duration: ${trip.date} Days</p>
-      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>
-      </section>`
+      tripDisplay(pendingTrips, trip);
     });
   }
 }
@@ -147,8 +147,8 @@ function confirmTripRequest(trip) {
       <p class="trip-display">Date: ${trip.date}</p>
       <p class="trip-display">Duration: ${trip.date} Days</p>
       <p class="trip-display">Number of Travelers: ${trip.travelers}</p>
-      <button type="submit" name="yes_button">Yes</button>
-      <button type="submit" name="no_button">No</button>
+      <p>Estimated Cost: $${travelersRepo.tripsObj.pendingTripCost(trip.id)}</p>
+      <button type="submit" name="yes_button">Confirm</button><button type="submit" name="no_button">Cancel</button>
     </section>
   `
 }
