@@ -4,7 +4,6 @@ class Trips {
   constructor(tripsAPI, destinationsAPI) {
     this.tripsData = tripsAPI;
     this.destinationsObj = new Destinations(destinationsAPI);
-    this.pendingTrips = []
   }
 
   findTrip(tripID) {
@@ -46,7 +45,7 @@ class Trips {
       ]
     }
 
-    this.pendingTrips.push(newTrip);
+    this.tripsData.trips.push(newTrip);
 
     return newTrip;
   }

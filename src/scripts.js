@@ -50,7 +50,10 @@ function displayTravelersPastTrips(userId) {
   const previousTrips = travelersRepo.pastTrips(userId);
 
   if(previousTrips === "No previous trips to display.") {
-    pastTrips.innerHTML += `<p class="no-trip-info">${previousTrips}</p>`;
+    pastTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="pastTrips">
+      <h2 class="trip-title" >Past Trips</h2>
+      <p class="no-trip-info">${previousTrips}</p>
+    </section>`;
   } else {
     previousTrips.forEach(trip => {
       pastTrips.innerHTML += `
@@ -69,7 +72,10 @@ function displayTravelersUpcomingTrips(userId) {
   // console.log(futureTrips)
   // const getDestination =
   if(futureTrips === "No upcoming trips to display. Please request a trip.") {
-    upcomingTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
+    upcomingTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="upcomingTrips">
+      <h2 class="trip-title" >Upcoming Trips</h2>
+      <p class="no-trip-info">${futureTrips}</p>
+    </section>`;
   } else {
     futureTrips.forEach(trip => {
       upcomingTrips.innerHTML += `
@@ -85,14 +91,17 @@ function displayTravelersUpcomingTrips(userId) {
 function displayTravelersPendingTrips(userId) {
   // const newTraveler = instantNewTraveler(user);
   const unapprovedTrips = travelersRepo.tripsPending(userId);
-  console.log(unapprovedTrips)
+  // console.log(unapprovedTrips)
   // console.log(futureTrips)
   // const getDestination =
   if(unapprovedTrips === "No pending trips to display. Please request a trip.") {
-    pendingTrips.innerHTML += `<p class="no-trip-info">${unapprovedTrips}</p>`;
+    pendingTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="pendingTrips">
+      <h2 class="trip-title" >Pending Trips</h2>
+      <p class="no-trip-info">${unapprovedTrips}</p>
+    </section>`;
   } else {
     unapprovedTrips.forEach(trip => {
-      pendingTrips.innerHTML = `
+      pendingTrips.innerHTML += `
       <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
       <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
       <p class="trip-display">Date: ${trip.date}</p>
@@ -102,9 +111,18 @@ function displayTravelersPendingTrips(userId) {
   }
 }
 
+function displayTravelersTotalSpent(userId) {
+  const totalSpent = travelersRepo.totalSpentYear(userId);
+
+  if(totalSpent === "There are no trips for this year.") {
+    totalSpentThisYear.innerHTML += `<p class="no-trip-info">${totalSpent}</p>`;
+  } else {
+    totalSpentThisYear.innerHTML += `<p>$${totalSpent}</p>`
+  }
+}
+
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("click");
   // const formData = new FormData(e.target);
   const newTrip = {
     userID: user,
@@ -113,19 +131,10 @@ requestForm.addEventListener("submit", (e) => {
     travelers: parseInt(tripRequestTravelerNum.value),
     destinationID: parseInt(destinationId.value),
   };
-  // const newTraveler = instantNewTraveler(user);
-  // const newTripDate = tripRequestStartDate.value.replaceAll("-", "/");
-  // console.log(newTripDate)
-  // const newTripDuration = parseInt(tripRequestDuration.value);
-  // console.log(newTripDuration)
-  // const newTripNumTravelers = parseInt(tripRequestTravelerNum.value);
-  // console.log(newTripNumTravelers)
-  // const newTripDestId = parseInt(destinationId.value);
-  // console.log(newTripDestId)
-  // const newTripRequest = newTraveler.tripsObj.requestNewTrip(user, newTripDate, newTripDuration, newTripNumTravelers, );
   console.log("The new trip request", newTrip);
 
   addTrip(newTrip);
+  console.log(travelersRepo.tripsObj.pendingTrips)
   displayTravelersPendingTrips(user);
   e.target.reset();
 });
@@ -138,7 +147,8 @@ window.onload = (event) => {
     displayTravelersFName(user);
     displayTravelersPastTrips(user);
     displayTravelersUpcomingTrips(user);
-    displayTravelersPendingTrips(user)
+    displayTravelersPendingTrips(user);
+    displayTravelersTotalSpent(user);
   })
   .catch((err) => console.log(err));
 };
