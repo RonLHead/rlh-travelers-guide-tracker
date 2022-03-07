@@ -95,7 +95,7 @@ class Travelers {
     let result = 0;
 
     travelerTrips.forEach(trip => {
-      if(trip.date.includes(thisYear)) {
+      if(trip.date.includes(thisYear) && trip.status === "approved") {
         result = result + this.tripsObj.estimatedTripCost(trip);
       }
     });

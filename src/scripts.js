@@ -27,7 +27,7 @@ const destinationsList = document.getElementById("destinationsList");
 const confirmTripDisplay = document.getElementById("confirmTripDisplay");
 //global variables
 let travelersRepo;
-const user = 45;
+const user = 28;
 
 function instantNewTraveler(userId) {
   const traveler = travelersRepo.findTraveler(userId);
