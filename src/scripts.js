@@ -31,13 +31,11 @@ function instantNewTraveler(userId) {
   const traveler = travelersRepo.findTraveler(userId);
   return traveler;
 }
-//
-// const futureTrips = travelersRepo.upcomingTrips(userId);
+
 // const unapprovedTrips = travelersRepo.tripsPending(userId);
 // const totalSpent = travelersRepo.totalSpentYear(userId);
 // //need to add logic to display message if no past trips to return
-//
-// upcomingTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
+
 // pendingTrips.innerHTML += `<p class="no-trip-info">${unapprovedTrips}</p>`;
 // totalSpentThisYear.innerHTML += `<p class="no-trip-info">${totalSpent}</p>`
 
@@ -49,9 +47,8 @@ function displayTravelersFName(userId) {
 }
 
 function displayTravelersPastTrips(userId) {
-  const newTraveler = instantNewTraveler(user);
   const previousTrips = travelersRepo.pastTrips(userId);
-  console.log(previousTrips)
+
   if(previousTrips === "No previous trips to display.") {
     pastTrips.innerHTML += `<p class="no-trip-info">${previousTrips}</p>`;
   } else {
@@ -60,6 +57,28 @@ function displayTravelersPastTrips(userId) {
       <p>Destination: ${trip.destinationID}</p>
       <p>Duration: ${trip.date} Days</p>
       <p>Number of Travelers: ${previousTrips.travelers}</p>`
+    });
+  }
+}
+
+function displayTravelersUpcomingTrips(userId) {
+  // const newTraveler = instantNewTraveler(user);
+  const futureTrips = travelersRepo.upcomingTrips(userId);
+  // console.log(futureTrips)
+  // const getDestination =
+  if(futureTrips === "No upcoming trips to display. Please request a trip.") {
+    pastTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
+  } else {
+    futureTrips.forEach(trip => {
+      upcomingTrips.innerHTML = `
+        <section class="scroll-content shadow trip-box trip-display" id="upcomingTrips">
+          <h3 class="trip-title">Upcoming Trips</h3>
+            <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
+            <p>Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
+            <p>Date: ${trip.date}</p>
+            <p>Duration: ${trip.date} Days</p>
+            <p>Number of Travelers: ${trip.travelers}</p>
+        </section>`
     });
   }
 }
@@ -90,7 +109,8 @@ window.onload = (event) => {
   .then((data) => {
     travelersRepo = new Travelers(data[2], data[1], data[0]);
     displayTravelersFName(user);
-    displayTravelersPastTrips(user)
+    displayTravelersPastTrips(user);
+    displayTravelersUpcomingTrips(user);
   })
   .catch((err) => console.log(err));
 };
