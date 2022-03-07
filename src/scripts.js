@@ -31,24 +31,37 @@ function instantNewTraveler(userId) {
   const traveler = travelersRepo.findTraveler(userId);
   return traveler;
 }
+//
+// const futureTrips = travelersRepo.upcomingTrips(userId);
+// const unapprovedTrips = travelersRepo.tripsPending(userId);
+// const totalSpent = travelersRepo.totalSpentYear(userId);
+// //need to add logic to display message if no past trips to return
+//
+// upcomingTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
+// pendingTrips.innerHTML += `<p class="no-trip-info">${unapprovedTrips}</p>`;
+// totalSpentThisYear.innerHTML += `<p class="no-trip-info">${totalSpent}</p>`
 
-function displayTraveler(userId) {
+function displayTravelersFName(userId) {
   const newTraveler = instantNewTraveler(user);
   const firstName = newTraveler.name.split(" ");
 
-  const previousTrips = travelersRepo.pastTrips(userId);
-  const futureTrips = travelersRepo.upcomingTrips(userId);
-  const unapprovedTrips = travelersRepo.tripsPending(userId);
-
-  const totalSpent = travelersRepo.totalSpentYear(userId);
-
   welcomeBanner.innerHTML = `<h1 class="welcome-banner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
-  //need to add logic to display message if no past trips to return
-  pastTrips.innerHTML += `<p class="no-trip-info">${previousTrips}</p>`;
-  upcomingTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
-  pendingTrips.innerHTML += `<p class="no-trip-info">${unapprovedTrips}</p>`;
-  totalSpentThisYear.innerHTML += `<p class="no-trip-info">${totalSpent}</p>`
+}
 
+function displayTravelersPastTrips(userId) {
+  const newTraveler = instantNewTraveler(user);
+  const previousTrips = travelersRepo.pastTrips(userId);
+  console.log(previousTrips)
+  if(previousTrips === "No previous trips to display.") {
+    pastTrips.innerHTML += `<p class="no-trip-info">${previousTrips}</p>`;
+  } else {
+    previousTrips.forEach(trip => {
+      pastTrips.innerHTML += `<p>Date: ${trip.date}</p>
+      <p>Destination: ${trip.destinationID}</p>
+      <p>Duration: ${trip.date} Days</p>
+      <p>Number of Travelers: ${previousTrips.travelers}</p>`
+    });
+  }
 }
 
 submitButton.addEventListener("submit", (e) => {
@@ -76,7 +89,8 @@ window.onload = (event) => {
   Promise.all([destinations, trips, travelers])
   .then((data) => {
     travelersRepo = new Travelers(data[2], data[1], data[0]);
-    displayTraveler(user);
+    displayTravelersFName(user);
+    displayTravelersPastTrips(user)
   })
   .catch((err) => console.log(err));
 };
