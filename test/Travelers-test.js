@@ -129,7 +129,7 @@ describe('Travelers', () => {
   });
 
   it("should return a message if a Traveler has no pending trips", function () {
-    expect(travelers.tripsPending(1)).to.equal("No pending trips to display. Please request a trip.");
+    expect(travelers.tripsPending(1)).to.equal("No pending trips to display. Please request a trip." );
   });
 
   it("should return an error message if there are no trips for this year", function () {

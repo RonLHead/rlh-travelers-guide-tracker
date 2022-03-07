@@ -4,6 +4,7 @@ class Trips {
   constructor(tripsAPI, destinationsAPI) {
     this.tripsData = tripsAPI;
     this.destinationsObj = new Destinations(destinationsAPI);
+    this.pendingTrips = []
   }
 
   findTrip(tripID) {
@@ -45,24 +46,29 @@ class Trips {
       ]
     }
 
-    this.tripsData.trips.push(newTrip);
+    this.pendingTrips.push(newTrip);
 
     return newTrip;
   }
 
-  estimatedTripCost(tripID) {
-    let newTrip = this.tripsData.trips.find(trip => {
-      return trip.id === tripID;
+  pendingTripCost(tripId) {
+    let newTrip = this.pendingTrips.find(trip => {
+      return trip.id === tripId;
     });
 
     if(!newTrip) {
       return "Pending trip request doesn't exist. Please request a new trip.";
     }
 
-    let tripDestination = this.destinationsObj.destinationsData.destinations.find(dest => dest.id === newTrip.destinationID);
+    let result = this.estimatedTripCost(newTrip);
 
-    let flightCost = newTrip.travelers * tripDestination.estimatedFlightCostPerPerson;
-    let lodgingCost = newTrip.duration * tripDestination.estimatedLodgingCostPerDay;
+    return result;
+  }
+
+  estimatedTripCost(trip) {
+    let tripDestination = this.destinationsObj.destinationsData.destinations.find(dest => dest.id === trip.destinationID);
+    let flightCost = trip.travelers * tripDestination.estimatedFlightCostPerPerson;
+    let lodgingCost = trip.duration * tripDestination.estimatedLodgingCostPerDay;
     let totalEstimatedCost = (flightCost * 2) + lodgingCost;
 
     totalEstimatedCost = totalEstimatedCost + (totalEstimatedCost * 0.10);

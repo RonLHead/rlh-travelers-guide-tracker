@@ -65,7 +65,7 @@ class Travelers {
     let result = [];
 
     allTrips.forEach(trip => {
-      if(trip.date > today) {
+      if(trip.date > today && trip.status === "approved") {
         result.push(trip)
       }
     });
