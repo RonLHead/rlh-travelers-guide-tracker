@@ -67,6 +67,7 @@ h1 {
 }
 
 .form-submit-button {
+  /* width: 100px; */
   color: #FFFFFF;
   font-weight: bold;
   background-color: black;

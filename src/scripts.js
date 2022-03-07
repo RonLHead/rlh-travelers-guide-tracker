@@ -128,10 +128,14 @@ function displayTravelersTotalSpent(userId) {
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
   // const formData = new FormData(e.target);
-  console.log(parseInt(destinationId.value))
+  console.log("date", tripRequestStartDate.value.replaceAll("-", "/"))
+  console.log("number of travelers", parseInt(tripRequestTravelerNum.value))
+  console.log("trip duration", parseInt(tripRequestDuration.value))
+  console.log("destination", parseInt(destinationId.value))
   const newTrip = travelersRepo.tripsObj.requestNewTrip(
     user,
     tripRequestStartDate.value.replaceAll("-", "/"),
+    parseInt(tripRequestDuration.value),
     parseInt(tripRequestTravelerNum.value),
     parseInt(destinationId.value)
   );
