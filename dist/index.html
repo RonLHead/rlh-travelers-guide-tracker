@@ -8,38 +8,38 @@
   <title>Traveler's Guide Trip Tracker</title>
 </head>
 <header>
-  <h1 class="welcome-banner" id="welcomeBanner">Welcome User!</h1>
+  <h1 class="welcome-banner white-font-color" id="welcomeBanner">Welcome User!</h1>
 </header>
 <body>
-  <nav>
-    <form class="tripRequestNavigation card-color" id="trip-request-form">
-      <h2>Request a Trip</h2>
-      <input placeholder="Date: Year/Month/Day" type="text" name="date" value="" id="trip-request-start-date" required>
-      <input placeholder="Duration" type="number" name="duration" value="" id="trip-request-duration" required>
-      <input placeholder="Number of Travelers" type="number" name="number_of_travelers" value="" id="trip-request-traveler-amt" required>
-      <input placeholder="Destinations" list="destinationsList" name="destinations" value="">
-      <input type="submit" value="Submit" id="submitButton">
+  <section class="request-container">
+    <form class="request-form">
+      <h2 class="request-title">Request a Trip</h2>
+      <input placeholder="Date: Year/Month/Day" type="text" name="date" value="" id="tripRequestStartDate" class="input-border-style" required>
+      <input placeholder="Duration" type="number" name="duration" value="" id="tripRequestDuration" class="input-border-style" required>
+      <input placeholder="Number of Travelers" type="number" name="number_of_travelers" value="" id="tripRequestTravelerNum" class="input-border-style" required>
+      <input placeholder="Destinations" list="destinationsList" name="destinations" value="" class="input-border-style">
+      <input type="submit" value="Submit" id="submitButton" class="input-border-style form-submit-button white-font-color">
       <datalist id="destinationsList">
         <option value="Peru">
         <option value="Japan">
         <option value="Africa">
         <option value="South America">
     </form>
-  </nav>
-  <section class="allTravelersTripsContainer">
-    <div class="flex-trips-boxes">
+  </section>
+  <section class="trips-container">
+    <div>
       <section class="trips-grid">
-        <section class="shadow tripsDisplay trip-box" id="past-trips">
-          <h3 class="sectionTitle">Past Trips</h3>
+        <section class="scroll-content shadow trip-box" id="pastTrips">
+          <h3 class="trip-title">Past Trips</h3>
         </section>
-        <section class="shadow tripsDisplay trip-box" id="upcoming-trips">
-          <h3 class="sectionTitle">Upcoming Trips</h3>
+        <section class="scroll-content shadow trip-box" id="upcomingTrips">
+          <h3 class="trip-title">Upcoming Trips</h3>
         </section>
-        <section class="shadow tripsDisplay trip-box" id="pending-trips">
-          <h3 class="sectionTitle">Pending Trips</h3>
+        <section class="scroll-content shadow trip-box" id="pendingTrips">
+          <h3 class="trip-title">Pending Trips</h3>
         </section>
-        <section class="shadow tripsDisplay trip-box" id="total-spent-this-year">
-          <h3 class="sectionTitle">Total Spent This Year</h3>
+        <section class="shadow trip-box" id="totalSpentThisYear">
+          <h3 class="trip-title">Total Spent This Year</h3>
         </section>
       </section>
     </div>

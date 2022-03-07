@@ -3,7 +3,8 @@ import '../src/css/styles.css';
 import {
   destinations,
   trips,
-  travelers
+  travelers,
+  addTrip
 } from './apiCalls';
 import Destinations from './Destinations';
 import Trips from './Trips';
@@ -11,46 +12,51 @@ import Travelers from './Travelers';
 
 //querySelectors
 const welcomeBanner = document.getElementById("welcomeBanner");
-const pastTrips = document.getElementById("past-trips");
-const upcomingTrips = document.getElementById("upcoming-trips");
-const pendingTrips = document.getElementById("pending-trips");
-const totalSpentThisYear = document.getElementById("total-spent-this-year")
-
+const pastTrips = document.getElementById("pastTrips");
+const upcomingTrips = document.getElementById("upcomingTrips");
+const pendingTrips = document.getElementById("pendingTrips");
+const totalSpentThisYear = document.getElementById("totalSpentThisYear");
+const submitButton = document.getElementById("submitButton");
+const tripRequestStartDate = document.getElementById("tripRequestStartDate");
+const tripRequestDuration = document.getElementById("tripRequestDuration");
+const tripRequestTravelerNum = document.getElementById("tripRequestTravelerNum");
 //global variables
 let travelersRepo;
 const user = 35;
 
+function instantNewTraveler(userId) {
+  const traveler = travelersRepo.findTraveler(userId);
+  return traveler;
+}
+
 function displayTraveler(userId) {
-  const user = travelersRepo.findTraveler(userId);
-  const firstName = user.name.split(" ");
+  const newTraveler = instantNewTraveler(user);
+  const firstName = newTraveler.name.split(" ");
 
   const previousTrips = travelersRepo.pastTrips(userId);
   const futureTrips = travelersRepo.upcomingTrips(userId);
+  console.log(futureTrips)
   const unapprovedTrips = travelersRepo.tripsPending(userId);
 
   const totalSpent = travelersRepo.totalSpentYear(userId);
 
-  welcomeBanner.innerHTML = `<h1 class="welcomeBanner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
+  welcomeBanner.innerHTML = `<h1 class="welcome-banner" id="welcomeBanner">Welcome ${firstName[0]}</h1>`;
   //need to add logic to display message if no past trips to return
-  pastTrips.innerHTML += `<p>${previousTrips}</p>`;
-  upcomingTrips.innerHTML += `<p>${futureTrips}</p>`;
-  pendingTrips.innerHTML += `<p>${unapprovedTrips}</p>`;
-  totalSpentThisYear.innerHTML += `<p>${totalSpent}</p>`
+  pastTrips.innerHTML += `<p class="no-trip-info">${previousTrips}</p>`;
+  upcomingTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
+  pendingTrips.innerHTML += `<p class="no-trip-info">${unapprovedTrips}</p>`;
+  totalSpentThisYear.innerHTML += `<p class="no-trip-info">${totalSpent}</p>`
 
 }
 
-sleepForm.addEventListener("submit", (e) => {
+submitButton.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  const newSleep = {
-    userID: user,
-    date: sleepDateInput.value.replaceAll("-", "/"),
-    hoursSlept: parseInt(sleepHoursInput.value),
-    sleepQuality: parseInt(sleepQualityInput.value),
-  };
-  console.log(newSleep);
-  addSleep(newSleep);
-  e.target.reset();
+  const newTraveler = instantNewTraveler(user);
+
+  newTraveler.tripsObj.trips.requestNewTrip(user, tripRequestStartDate.value.replaceAll("-", "/"), parseInt(tripRequestDuration.value), parseInt(tripRequestTravelerNum.value))
+
+  parseInt(sleepHoursInput.value)
 });
 
 //onload display
@@ -58,6 +64,7 @@ window.onload = (event) => {
   Promise.all([destinations, trips, travelers])
   .then((data) => {
     travelersRepo = new Travelers(data[2], data[1], data[0]);
+    console.log(travelersRepo)
     displayTraveler(user);
   })
   .catch((err) => console.log(err));

@@ -1,36 +1,72 @@
 body,
 html {
-  height: 100%;
-  background-color: #F5F5F5;
-  color: #181818;
+  position: fixed;
+  width: 100%;
+  background-color: #EFEFEF;
+  color: #404040;
   margin: 0;
+  font: Open Sans;
   font-family: sans-serif;
 }
 
-.blurAll {
-  filter: blur(25px);
-}
 
 h1 {
   font-size: 35px;
 }
 
-.welcome-banner {
-  color: white;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-top: 5px;
-  padding-right: 5px;
-  background-color: #5c5cd6;
+.white-font-color {
+  color: #FFFFFF;
 }
 
-.allTravelersTripsContainer {
+.welcome-banner {
+  margin: 0px;
+  padding-top: 5px;
+  padding-left: 3px;
+  background: linear-gradient(70deg, #F93C43 30%, #CAEBF2  30%);
+}
+
+.request-container {
+  width: 20%;
+}
+
+.request-form {
+  background-color: #A9A9A9;
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  padding: 10px;
+  align-self: center;
+  border-style: none;
+}
+
+.request-title {
+  font-style: italic;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.input-border-style {
+  border-style: solid;
+  border-width: thin;
+  border-radius: 3px;
+  margin: 2px;
+}
+
+.form-submit-button {
+  background: #F93C43;
+  align: center;
+}
+
+.trips-container {
+  padding-left: 20%;
+  width: 80%;
   margin-top: 5%;
-  margin-left: 25%;
+  margin-left: 10%;
   margin-right: 10%;
   display: flex;
   flex-direction: row;
-  /* height: 100%; */
 }
 
 .trips-grid {
@@ -38,51 +74,38 @@ h1 {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-gap: 10px;
-  /* width: auto; */
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  /* margin-left: auto; */
-  /* margin-right: auto; */
 }
+
 
 .trip-box {
   height: 200px;
   weight: 500px;
-}
-
-.tripsDisplay {
-  /* margin: 0px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 25px;
-  /* height: 100%; */
-  background-color: #F0F0F0;
-  /* position: fixed; */
+  background-color: #FFFFFF;
+  border-radius: 10px;
 }
 
-.card-color {
-  background-color: #F0F0F0;
+.trip-title {
+  color: #A9A9A9
 }
 
 .shadow {
-  box-shadow: 0 8px 8px -4px darkgray;
+  box-shadow: 0 8px 8px -4px #A9A9A9;
 }
 
-.sectionTitle {
-  text-align: right;
-  text-decoration: underline;
+.scroll-content {
+  overflow: auto;
 }
 
-.tripRequestNavigation {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: fixed;
-  margin: auto;
-  /* margin-right: 20px; */
+.no-trip-info {
+  color: #F93C43
 }
 
-.flex-trips-boxes {
-
+.blurAll {
+  filter: blur(25px);
 }

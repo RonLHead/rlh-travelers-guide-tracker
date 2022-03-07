@@ -39,5 +39,6 @@ const addTrip = (newTrip) => {
 export {
   destinations,
   trips,
-  travelers
+  travelers,
+  addTrip
 }
