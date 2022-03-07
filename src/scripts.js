@@ -16,7 +16,7 @@ const pastTrips = document.getElementById("pastTrips");
 const upcomingTrips = document.getElementById("upcomingTrips");
 const pendingTrips = document.getElementById("pendingTrips");
 const totalSpentThisYear = document.getElementById("totalSpentThisYear");
-const submitButton = document.getElementById("submitButton");
+const requestForm = document.getElementById("requestForm");
 const tripRequestStartDate = document.getElementById("tripRequestStartDate");
 const tripRequestDuration = document.getElementById("tripRequestDuration");
 const tripRequestTravelerNum = document.getElementById("tripRequestTravelerNum");
@@ -92,7 +92,7 @@ function displayTravelersPendingTrips(userId) {
     pendingTrips.innerHTML += `<p class="no-trip-info">${unapprovedTrips}</p>`;
   } else {
     unapprovedTrips.forEach(trip => {
-      pendingTrips.innerHTML += `
+      pendingTrips.innerHTML = `
       <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
       <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
       <p class="trip-display">Date: ${trip.date}</p>
@@ -102,9 +102,9 @@ function displayTravelersPendingTrips(userId) {
   }
 }
 
-submitButton.addEventListener("submit", (e) => {
+requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("click")
+  console.log("click");
   // const formData = new FormData(e.target);
   const newTrip = {
     userID: user,
