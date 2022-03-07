@@ -13,32 +13,33 @@
 <body>
   <section class="request-container">
     <form class="request-form">
-      <h2 class="request-title">Request a Trip</h2>
-      <input placeholder="Date: Year/Month/Day" type="text" name="date" value="" id="tripRequestStartDate" class="input-border-style" required>
-      <input placeholder="Duration" type="number" name="duration" value="" id="tripRequestDuration" class="input-border-style" required>
-      <input placeholder="Number of Travelers" type="number" name="number_of_travelers" value="" id="tripRequestTravelerNum" class="input-border-style" required>
-      <input placeholder="Destinations" list="destinationsList" name="destinations" value="" id="destinationId" class="input-border-style">
-      <input type="submit" value="Submit" id="submitButton" class="input-border-style form-submit-button white-font-color">
+      <input placeholder="Date: Year/Month/Day" type="text" name="date" value="" id="tripRequestStartDate" class="input-style" required>
+      <input placeholder="Duration" type="number" name="duration" value="" id="tripRequestDuration" class="input-style" required>
+      <input placeholder="Number of Travelers" type="number" name="number_of_travelers" value="" id="tripRequestTravelerNum" class="input-style" required>
+      <input placeholder="Destinations" list="destinationsList" name="destinations" value="" id="destinationId" class="input-style">
+      <input type="submit" value="Request Trip" id="submitButton" class="input-style form-submit-button white-font-color">
       <datalist id="destinationsList">
     </form>
   </section>
   <section class="trips-container">
-    <div>
+
       <section class="trips-grid" id="errorTag">
         <section class="scroll-content shadow trip-box" id="pastTrips">
           <h3 class="trip-title">Past Trips</h3>
         </section>
-        <section class="scroll-content shadow trip-box" id="upcomingTrips">
-          <h3 class="trip-title">Upcoming Trips</h3>
+        <section class="scroll-content shadow">
+          <article class="trip-box" id="upcomingTrips">
+            <h3 class="trip-title">Upcoming Trips</h3>
+          </article>
         </section>
         <section class="scroll-content shadow trip-box" id="pendingTrips">
           <h3 class="trip-title">Pending Trips</h3>
         </section>
         <section class="shadow trip-box" id="totalSpentThisYear">
-          <h3 class="trip-title">Total Spent This Year</h3>
+          <h3 class="trip-title">Total Spent 2022</h3>
         </section>
       </section>
-    </div>
+
   </section>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
