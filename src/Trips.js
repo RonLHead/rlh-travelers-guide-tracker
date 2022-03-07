@@ -46,7 +46,6 @@ class Trips {
     }
 
     this.tripsData.trips.push(newTrip);
-
     return newTrip;
   }
 
