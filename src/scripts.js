@@ -22,6 +22,7 @@ const tripRequestDuration = document.getElementById("tripRequestDuration");
 const tripRequestTravelerNum = document.getElementById("tripRequestTravelerNum");
 const destinationId = document.getElementById("destinationId");
 const errorTag = document.getElementById("errorTag");
+const destinationsList = document.getElementById("destinationsList");
 
 //global variables
 let travelersRepo;
@@ -32,12 +33,13 @@ function instantNewTraveler(userId) {
   return traveler;
 }
 
-// const unapprovedTrips = travelersRepo.tripsPending(userId);
-// const totalSpent = travelersRepo.totalSpentYear(userId);
-// //need to add logic to display message if no past trips to return
+function loadDestinations() {
+  let result = travelersRepo.tripsObj.destinationsObj.destinationsData.destinations.forEach(dest => {
+    destinationsList.innerHTML += `<option>${dest.id}. ${dest.destination}`;
+  });
+  return result;
+}
 
-// pendingTrips.innerHTML += `<p class="no-trip-info">${unapprovedTrips}</p>`;
-// totalSpentThisYear.innerHTML += `<p class="no-trip-info">${totalSpent}</p>`
 
 function displayTravelersFName(userId) {
   const newTraveler = instantNewTraveler(user);
@@ -101,12 +103,14 @@ function displayTravelersPendingTrips(userId) {
     </section>`;
   } else {
     unapprovedTrips.forEach(trip => {
-      pendingTrips.innerHTML += `
+      pendingTrips.innerHTML = `<section class="scroll-content shadow trip-box" id="pendingTrips">
+        <h2 class="trip-title" >Pending Trips</h2>
       <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
       <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
       <p class="trip-display">Date: ${trip.date}</p>
       <p class="trip-display">Duration: ${trip.date} Days</p>
-      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>`
+      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>
+      </section>`
     });
   }
 }
@@ -129,12 +133,12 @@ requestForm.addEventListener("submit", (e) => {
     date: tripRequestStartDate.value.replaceAll("-", "/"),
     duration: parseInt(tripRequestDuration.value),
     travelers: parseInt(tripRequestTravelerNum.value),
-    destinationID: parseInt(destinationId.value),
+    destinationID: parseInt(destinationId.value.split('.')[0]),
   };
   console.log("The new trip request", newTrip);
 
-  addTrip(newTrip);
-  console.log(travelersRepo.tripsObj.pendingTrips)
+  addTrip(travelersRepo.tripsPending(newTrip));
+  // console.log(travelersRepo.tripsObj.pendingTrips)
   displayTravelersPendingTrips(user);
   e.target.reset();
 });
@@ -144,6 +148,7 @@ window.onload = (event) => {
   Promise.all([destinations, trips, travelers])
   .then((data) => {
     travelersRepo = new Travelers(data[2], data[1], data[0]);
+    loadDestinations();
     displayTravelersFName(user);
     displayTravelersPastTrips(user);
     displayTravelersUpcomingTrips(user);

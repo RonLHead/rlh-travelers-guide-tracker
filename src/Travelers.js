@@ -75,10 +75,17 @@ class Travelers {
     } else return result;
   }
 
+  filterPendingTrips(travelerId) {
+    let result = this.tripsObj.tripsData.trips.filter(trip => trip.userID === travelerId && trip.status === "pending");
+    return result;
+  }
+
   tripsPending(travelerId) {
-    if(!this.tripsObj.pendingTrips.find(trip => trip.userID === travelerId)) {
+    const result = this.filterPendingTrips(travelerId);
+
+    if(result.length === 0) {
       return "No pending trips to display. Please request a trip.";
-    } else return this.tripsObj.pendingTrips.filter(trip => trip.userID === travelerId);
+    } else return result;
   }
 
   totalSpentYear(travelerId) {

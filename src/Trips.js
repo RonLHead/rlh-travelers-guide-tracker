@@ -51,7 +51,7 @@ class Trips {
   }
 
   pendingTripCost(tripId) {
-    let newTrip = this.pendingTrips.find(trip => {
+    let newTrip = this.tripsData.trips.find(trip => {
       return trip.id === tripId;
     });
 
