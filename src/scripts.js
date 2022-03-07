@@ -70,15 +70,12 @@ function displayTravelersUpcomingTrips(userId) {
     pastTrips.innerHTML += `<p class="no-trip-info">${futureTrips}</p>`;
   } else {
     futureTrips.forEach(trip => {
-      upcomingTrips.innerHTML = `
-        <section class="scroll-content shadow trip-box trip-display" id="upcomingTrips">
-          <h3 class="trip-title">Upcoming Trips</h3>
-            <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
-            <p>Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
-            <p>Date: ${trip.date}</p>
-            <p>Duration: ${trip.date} Days</p>
-            <p>Number of Travelers: ${trip.travelers}</p>
-        </section>`
+      upcomingTrips.innerHTML += `
+      <img class="destination-image" src=${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).image} alt="nothin' to see here">
+      <p class="trip-display">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
+      <p class="trip-display">Date: ${trip.date}</p>
+      <p class="trip-display">Duration: ${trip.date} Days</p>
+      <p class="trip-display">Number of Travelers: ${trip.travelers}</p>`
     });
   }
 }
