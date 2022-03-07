@@ -60,9 +60,9 @@ describe('Trips', () => {
     expect(tripsTest.requestNewTrip(6, "2022/12/25", 400, 5, 5)).to.equal("Cannot request a trip to last more than one year.");
   });
 
-  it("should return an error message if a request trip has an invalid destination", function () {
-    expect(tripsTest.requestNewTrip(1, "2022/10/28", 3, 1, 30)).to.equal("Destination doesn't exist. Please choose a different destination.");
-  });
+  // it("should return an error message if a request trip has an invalid destination", function () {
+  //   expect(tripsTest.requestNewTrip(1, "2022/10/28", 3, 1, 30)).to.equal("Destination doesn't exist. Please choose a different destination.");
+  // });
 
   it("should calculate the estimated cost of a new trip request that is pending", function () {
     tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4);

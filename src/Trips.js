@@ -28,9 +28,10 @@ class Trips {
       return "Can only request a trip for 9 travelers or less.";
     } else if(tripLength > 365) {
       return "Cannot request a trip to last more than one year.";
-    } else if(!this.destinationsObj.destinationsData.destinations.find(dest => dest.id === destID)) {
-      return "Destination doesn't exist. Please choose a different destination.";
     }
+    // else if(this.destinationsObj.findDestination(destID) === "Destination doesn't exist. Please choose a different destination.") {
+    //   return this.destinationsObj.findDestination(destID);
+    // }
 
     const newTrip = {
       "id": newTripID + 1,

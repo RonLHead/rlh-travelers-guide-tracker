@@ -128,16 +128,23 @@ function displayTravelersTotalSpent(userId) {
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
   // const formData = new FormData(e.target);
-  const newTrip = {
-    userID: user,
-    date: tripRequestStartDate.value.replaceAll("-", "/"),
-    duration: parseInt(tripRequestDuration.value),
-    travelers: parseInt(tripRequestTravelerNum.value),
-    destinationID: parseInt(destinationId.value.split('.')[0]),
-  };
-  console.log("The new trip request", travelersRepo.tripsPending(newTrip));
+  console.log(parseInt(destinationId.value))
+  const newTrip = travelersRepo.tripsObj.requestNewTrip(
+    user,
+    tripRequestStartDate.value.replaceAll("-", "/"),
+    parseInt(tripRequestTravelerNum.value),
+    parseInt(destinationId.value)
+  );
 
-  addTrip(travelersRepo.tripsPending(newTrip));
+  // {
+  //
+  //   date: tripRequestStartDate.value.replaceAll("-", "/"),
+  //   travelers: parseInt(tripRequestTravelerNum.value),
+  //   destinationID: parseInt(destinationId.value.split('.')[0]),
+  // };
+  console.log("The new trip request", newTrip);
+
+  addTrip(newTrip);
   // console.log(travelersRepo.tripsObj.pendingTrips)
   displayTravelersPendingTrips(user);
   e.target.reset();
