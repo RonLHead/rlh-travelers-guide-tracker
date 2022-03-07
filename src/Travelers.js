@@ -100,7 +100,7 @@ class Travelers {
 
     travelerTrips.forEach(trip => {
       if(trip.date.includes(thisYear)) {
-        result = result + this.tripsObj.estimatedTripCost(trip.id);
+        result = result + this.tripsObj.estimatedTripCost(trip);
       }
     });
 
