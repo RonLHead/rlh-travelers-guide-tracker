@@ -106,6 +106,7 @@ h1 {
 .trips-wrapper {
   margin-top: 1%;
   display: flex;
+  flex: 50%;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
@@ -115,7 +116,7 @@ h1 {
 }
 
 @media (max-width: 800px) {
-  .trips-container {
+  .trips-wrapper {
     flex-direction: column;
   }
 }
@@ -134,6 +135,7 @@ h1 {
 }
 
 .trip-container {
+  /* flex: 50%; */
   position: relative;
   margin-bottom: 10px;
   width: 80%;

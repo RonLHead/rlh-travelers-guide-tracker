@@ -158,7 +158,7 @@ function removeBlur(e) {
 function confirmTripRequest(trip) {
   blur(tripsWrapper);
   show(confirmTripWrapper);
-
+  hide(errorTag)
   confirmTripImage.innerHTML = "";
   confirmTripImage.innerHTML += `<img class="confirm-destination-image border-radius-5 shadow" src=${
     travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
