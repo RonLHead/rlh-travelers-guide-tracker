@@ -21,17 +21,27 @@ class Trips {
     return result;
   }
 
+  todaysDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    let newToday = `${yyyy}/${mm}/${dd}`;
+    return newToday;
+  }
+
   requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
     const newTripID = this.tripsData.trips.length;
+    const today = this.todaysDate();
 
     if(numTravelers > 9) {
       return "Can only request a trip for 9 travelers or less.";
     } else if(tripLength > 365) {
       return "Cannot request a trip to last more than one year.";
+    } else if(startDate < today) {
+      return "Cannot set the start date to earlier than today. Please select a different start date.";
     }
-    // else if(this.destinationsObj.findDestination(destID) === "Destination doesn't exist. Please choose a different destination.") {
-    //   return this.destinationsObj.findDestination(destID);
-    // }
 
     const newTrip = {
       "id": newTripID + 1,
@@ -47,13 +57,16 @@ class Trips {
     }
 
     this.tripsData.trips.push(newTrip);
+    
     return newTrip;
   }
 
   pendingTripCost(tripId) {
+    console.log(tripId)
     let newTrip = this.tripsData.trips.find(trip => {
       return trip.id === tripId;
     });
+
 
     if(!newTrip) {
       return "Pending trip request doesn't exist. Please request a new trip.";
