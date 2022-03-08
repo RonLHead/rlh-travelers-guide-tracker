@@ -163,7 +163,23 @@ function confirmTripRequest(trip) {
 
   confirmTripImage.innerHTML = "";
 
-  if(trip === "Can only request a trip for 9 travelers or less.") {
+  if(trip === "Can only request a trip for 9 travelers or less. Please re-enter with the correct number of travelers.") {
+    confirmTripImage.innerHTML += `
+    <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text no-margin-top text-center font-20 shadow margin-left-5">
+      <section class="confirm-trip-text no-margin-top text-center">
+      <p class="trip-display"><b>${trip}</b></p>
+      </section>
+    </article>`;
+    hide(confirmButton);
+  } else if(trip === "Cannot request a trip to last more than one year. Please enter a duration for one year or less.") {
+    confirmTripImage.innerHTML += `
+    <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text no-margin-top text-center font-20 shadow margin-left-5">
+      <section class="confirm-trip-text no-margin-top text-center">
+      <p class="trip-display"><b>${trip}</b></p>
+      </section>
+    </article>`;
+    hide(confirmButton);
+  } else if(trip === "Cannot set the start date to earlier than today. Please select a different start date.") {
     confirmTripImage.innerHTML += `
     <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text no-margin-top text-center font-20 shadow margin-left-5">
       <section class="confirm-trip-text no-margin-top text-center">
