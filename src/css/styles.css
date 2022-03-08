@@ -1,12 +1,10 @@
 body,
 html {
-  /* position: fixed; */
   width: 100%;
   background-color: #EFEFEF;
   color: #404040;
   margin: 0;
-  font: Open Sans;
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -14,44 +12,57 @@ h1 {
   font-size: 45px;
 }
 
-.confirm-trip-title {
-  margin-top: 3px;
-  font-size: 60px;
-  margin-bottom: 5px;
+/* welcomeBanner */
+.welcome-banner {
+  margin: 0px;
+  padding-top: 4px;
+  padding-left: 4px;
+  padding-bottom: 2px;
+  background: linear-gradient(70deg, #F93C43 30%, #CAEBF2  30%);
 }
 
 .white-font-color {
   color: #FFFFFF;
 }
 
-.welcome-banner {
-  margin: 0px;
-  padding-top: 5px;
-  padding-left: 3px;
-  padding-bottom: 2px;
-  background: linear-gradient(70deg, #F93C43 30%, #CAEBF2  30%);
-}
-
-.request-container {
-  /* align-items: center; */
-  /* width: 100%; */
-  /* display: flex;
-  flex-direction: row;
-  align-items: center; */
-  /* display: flex; */
-  /* align-items: flex-start; */
-  /* width: 20%; */
-}
-
+/* requestForm */
 .request-form {
-  /* height: 20%; */
-  /* font-size: 25px; */
   background-color: #A9A9A9;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 5px;
-  /* padding-bottom: 8px; */
 }
+
+.input-style {
+  border-style: solid;
+  border-width: thin;
+  border-radius: 3px;
+  font-size: 18px;
+}
+
+.destinations-style {
+  background-color: white;
+  width: 15%;
+  color: #666666;
+}
+
+.form-submit-button {
+  font-weight: bold;
+  background-color: #F93C43;
+  align: center;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+/* confirmTripWrapper */
+.confirm-trip-title {
+  margin-top: 3px;
+  font-size: 60px;
+  margin-bottom: 5px;
+}
+
 
 .request-title {
   /* width: auto; */
@@ -64,24 +75,8 @@ h1 {
   /* margin-bottom: 10px; */
 }
 
-.input-style {
-  border-style: solid;
-  border-width: thin;
-  border-radius: 3px;
-  font-size: 18px;
-  /* margin: 2px; */
-}
 
-.form-submit-button {
-  /* width: 100px; */
-  font-size: 20px;
-  color: #FFFFFF;
-  font-weight: bold;
-  background-color: #F93C43;
-  /* font-size: 20px; */
-  /* background: #F93C43; */
-  align: center;
-}
+
 
 
 
@@ -157,7 +152,6 @@ h1 {
 .trip-container {
   position: relative;
   text-align: center;
-  /* background-color: #EFEFEF; */
   margin-bottom: 10px;
   width: 80%;
   padding-top: 5px;
@@ -169,8 +163,6 @@ h1 {
   /* display: flex;
   align-items: center; */
   margin: 1px;
-  /* padding: 0px;
-  margin: 0px; */
 }
 
 .trip-title {
@@ -238,12 +230,13 @@ h1 {
   align-items: center;
   justify-content: space-around;
   /* align-items: center; */
-  /* background-color: #FFFFFF; */
   border-radius: 8px;
   /* padding-bottom: 20px; */
 }
 
 .margin-buttons {
+  color: white;
+  font-size: 30px;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -255,10 +248,4 @@ h1 {
 .button-row {
   margin-top: 5%;
   margin-bottom: 1%;
-}
-
-.destinations-style {
-  background-color: white;
-  width: 15%;
-  color: #666666;
 }

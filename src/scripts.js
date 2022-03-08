@@ -60,7 +60,8 @@ function displayTravelersFName(userId) {
 function noTripDisplay(selector, trips) {
   if (selector === pastTrips) {
     return selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>`;
+    <p class="no-trip-info trip-background shadow">${trips}</p>
+    `;
   } else if (selector === upcomingTrips) {
     return selector.innerHTML += `
     <p class="no-trip-info trip-background shadow">${trips}</p>`;
@@ -116,7 +117,7 @@ function displayTravelersUpcomingTrips(userId) {
 
 function displayTravelersPendingTrips(userId) {
   const unapprovedTrips = travelersRepo.tripsPending(userId);
-  console.log(unapprovedTrips)
+  pendingTrips.innerHTML = `<h2 class="trip-title" >Pending Trips</h2>`;
   if (
     unapprovedTrips === "No pending trips to display. Please request a trip."
   ) {
@@ -171,7 +172,7 @@ function confirmTripRequest(trip) {
     travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
       .destination
   } id="confirmTripImage">
-  <article class="confirm-trip-box trip-background confirm-trip-text-margin shadow">
+  <article class="confirm-trip-box trip-background confirm-trip-text font-20 shadow">
     <section class="confirm-trip-text" id="confirmTripText">
   <p class="trip-display" id="confirmTripDest">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
   <p class="trip-display" id="confirmTripDate">Date: ${trip.date}</p>
@@ -183,7 +184,7 @@ function confirmTripRequest(trip) {
 }
 
 function createNewTripRequest() {
-  console.log(parseInt(destinationsId.value))
+  // console.log(parseInt(destinationsId.value))
   const newTrip = travelersRepo.tripsObj.requestNewTrip(
     user,
     tripRequestStartDate.value.replaceAll("-", "/"),
@@ -191,7 +192,7 @@ function createNewTripRequest() {
     parseInt(tripRequestTravelerNum.value),
     parseInt(destinationsId.value)
   );
-  console.log(newTrip);
+  console.log("new trip", newTrip);
   return newTrip;
 }
 
@@ -202,16 +203,17 @@ requestForm.addEventListener("submit", (e) => {
 
   confirmTripRequest(newTrip);
   // setTimeout(() => {document.location.reload(true)}, 5000)
+  confirmButton.addEventListener("click", (e) => {
+    // const newTrip = createNewTripRequest();
+    confirmTrip(newTrip);
+    clearInputForms()
+  });
   // addTrip(newTrip);
   // displayTravelersPendingTrips(user);
   // e.target.reset();
 });
 
 function confirmTrip(trip) {
-  // const confirmButton = event.target.id;
-  //
-  // confirmButton.addEventListener("click", (e) => {
-  // e.preventDefault();
 
   addTrip(trip);
   // refreshPendingTrips();
@@ -228,11 +230,6 @@ function confirmTrip(trip) {
 //   displayTravelersPendingTrips(user);
 // }
 
-confirmButton.addEventListener("click", (e) => {
-  const newTrip = createNewTripRequest();
-  confirmTrip(newTrip);
-  clearInputForms()
-});
 
 cancelButton.addEventListener("click", (e) => {
   hide(confirmTripWrapper);
@@ -253,6 +250,7 @@ window.onload = (event) => {
   Promise.all([destinations, trips, travelers])
     .then((data) => {
       travelersRepo = new Travelers(data[2], data[1], data[0]);
+      console.log(travelersRepo)
       loadDestinations();
       displayTravelersFName(user);
       displayTravelersPastTrips(user);
