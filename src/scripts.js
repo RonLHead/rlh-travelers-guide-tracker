@@ -30,6 +30,10 @@ const confirmTripCost = document.getElementById("confirmTripCost");
 const confirmButton = document.getElementById("confirmButton");
 const cancelButton = document.getElementById("cancelButton");
 const confirmButtonsRow = document.getElementById("confirmButtonsRow");
+const submitButton = document.getElementById("submitButton");
+const login = document.getElementById("login");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
 
 //global variables
 let travelersRepo;
@@ -233,6 +237,11 @@ function clearInputForms() {
   destinationsId.value = '';
 }
 
+function clearLoginForm() {
+  username.value = '';
+  password.value = '';
+}
+
 //event listeners
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -253,6 +262,17 @@ cancelButton.addEventListener("click", (e) => {
   show(tripsWrapper);
   clearInputForms();
 });
+
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  if(username.value && password.value) {
+    hide(login);
+    show(welcomeBanner);
+    show(tripsWrapper);
+    show(requestForm);
+    clearLoginForm();
+  }
+})
 
 
 //onload display
