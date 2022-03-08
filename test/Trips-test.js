@@ -38,12 +38,12 @@ describe('Trips', () => {
   });
 
   it("should be able to request a new trip", function () {
-    expect(tripsTest.requestNewTrip(8, "2022/03/03", 19, 5, 4)).to.deep.equal({
+    expect(tripsTest.requestNewTrip(8, "2022/12/30", 19, 5, 4)).to.deep.equal({
       "id": 13,
       "userID": 8,
       "destinationID": 4,
       "travelers": 5,
-      "date": "2022/03/03",
+      "date": "2022/12/30",
       "duration": 19,
       "status": "pending",
       "suggestedActivities": [
@@ -60,13 +60,13 @@ describe('Trips', () => {
     expect(tripsTest.requestNewTrip(6, "2022/12/25", 400, 5, 5)).to.equal("Cannot request a trip to last more than one year.");
   });
 
-  // it("should return an error message if a request trip has an invalid destination", function () {
-  //   expect(tripsTest.requestNewTrip(1, "2022/10/28", 3, 1, 30)).to.equal("Destination doesn't exist. Please choose a different destination.");
-  // });
+  it("should return an error message if a request trip starts earlier than today", function () {
+    expect(tripsTest.requestNewTrip(1, "2022/01/01", 3, 1, 30)).to.equal("Cannot set the start date to earlier than today. Please select a different start date.");
+  });
 
   it("should calculate the estimated cost of a new trip request that is pending", function () {
     tripsTest.requestNewTrip(8, "2022/03/02", 19, 5, 4);
-    expect(tripsTest.pendingTripCost(14)).to.equal(5208.5);
+    expect(tripsTest.pendingTripCost(13)).to.equal(5208.5);
   });
 
   it("should return an error message if a pending trip request doesn't exist", function () {

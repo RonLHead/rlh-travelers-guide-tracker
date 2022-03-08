@@ -3,7 +3,7 @@ import Trips from './Trips';
 class Travelers {
   constructor(travelersAPI, tripsAPI, destData) {
     this.travelersData = travelersAPI;
-    this.tripsObj = new Trips(tripsAPI, destData)
+    this.tripsObj = new Trips(tripsAPI, destData);
   }
 
   findTraveler(travelerId) {
@@ -33,24 +33,16 @@ class Travelers {
     } else return result;
   }
 
-  todaysDate() {
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
-    let yyyy = today.getFullYear();
 
-    let newToday = `${yyyy}/${mm}/${dd}`;
-    return newToday;
-  }
 
   pastTrips(travelerId) {
-    const today = this.todaysDate();
+    const today = this.tripsObj.todaysDate();
     const allTrips = this.travelerAllTrips(travelerId);
     let result = [];
 
     allTrips.forEach(trip => {
       if(trip.date < today) {
-        result.push(trip)
+        result.push(trip);
       }
     });
 
@@ -60,13 +52,13 @@ class Travelers {
   }
 
   upcomingTrips(travelerId) {
-    const today = this.todaysDate();
+    const today = this.tripsObj.todaysDate();
     const allTrips = this.travelerAllTrips(travelerId);
     let result = [];
 
     allTrips.forEach(trip => {
       if(trip.date > today && trip.status === "approved") {
-        result.push(trip)
+        result.push(trip);
       }
     });
 
@@ -106,4 +98,4 @@ class Travelers {
   }
 }
 
-export default Travelers
+export default Travelers;

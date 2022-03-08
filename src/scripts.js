@@ -12,15 +12,14 @@ const upcomingTrips = document.getElementById("upcomingTrips");
 const pendingTrips = document.getElementById("pendingTrips");
 const totalSpentThisYear = document.getElementById("totalSpentThisYear");
 const requestForm = document.getElementById("requestForm");
-const tripsContainer = document.getElementById("tripsContainer");
+const tripsWrapper = document.getElementById("tripsWrapper");
 const tripRequestStartDate = document.getElementById("tripRequestStartDate");
 const tripRequestDuration = document.getElementById("tripRequestDuration");
 const tripRequestTravelerNum = document.getElementById(
   "tripRequestTravelerNum"
 );
-const destinationId = document.getElementById("destinationId");
+const destinationsId = document.getElementById("destinationsId");
 const errorTag = document.getElementById("errorTag");
-const destinationsList = document.getElementById("destinationsList");
 const confirmTripWrapper = document.getElementById("confirmTripWrapper");
 const confirmTripImage = document.getElementById("confirmTripImage");
 const confirmTripDest = document.getElementById("confirmTripDest");
@@ -29,13 +28,13 @@ const confirmTripDuration = document.getElementById("confirmTripDuration");
 const confirmTripTravelers = document.getElementById("confirmTripTravelers");
 const confirmTripCost = document.getElementById("confirmTripCost");
 const confirmButton = document.getElementById("confirmButton");
-const confirmTripText = document.getElementById("confirmTripText");
 const cancelButton = document.getElementById("cancelButton");
 
 //global variables
 let travelersRepo;
-const user = 3;
+const user = 1;
 
+//functions
 function instantNewTraveler(userId) {
   const traveler = travelersRepo.findTraveler(userId);
   return traveler;
@@ -44,7 +43,7 @@ function instantNewTraveler(userId) {
 function loadDestinations() {
   let result = travelersRepo.tripsObj.destinationsObj.destinationsData.destinations.forEach(
     (dest) => {
-      destinationsList.innerHTML += `<option>${dest.id}. ${dest.destination}`;
+      destinationsId.innerHTML += `<option value="${dest.id}">${dest.destination}</option>`;
     }
   );
   return result;
@@ -59,36 +58,22 @@ function displayTravelersFName(userId) {
 
 function noTripDisplay(selector, trips) {
   if (selector === pastTrips) {
-    return (selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>
-    <!-- <section class="scroll-content shadow trip-box" id="pastTrips">
-    <h2 class="trip-title" >Past Trips</h2>
-    <p class="no-trip-info">${trips}</p>
-    </section> -->
-    `);
+    return selector.innerHTML += `
+    <p class="no-trip-info no-margin-top border-radius-5 text-center trip-background shadow">${trips}</p>
+    `;
   } else if (selector === upcomingTrips) {
-    return (selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>
-    <!-- <section class="scroll-content shadow trip-box" id="upcomingTrips">
-      <h2 class="trip-title" >Upcoming Trips</h2>
-      <p class="no-trip-info">${trips}</p>
-    </section> -->
-    `);
+    return selector.innerHTML += `
+    <p class="no-trip-info no-margin-top border-radius-5 text-center trip-background shadow">${trips}</p>`;
   } else if (selector === pendingTrips) {
-    return (selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>
-    <!-- <section class="scroll-content shadow trip-box" id="pendingTrips">
-      <h2 class="trip-title" >Pending Trips</h2>
-      <p class="no-trip-info">${trips}</p>
-    </section> -->
-    `);
+    return selector.innerHTML += `
+    <p class="no-trip-info no-margin-top border-radius-5 text-center trip-background shadow">${trips}</p>`;
   }
 }
 
 function tripDisplay(selector, trips) {
   return (selector.innerHTML += `
-  <div class="trip-container trip-background shadow">
-  <img class="destination-image shadow" src=${
+  <div class="trip-container border-radius-5 text-center trip-background shadow">
+  <img class="destination-image border-radius-5 shadow" src=${
     travelersRepo.tripsObj.destinationsObj.findDestination(trips.destinationID)
       .image
   } alt="${
@@ -130,8 +115,9 @@ function displayTravelersUpcomingTrips(userId) {
 }
 
 function displayTravelersPendingTrips(userId) {
-  const unapprovedTrips = travelersRepo.filterPendingTrips(userId);
-  console.log(unapprovedTrips);
+  const unapprovedTrips = travelersRepo.tripsPending(userId);
+
+  pendingTrips.innerHTML = `<h2 class="trip-title" >Pending Trips</h2>`;
   if (
     unapprovedTrips === "No pending trips to display. Please request a trip."
   ) {
@@ -147,9 +133,9 @@ function displayTravelersTotalSpent(userId) {
   const totalSpent = travelersRepo.totalSpentYear(userId);
 
   if (totalSpent === "There are no trips for this year.") {
-    totalSpentThisYear.innerHTML += `<p class="no-trip-info trip-background shadow">${totalSpent}</p>`;
+    totalSpentThisYear.innerHTML += `<p class="no-trip-info no-margin-top border-radius-5 text-center trip-background shadow">${totalSpent}</p>`;
   } else {
-    totalSpentThisYear.innerHTML += `<p class="trip-title trip-background shadow">$${totalSpent}</p>`;
+    totalSpentThisYear.innerHTML += `<p class="trip-title trip-background shadow total-spent no-margin-top border-radius-5 text-center">$${totalSpent}</p>`;
   }
 }
 
@@ -170,29 +156,24 @@ function removeBlur(e) {
 }
 
 function confirmTripRequest(trip) {
-  blur(tripsContainer);
+  blur(tripsWrapper);
   show(confirmTripWrapper);
 
-  // confirmTripImage.innerHTML = "";
-  console.log(
-    travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
-      .image
-  );
-  confirmTripImage.innerHTML = ""
-  confirmTripImage.innerHTML += `<img class="confirm-destination-image shadow" src=${
+  confirmTripImage.innerHTML = "";
+  confirmTripImage.innerHTML += `<img class="confirm-destination-image border-radius-5 shadow" src=${
     travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
       .image
   } alt=${
     travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
       .destination
   } id="confirmTripImage">
-  <article class="confirm-trip-box trip-background confirm-trip-text-margin shadow">
-    <section class="confirm-trip-text" id="confirmTripText">
-  <p class="trip-display" id="confirmTripDest">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
-  <p class="trip-display" id="confirmTripDate">Date: ${trip.date}</p>
-  <p class="trip-display" id="confirmTripDuration">Duration: ${trip.duration} Days</p>
-  <p class="trip-display" id="confirmTripTravelers">Number of Travelers: ${trip.travelers}</p>
-  <p class="trip-display" id="confirmTripCost">Estimated Cost: $${travelersRepo.tripsObj.pendingTripCost(trip.id)}</p>
+  <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text no-margin-top text-center font-20 shadow">
+    <section class="confirm-trip-text no-margin-top text-center">
+  <p class="trip-display" id="confirmTripDest"><b>Destination</b>: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
+  <p class="trip-display" id="confirmTripDate"><b>Date</b>: ${trip.date}</p>
+  <p class="trip-display" id="confirmTripDuration"><b>Duration</b>: ${trip.duration} Days</p>
+  <p class="trip-display" id="confirmTripTravelers"><b>Number of Travelers</b>: ${trip.travelers}</p>
+  <p class="trip-display" id="confirmTripCost"><b>Estimated Cost</b>: $${travelersRepo.tripsObj.pendingTripCost(trip.id)}</p>
   </section>
 </article>`;
 }
@@ -203,64 +184,46 @@ function createNewTripRequest() {
     tripRequestStartDate.value.replaceAll("-", "/"),
     parseInt(tripRequestDuration.value),
     parseInt(tripRequestTravelerNum.value),
-    parseInt(destinationId.value)
+    parseInt(destinationsId.value)
   );
-  console.log(newTrip);
   return newTrip;
 }
 
+function confirmTrip(trip) {
+  addTrip(trip);
+  hide(confirmTripWrapper);
+  removeBlur(tripsWrapper);
+  show(tripsWrapper);
+  displayTravelersPendingTrips(user);
+}
+
+function clearInputForms() {
+  tripRequestStartDate.value = '';
+  tripRequestDuration.value = '';
+  tripRequestTravelerNum.value = '';
+  destinationsId.value = '';
+}
+
+//event listeners
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  // const formData = new FormData(e.target);
   const newTrip = createNewTripRequest();
 
   confirmTripRequest(newTrip);
-  // setTimeout(() => {document.location.reload(true)}, 5000)
-  // addTrip(newTrip);
-  // displayTravelersPendingTrips(user);
-  // e.target.reset();
+  confirmButton.addEventListener("click", (e) => {
+    confirmTrip(newTrip);
+    clearInputForms();
+  });
 });
 
-function confirmTrip(trip) {
-  // const confirmButton = event.target.id;
-  //
-  // confirmButton.addEventListener("click", (e) => {
-  // e.preventDefault();
-
-  addTrip(trip);
-  // refreshPendingTrips();
-  hide(confirmTripWrapper);
-  removeBlur(tripsContainer);
-  show(tripsContainer);
-  displayTravelersPendingTrips(user);
-  //   e.target.reset();
-  // });
-}
-//
-// function refreshPendingTrips() {
-//   pendingTrips.innerHTML = `<h3 class="trip-title" >Pending Trips</h3>`;
-//   displayTravelersPendingTrips(user);
-// }
-
-confirmButton.addEventListener("click", (e) => {
-  const newTrip = createNewTripRequest();
-  confirmTrip(newTrip);
-  //   const newTrip = createNewTripRequest();
-  //   addTrip(newTrip);
-  //   displayTravelersPendingTrips(user);
-  //   e.target.reset();
-  //
-});
-
-// function cancelTripRequest() {
-//
-// }
 
 cancelButton.addEventListener("click", (e) => {
   hide(confirmTripWrapper);
-  removeBlur(tripsContainer);
-  show(tripsContainer);
+  removeBlur(tripsWrapper);
+  show(tripsWrapper);
+  clearInputForms();
 });
+
 
 //onload display
 window.onload = (event) => {
