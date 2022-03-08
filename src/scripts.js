@@ -30,10 +30,17 @@ const confirmTripCost = document.getElementById("confirmTripCost");
 const confirmButton = document.getElementById("confirmButton");
 const cancelButton = document.getElementById("cancelButton");
 const confirmButtonsRow = document.getElementById("confirmButtonsRow");
+const submitButton = document.getElementById("submitButton");
+const login = document.getElementById("login");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const errorLogin = document.getElementById("errorLogin");
+const confirmInvalidLogin = document.getElementById("confirmInvalidLogin");
 
 //global variables
 let travelersRepo;
-const user = 2;
+let user = "";
+console.log(user)
 
 //functions
 function instantNewTraveler(userId) {
@@ -233,6 +240,20 @@ function clearInputForms() {
   destinationsId.value = '';
 }
 
+function clearLoginForm() {
+  username.value = '';
+  password.value = '';
+}
+
+function assignUser() {
+  let parseUser = username.value.split("r");
+  let result = parseUser.pop();
+
+  user = parseInt(result);
+
+  return user;
+}
+
 //event listeners
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -254,9 +275,32 @@ cancelButton.addEventListener("click", (e) => {
   clearInputForms();
 });
 
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  if(username.value === "traveler50" && password.value === "travel") {
+    hide(login);
+    show(welcomeBanner);
+    show(tripsWrapper);
+    show(requestForm);
+    assignUser();
+    if(user === 50) {
+      onload()
+    }
+  } else {
+    hide(login)
+    show(errorLogin);
+  }
+});
+
+confirmInvalidLogin.addEventListener("click", (e) => {
+  e.preventDefault();
+  clearLoginForm();
+  hide(errorLogin);
+  show(login);
+});
 
 //onload display
-window.onload = (event) => {
+const onload = (event) => {
   Promise.all([destinations, trips, travelers])
     .then((data) => {
       travelersRepo = new Travelers(data[2], data[1], data[0]);

@@ -8,12 +8,42 @@
     <title>Traveler's Guide Trip Tracker</title>
   </head>
   <header>
-    <h1 class="welcome-banner white-font-color" id="welcomeBanner">
+    <h1 class="welcome-banner white-font-color remove" id="welcomeBanner">
       Welcome User!
     </h1>
   </header>
   <body>
-    <form class="request-form" id="requestForm">
+    <form class="confirm-trip-wrapper font-20" id="login">
+      <section class="trip-container destinations-style border-radius-5 shadow">
+        <article class="trip-box">
+          <p class="welcome-banner trip-title white-font-color padding-right-5 border-radius-5 shadow">Enter Credentials</p>
+          <div class="request-form border-radius-5 margin-above">
+            <input class="text-center input-style border-radius-5 trip-title confirm-trip-text margin-left" placeholder="username" type="text" name="username" value="" required id="username">
+            <input class="text-center input-style border-radius-5 trip-title confirm-trip-text margin-left" placeholder="password" type="password" name="password" value="" required id="password">
+          </div>
+          <button
+            type="submit"
+            class="form-submit-button border-radius-5 shadow font-20 margin-above button-width white-font-color"
+            id="submitButton">
+            Submit
+          </button>
+      </article>
+      </section>
+    </form>
+    <form class="confirm-trip-wrapper font-20 remove" id="errorLogin">
+      <section class="trip-container destinations-style border-radius-5 shadow">
+        <article class="trip-box">
+          <p class="trip-title text-center">Invalid username and/or password. Please try again</p>
+          <button
+            type="submit"
+            class="form-submit-button border-radius-5 shadow font-20 margin-above button-width2 white-font-color"
+            id="confirmInvalidLogin">
+            OK
+          </button>
+        </article>
+      </section>
+    </form>
+    <form class="request-form remove" id="requestForm">
       <input
         placeholder="Date: Year/Month/Day"
         type="date"
@@ -81,7 +111,7 @@
         </div>
       </section>
     </section>
-    <section class="trips-wrapper" id="tripsWrapper">
+    <section class="trips-wrapper requestForm remove" id="tripsWrapper">
       <p id="errorTag"></p>
       <section
         class="scroll-content shadow trip-box border-radius-5 trip-box-height"
