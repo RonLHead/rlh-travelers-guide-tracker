@@ -29,7 +29,9 @@ const confirmTripDuration = document.getElementById("confirmTripDuration");
 const confirmTripTravelers = document.getElementById("confirmTripTravelers");
 const confirmTripCost = document.getElementById("confirmTripCost");
 const confirmButton = document.getElementById("confirmButton");
-const confirmTripText = document.getElementById("confirmTripText")
+const confirmTripText = document.getElementById("confirmTripText");
+const cancelButton = document.getElementById("cancelButton");
+
 //global variables
 let travelersRepo;
 const user = 3;
@@ -192,7 +194,6 @@ function confirmTripRequest(trip) {
   <p class="trip-display" id="confirmTripTravelers">Number of Travelers: ${trip.travelers}</p>
   <p class="trip-display" id="confirmTripCost">Estimated Cost: $${travelersRepo.tripsObj.pendingTripCost(trip.id)}</p>
   </section>
-
 </article>`;
 }
 
@@ -249,6 +250,16 @@ confirmButton.addEventListener("click", (e) => {
   //   displayTravelersPendingTrips(user);
   //   e.target.reset();
   //
+});
+
+// function cancelTripRequest() {
+//
+// }
+
+cancelButton.addEventListener("click", (e) => {
+  hide(confirmTripWrapper);
+  removeBlur(tripsContainer);
+  show(tripsContainer);
 });
 
 //onload display
