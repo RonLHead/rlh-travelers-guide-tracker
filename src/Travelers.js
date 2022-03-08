@@ -3,7 +3,7 @@ import Trips from './Trips';
 class Travelers {
   constructor(travelersAPI, tripsAPI, destData) {
     this.travelersData = travelersAPI;
-    this.tripsObj = new Trips(tripsAPI, destData)
+    this.tripsObj = new Trips(tripsAPI, destData);
   }
 
   findTraveler(travelerId) {
@@ -42,7 +42,7 @@ class Travelers {
 
     allTrips.forEach(trip => {
       if(trip.date < today) {
-        result.push(trip)
+        result.push(trip);
       }
     });
 
@@ -58,7 +58,7 @@ class Travelers {
 
     allTrips.forEach(trip => {
       if(trip.date > today && trip.status === "approved") {
-        result.push(trip)
+        result.push(trip);
       }
     });
 
@@ -98,4 +98,4 @@ class Travelers {
   }
 }
 
-export default Travelers
+export default Travelers;
