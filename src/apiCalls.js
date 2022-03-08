@@ -20,6 +20,7 @@ const addTrip = (newTrip) => {
   })
     .then((response) => {
       console.log(response);
+      console.log(newTrip)
       if (!response.ok) {
         throw new Error("Please make sure all fields are filled out");
       } else {
