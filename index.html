@@ -18,36 +18,35 @@
       <input placeholder="Number of Travelers" type="number" name="number_of_travelers" value="" id="tripRequestTravelerNum" class="input-style" required>
       <input placeholder="Destinations" list="destinationsList" name="destinations" value="" id="destinationId" class="input-style">
       <button type="submit" class="input-style form-submit-button" id="submitButton">Request Trip</button>
-        <!-- class="input-style form-submit-button" -->
       <datalist id="destinationsList">
     </form>
   </section>
-  <section class="confirm-trip-display remove" id="confirmTripDisplay">
-    <section class="trip-box shadow">
-      <p>Confirm Trip</p>
-      <button type="submit" name="yes_button">Confirm</button><button type="submit" name="no_button">Cancel</button>
+    <section class="confirm-trip-wrapper remove" id="confirmTripWrapper">
+      <section class="trip-box shadow">
+        <h2>Confirm Trip</h2>
+        <div class="align-row" id="confirmTripImage">
+        </div>
+        <div class="align-row button-row">
+          <button type="submit" name="no_button" class="input-style form-submit-button margin-buttons" id="cancelButton">Cancel</button>
+          <button type="submit" name="yes_button" class="input-style form-submit-button margin-buttons" id="confirmButton">Confirm</button>
+        </div>
+      </section>
+    </section>
+  <section class="trips-container" id="tripsContainer">
+    <p id="errorTag"></p>
+    <section class="scroll-content shadow trip-box trip-box-height" id="pastTrips">
+      <h3 class="trip-title" >Past Trips</h3>
+    </section>
+    <section class="scroll-content shadow trip-box trip-box-height" id="upcomingTrips">
+      <h3 class="trip-title" >Upcoming Trips</h3>
+    </section>
+    <section class="scroll-content shadow trip-box trip-box-height" id="pendingTrips">
+      <h3 class="trip-title" >Pending Trips</h3>
+    </section>
+    <section class="shadow trip-box trip-box-height" id="totalSpentThisYear">
+      <h3 class="trip-title">Total Spent 2022</h3>
     </section>
   </section>
-  <section class="trips-container errorTag" id="tripsContainer">
-
-      <!-- <section class="trips-grid" id="errorTag"> -->
-        <section class="scroll-content shadow trip-box" id="pastTrips">
-          <h2 class="trip-title" >Past Trips</h2>
-        </section>
-        <section class="scroll-content shadow trip-box" id="upcomingTrips">
-          <h2 class="trip-title" >Upcoming Trips</h2>
-        </section>
-        <section class="scroll-content shadow trip-box" id="pendingTrips">
-          <h2 class="trip-title" >Pending Trips</h2>
-        </section>
-        <section class="shadow trip-box" id="totalSpentThisYear">
-          <h2 class="trip-title">Total Spent 2022</h2>
-        </section>
-      <!-- </section> -->
-
-  </section>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>
