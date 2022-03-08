@@ -34,7 +34,7 @@ const cancelButton = document.getElementById("cancelButton");
 // const destinationsList = document.getElementById("destinationsList")
 //global variables
 let travelersRepo;
-const user = 3;
+const user = 41;
 
 function instantNewTraveler(userId) {
   const traveler = travelersRepo.findTraveler(userId);
@@ -59,29 +59,14 @@ function displayTravelersFName(userId) {
 
 function noTripDisplay(selector, trips) {
   if (selector === pastTrips) {
-    return (selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>
-    <!-- <section class="scroll-content shadow trip-box" id="pastTrips">
-    <h2 class="trip-title" >Past Trips</h2>
-    <p class="no-trip-info">${trips}</p>
-    </section> -->
-    `);
+    return selector.innerHTML += `
+    <p class="no-trip-info trip-background shadow">${trips}</p>`;
   } else if (selector === upcomingTrips) {
-    return (selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>
-    <!-- <section class="scroll-content shadow trip-box" id="upcomingTrips">
-      <h2 class="trip-title" >Upcoming Trips</h2>
-      <p class="no-trip-info">${trips}</p>
-    </section> -->
-    `);
+    return selector.innerHTML += `
+    <p class="no-trip-info trip-background shadow">${trips}</p>`;
   } else if (selector === pendingTrips) {
-    return (selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>
-    <!-- <section class="scroll-content shadow trip-box" id="pendingTrips">
-      <h2 class="trip-title" >Pending Trips</h2>
-      <p class="no-trip-info">${trips}</p>
-    </section> -->
-    `);
+    return selector.innerHTML += `
+    <p class="no-trip-info trip-background shadow">${trips}</p>`;
   }
 }
 
@@ -130,8 +115,8 @@ function displayTravelersUpcomingTrips(userId) {
 }
 
 function displayTravelersPendingTrips(userId) {
-  const unapprovedTrips = travelersRepo.filterPendingTrips(userId);
-  console.log(unapprovedTrips);
+  const unapprovedTrips = travelersRepo.tripsPending(userId);
+  console.log(unapprovedTrips)
   if (
     unapprovedTrips === "No pending trips to display. Please request a trip."
   ) {
