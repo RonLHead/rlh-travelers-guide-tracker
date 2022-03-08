@@ -12,7 +12,7 @@ const upcomingTrips = document.getElementById("upcomingTrips");
 const pendingTrips = document.getElementById("pendingTrips");
 const totalSpentThisYear = document.getElementById("totalSpentThisYear");
 const requestForm = document.getElementById("requestForm");
-const tripsContainer = document.getElementById("tripsContainer");
+const tripsWrapper = document.getElementById("tripsWrapper");
 const tripRequestStartDate = document.getElementById("tripRequestStartDate");
 const tripRequestDuration = document.getElementById("tripRequestDuration");
 const tripRequestTravelerNum = document.getElementById(
@@ -29,7 +29,6 @@ const confirmTripDuration = document.getElementById("confirmTripDuration");
 const confirmTripTravelers = document.getElementById("confirmTripTravelers");
 const confirmTripCost = document.getElementById("confirmTripCost");
 const confirmButton = document.getElementById("confirmButton");
-const confirmTripText = document.getElementById("confirmTripText");
 const cancelButton = document.getElementById("cancelButton");
 // const destinationsList = document.getElementById("destinationsList")
 //global variables
@@ -60,21 +59,21 @@ function displayTravelersFName(userId) {
 function noTripDisplay(selector, trips) {
   if (selector === pastTrips) {
     return selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>
+    <p class="no-trip-info border-radius-5 text-center trip-background shadow">${trips}</p>
     `;
   } else if (selector === upcomingTrips) {
     return selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>`;
+    <p class="no-trip-info border-radius-5 text-center trip-background shadow">${trips}</p>`;
   } else if (selector === pendingTrips) {
     return selector.innerHTML += `
-    <p class="no-trip-info trip-background shadow">${trips}</p>`;
+    <p class="no-trip-info border-radius-5 text-center trip-background shadow">${trips}</p>`;
   }
 }
 
 function tripDisplay(selector, trips) {
   return (selector.innerHTML += `
-  <div class="trip-container trip-background shadow">
-  <img class="destination-image shadow" src=${
+  <div class="trip-container border-radius-5 text-center trip-background shadow">
+  <img class="destination-image border-radius-5 shadow" src=${
     travelersRepo.tripsObj.destinationsObj.findDestination(trips.destinationID)
       .image
   } alt="${
@@ -133,9 +132,9 @@ function displayTravelersTotalSpent(userId) {
   const totalSpent = travelersRepo.totalSpentYear(userId);
 
   if (totalSpent === "There are no trips for this year.") {
-    totalSpentThisYear.innerHTML += `<p class="no-trip-info trip-background shadow">${totalSpent}</p>`;
+    totalSpentThisYear.innerHTML += `<p class="no-trip-info border-radius-5 text-center trip-background shadow">${totalSpent}</p>`;
   } else {
-    totalSpentThisYear.innerHTML += `<p class="trip-title trip-background shadow">$${totalSpent}</p>`;
+    totalSpentThisYear.innerHTML += `<p class="trip-title trip-background shadow total-spent border-radius-5 text-center">$${totalSpent}</p>`;
   }
 }
 
@@ -156,7 +155,7 @@ function removeBlur(e) {
 }
 
 function confirmTripRequest(trip) {
-  blur(tripsContainer);
+  blur(tripsWrapper);
   show(confirmTripWrapper);
 
   // confirmTripImage.innerHTML = "";
@@ -165,20 +164,20 @@ function confirmTripRequest(trip) {
       .image
   );
   confirmTripImage.innerHTML = ""
-  confirmTripImage.innerHTML += `<img class="confirm-destination-image shadow" src=${
+  confirmTripImage.innerHTML += `<img class="confirm-destination-image border-radius-5 shadow" src=${
     travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
       .image
   } alt=${
     travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
       .destination
   } id="confirmTripImage">
-  <article class="confirm-trip-box trip-background confirm-trip-text font-20 shadow">
-    <section class="confirm-trip-text" id="confirmTripText">
-  <p class="trip-display" id="confirmTripDest">Destination: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
-  <p class="trip-display" id="confirmTripDate">Date: ${trip.date}</p>
-  <p class="trip-display" id="confirmTripDuration">Duration: ${trip.duration} Days</p>
-  <p class="trip-display" id="confirmTripTravelers">Number of Travelers: ${trip.travelers}</p>
-  <p class="trip-display" id="confirmTripCost">Estimated Cost: $${travelersRepo.tripsObj.pendingTripCost(trip.id)}</p>
+  <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text text-center font-20 shadow">
+    <section class="confirm-trip-text text-center">
+  <p class="trip-display" id="confirmTripDest"><b>Destination</b>: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
+  <p class="trip-display" id="confirmTripDate"><b>Date</b>: ${trip.date}</p>
+  <p class="trip-display" id="confirmTripDuration"><b>Duration</b>: ${trip.duration} Days</p>
+  <p class="trip-display" id="confirmTripTravelers"><b>Number of Travelers</b>: ${trip.travelers}</p>
+  <p class="trip-display" id="confirmTripCost"><b>Estimated Cost</b>: $${travelersRepo.tripsObj.pendingTripCost(trip.id)}</p>
   </section>
 </article>`;
 }
@@ -198,43 +197,28 @@ function createNewTripRequest() {
 
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  // const formData = new FormData(e.target);
   const newTrip = createNewTripRequest();
 
   confirmTripRequest(newTrip);
-  // setTimeout(() => {document.location.reload(true)}, 5000)
   confirmButton.addEventListener("click", (e) => {
-    // const newTrip = createNewTripRequest();
     confirmTrip(newTrip);
     clearInputForms()
   });
-  // addTrip(newTrip);
-  // displayTravelersPendingTrips(user);
-  // e.target.reset();
 });
 
 function confirmTrip(trip) {
 
   addTrip(trip);
-  // refreshPendingTrips();
   hide(confirmTripWrapper);
-  removeBlur(tripsContainer);
-  show(tripsContainer);
+  removeBlur(tripsWrapper);
+  show(tripsWrapper);
   displayTravelersPendingTrips(user);
-  //   e.target.reset();
-  // });
 }
-//
-// function refreshPendingTrips() {
-//   pendingTrips.innerHTML = `<h3 class="trip-title" >Pending Trips</h3>`;
-//   displayTravelersPendingTrips(user);
-// }
-
 
 cancelButton.addEventListener("click", (e) => {
   hide(confirmTripWrapper);
-  removeBlur(tripsContainer);
-  show(tripsContainer);
+  removeBlur(tripsWrapper);
+  show(tripsWrapper);
   clearInputForms()
 });
 
