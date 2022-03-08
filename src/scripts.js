@@ -116,6 +116,7 @@ function displayTravelersUpcomingTrips(userId) {
 
 function displayTravelersPendingTrips(userId) {
   const unapprovedTrips = travelersRepo.tripsPending(userId);
+
   pendingTrips.innerHTML = `<h2 class="trip-title" >Pending Trips</h2>`;
   if (
     unapprovedTrips === "No pending trips to display. Please request a trip."
@@ -158,12 +159,7 @@ function confirmTripRequest(trip) {
   blur(tripsWrapper);
   show(confirmTripWrapper);
 
-  // confirmTripImage.innerHTML = "";
-  console.log(
-    travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
-      .image
-  );
-  confirmTripImage.innerHTML = ""
+  confirmTripImage.innerHTML = "";
   confirmTripImage.innerHTML += `<img class="confirm-destination-image border-radius-5 shadow" src=${
     travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
       .image
@@ -183,7 +179,6 @@ function confirmTripRequest(trip) {
 }
 
 function createNewTripRequest() {
-  // console.log(parseInt(destinationsId.value))
   const newTrip = travelersRepo.tripsObj.requestNewTrip(
     user,
     tripRequestStartDate.value.replaceAll("-", "/"),
@@ -191,36 +186,16 @@ function createNewTripRequest() {
     parseInt(tripRequestTravelerNum.value),
     parseInt(destinationsId.value)
   );
-  console.log("new trip", newTrip);
   return newTrip;
 }
 
-requestForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const newTrip = createNewTripRequest();
-
-  confirmTripRequest(newTrip);
-  confirmButton.addEventListener("click", (e) => {
-    confirmTrip(newTrip);
-    clearInputForms()
-  });
-});
-
 function confirmTrip(trip) {
-
   addTrip(trip);
   hide(confirmTripWrapper);
   removeBlur(tripsWrapper);
   show(tripsWrapper);
   displayTravelersPendingTrips(user);
 }
-
-cancelButton.addEventListener("click", (e) => {
-  hide(confirmTripWrapper);
-  removeBlur(tripsWrapper);
-  show(tripsWrapper);
-  clearInputForms()
-});
 
 function clearInputForms() {
   tripRequestStartDate.value = '';
@@ -229,12 +204,32 @@ function clearInputForms() {
   destinationsId.value = '';
 }
 
+//event listeners
+requestForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const newTrip = createNewTripRequest();
+
+  confirmTripRequest(newTrip);
+  confirmButton.addEventListener("click", (e) => {
+    confirmTrip(newTrip);
+    clearInputForms();
+  });
+});
+
+
+cancelButton.addEventListener("click", (e) => {
+  hide(confirmTripWrapper);
+  removeBlur(tripsWrapper);
+  show(tripsWrapper);
+  clearInputForms();
+});
+
+
 //onload display
 window.onload = (event) => {
   Promise.all([destinations, trips, travelers])
     .then((data) => {
       travelersRepo = new Travelers(data[2], data[1], data[0]);
-      console.log(travelersRepo)
       loadDestinations();
       displayTravelersFName(user);
       displayTravelersPastTrips(user);
