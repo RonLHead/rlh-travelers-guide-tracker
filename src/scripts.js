@@ -20,7 +20,6 @@ const tripRequestTravelerNum = document.getElementById(
 );
 const destinationsId = document.getElementById("destinationsId");
 const errorTag = document.getElementById("errorTag");
-// const destinationsList = document.getElementById("destinationsList");
 const confirmTripWrapper = document.getElementById("confirmTripWrapper");
 const confirmTripImage = document.getElementById("confirmTripImage");
 const confirmTripDest = document.getElementById("confirmTripDest");
@@ -30,11 +29,12 @@ const confirmTripTravelers = document.getElementById("confirmTripTravelers");
 const confirmTripCost = document.getElementById("confirmTripCost");
 const confirmButton = document.getElementById("confirmButton");
 const cancelButton = document.getElementById("cancelButton");
-// const destinationsList = document.getElementById("destinationsList")
+
 //global variables
 let travelersRepo;
-const user = 41;
+const user = 1;
 
+//functions
 function instantNewTraveler(userId) {
   const traveler = travelersRepo.findTraveler(userId);
   return traveler;
@@ -59,14 +59,14 @@ function displayTravelersFName(userId) {
 function noTripDisplay(selector, trips) {
   if (selector === pastTrips) {
     return selector.innerHTML += `
-    <p class="no-trip-info border-radius-5 text-center trip-background shadow">${trips}</p>
+    <p class="no-trip-info no-margin-top border-radius-5 text-center trip-background shadow">${trips}</p>
     `;
   } else if (selector === upcomingTrips) {
     return selector.innerHTML += `
-    <p class="no-trip-info border-radius-5 text-center trip-background shadow">${trips}</p>`;
+    <p class="no-trip-info no-margin-top border-radius-5 text-center trip-background shadow">${trips}</p>`;
   } else if (selector === pendingTrips) {
     return selector.innerHTML += `
-    <p class="no-trip-info border-radius-5 text-center trip-background shadow">${trips}</p>`;
+    <p class="no-trip-info no-margin-top border-radius-5 text-center trip-background shadow">${trips}</p>`;
   }
 }
 
@@ -132,9 +132,9 @@ function displayTravelersTotalSpent(userId) {
   const totalSpent = travelersRepo.totalSpentYear(userId);
 
   if (totalSpent === "There are no trips for this year.") {
-    totalSpentThisYear.innerHTML += `<p class="no-trip-info border-radius-5 text-center trip-background shadow">${totalSpent}</p>`;
+    totalSpentThisYear.innerHTML += `<p class="no-trip-info no-margin-top border-radius-5 text-center trip-background shadow">${totalSpent}</p>`;
   } else {
-    totalSpentThisYear.innerHTML += `<p class="trip-title trip-background shadow total-spent border-radius-5 text-center">$${totalSpent}</p>`;
+    totalSpentThisYear.innerHTML += `<p class="trip-title trip-background shadow total-spent no-margin-top border-radius-5 text-center">$${totalSpent}</p>`;
   }
 }
 
@@ -171,8 +171,8 @@ function confirmTripRequest(trip) {
     travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
       .destination
   } id="confirmTripImage">
-  <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text text-center font-20 shadow">
-    <section class="confirm-trip-text text-center">
+  <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text no-margin-top text-center font-20 shadow">
+    <section class="confirm-trip-text no-margin-top text-center">
   <p class="trip-display" id="confirmTripDest"><b>Destination</b>: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
   <p class="trip-display" id="confirmTripDate"><b>Date</b>: ${trip.date}</p>
   <p class="trip-display" id="confirmTripDuration"><b>Duration</b>: ${trip.duration} Days</p>
