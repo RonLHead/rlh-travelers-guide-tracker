@@ -29,10 +29,11 @@ const confirmTripTravelers = document.getElementById("confirmTripTravelers");
 const confirmTripCost = document.getElementById("confirmTripCost");
 const confirmButton = document.getElementById("confirmButton");
 const cancelButton = document.getElementById("cancelButton");
+const confirmButtonsRow = document.getElementById("confirmButtonsRow");
 
 //global variables
 let travelersRepo;
-const user = 1;
+const user = 2;
 
 //functions
 function instantNewTraveler(userId) {
@@ -158,24 +159,36 @@ function removeBlur(e) {
 function confirmTripRequest(trip) {
   blur(tripsWrapper);
   show(confirmTripWrapper);
-  hide(errorTag)
+  hide(errorTag);
+
   confirmTripImage.innerHTML = "";
-  confirmTripImage.innerHTML += `<img class="confirm-destination-image border-radius-5 shadow" src=${
-    travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
-      .image
-  } alt=${
-    travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
-      .destination
-  } id="confirmTripImage">
-  <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text no-margin-top text-center font-20 shadow">
-    <section class="confirm-trip-text no-margin-top text-center">
-  <p class="trip-display" id="confirmTripDest"><b>Destination</b>: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
-  <p class="trip-display" id="confirmTripDate"><b>Date</b>: ${trip.date}</p>
-  <p class="trip-display" id="confirmTripDuration"><b>Duration</b>: ${trip.duration} Days</p>
-  <p class="trip-display" id="confirmTripTravelers"><b>Number of Travelers</b>: ${trip.travelers}</p>
-  <p class="trip-display" id="confirmTripCost"><b>Estimated Cost</b>: $${travelersRepo.tripsObj.pendingTripCost(trip.id)}</p>
-  </section>
-</article>`;
+
+  if(trip === "Can only request a trip for 9 travelers or less.") {
+    confirmTripImage.innerHTML += `
+    <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text no-margin-top text-center font-20 shadow margin-left-5">
+      <section class="confirm-trip-text no-margin-top text-center">
+      <p class="trip-display"><b>${trip}</b></p>
+      </section>
+    </article>`;
+    hide(confirmButton);
+  } else {
+    confirmTripImage.innerHTML += `<img class="confirm-destination-image border-radius-5 shadow" src=${
+      travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
+        .image
+    } alt=${
+      travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID)
+        .destination
+    } id="confirmTripImage">
+    <article class="confirm-trip-box border-radius-5 trip-background confirm-trip-text no-margin-top text-center font-20 shadow">
+      <section class="confirm-trip-text no-margin-top text-center">
+    <p class="trip-display" id="confirmTripDest"><b>Destination</b>: ${travelersRepo.tripsObj.destinationsObj.findDestination(trip.destinationID).destination}</p>
+    <p class="trip-display" id="confirmTripDate"><b>Date</b>: ${trip.date}</p>
+    <p class="trip-display" id="confirmTripDuration"><b>Duration</b>: ${trip.duration} Days</p>
+    <p class="trip-display" id="confirmTripTravelers"><b>Number of Travelers</b>: ${trip.travelers}</p>
+    <p class="trip-display" id="confirmTripCost"><b>Estimated Cost</b>: $${travelersRepo.tripsObj.pendingTripCost(trip.id)}</p>
+    </section>
+  </article>`;
+  }
 }
 
 function createNewTripRequest() {
@@ -218,6 +231,7 @@ requestForm.addEventListener("submit", (e) => {
 
 
 cancelButton.addEventListener("click", (e) => {
+  show(confirmButton)
   hide(confirmTripWrapper);
   removeBlur(tripsWrapper);
   show(tripsWrapper);
