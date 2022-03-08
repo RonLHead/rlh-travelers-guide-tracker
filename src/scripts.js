@@ -34,7 +34,7 @@ const submitButton = document.getElementById("submitButton");
 const login = document.getElementById("login");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
-
+const errorLogin = document.getElementById("errorLogin");
 //global variables
 let travelersRepo;
 let user = "";
@@ -243,6 +243,15 @@ function clearLoginForm() {
   password.value = '';
 }
 
+function assignUser() {
+  let parseUser = username.value.split("r");
+  let result = parseUser.pop();
+
+  user = parseInt(result);
+
+  return user;
+}
+
 //event listeners
 requestForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -264,6 +273,7 @@ cancelButton.addEventListener("click", (e) => {
   clearInputForms();
 });
 
+
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
   if(username.value === "traveler50" && password.value === "travel") {
@@ -271,32 +281,20 @@ submitButton.addEventListener("click", (e) => {
     show(welcomeBanner);
     show(tripsWrapper);
     show(requestForm);
-    let parseUser = username.value.split("r");
-    let result = parseUser.pop()
-    // console.log(typeof parseInt(result))
-    user = parseInt(result);
-    console.log("user after reassigned", user)
-    // let result = parseUser.split("").forEach(char => {
-    //   console.log(char, typeof char)
-    // })
-    // let parseArray = parseUser.forEach(char => {
-    //   console.log(char === 5)
-    //   let result = []
-    //   if(typeof char === 'number') {
-    //     result.push(char.value)
-    //   }
-    //   return result;
-    // })
-    // console.log(result)
-    // user = parseUser.includes(5 && 0)
-    // console.log(user)
-    setTimeout((e) => {
-      onload(e);
-    }, 1000)
-    console.log("userafter onload", user)
+    assignUser();
+    if(user === 50) {
+      onload()
+    }
+  } else {
+    hide(login)
+    show(errorLogin);
+    setTimeout(() => {
+      hide(errorLogin)
+      show(login);
+      clearLoginForm()
+    }, 3500)
   }
 })
-
 
 //onload display
 const onload = (event) => {
