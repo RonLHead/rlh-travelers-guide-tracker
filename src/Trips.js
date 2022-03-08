@@ -28,9 +28,10 @@ class Trips {
       return "Can only request a trip for 9 travelers or less.";
     } else if(tripLength > 365) {
       return "Cannot request a trip to last more than one year.";
-    } else if(!this.destinationsObj.destinationsData.find(dest => dest.id === destID)) {
-      return "Destination doesn't exist. Please choose a different destination.";
     }
+    // else if(this.destinationsObj.findDestination(destID) === "Destination doesn't exist. Please choose a different destination.") {
+    //   return this.destinationsObj.findDestination(destID);
+    // }
 
     const newTrip = {
       "id": newTripID + 1,
@@ -46,23 +47,27 @@ class Trips {
     }
 
     this.tripsData.trips.push(newTrip);
-
     return newTrip;
   }
 
-  estimatedTripCost(tripID) {
+  pendingTripCost(tripId) {
     let newTrip = this.tripsData.trips.find(trip => {
-      return trip.id === tripID;
+      return trip.id === tripId;
     });
 
     if(!newTrip) {
       return "Pending trip request doesn't exist. Please request a new trip.";
     }
 
-    let tripDestination = this.destinationsObj.destinationsData.find(dest => dest.id === newTrip.destinationID);
+    let result = this.estimatedTripCost(newTrip);
 
-    let flightCost = newTrip.travelers * tripDestination.estimatedFlightCostPerPerson;
-    let lodgingCost = newTrip.duration * tripDestination.estimatedLodgingCostPerDay;
+    return result;
+  }
+
+  estimatedTripCost(trip) {
+    let tripDestination = this.destinationsObj.destinationsData.destinations.find(dest => dest.id === trip.destinationID);
+    let flightCost = trip.travelers * tripDestination.estimatedFlightCostPerPerson;
+    let lodgingCost = trip.duration * tripDestination.estimatedLodgingCostPerDay;
     let totalEstimatedCost = (flightCost * 2) + lodgingCost;
 
     totalEstimatedCost = totalEstimatedCost + (totalEstimatedCost * 0.10);

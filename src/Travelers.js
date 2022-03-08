@@ -65,7 +65,7 @@ class Travelers {
     let result = [];
 
     allTrips.forEach(trip => {
-      if(trip.date > today) {
+      if(trip.date > today && trip.status === "approved") {
         result.push(trip)
       }
     });
@@ -75,17 +75,13 @@ class Travelers {
     } else return result;
   }
 
+  filterPendingTrips(travelerId) {
+    let result = this.tripsObj.tripsData.trips.filter(trip => trip.userID === travelerId && trip.status === "pending");
+    return result;
+  }
+
   tripsPending(travelerId) {
-    const today = this.todaysDate();
-    const allTrips = this.travelerAllTrips(travelerId);
-    let result = [];
-
-    allTrips.forEach(trip => {
-      if(trip.status === "pending") {
-        result.push(trip)
-      }
-    });
-
+    const result = this.filterPendingTrips(travelerId);
     if(result.length === 0) {
       return "No pending trips to display. Please request a trip.";
     } else return result;
@@ -99,8 +95,8 @@ class Travelers {
     let result = 0;
 
     travelerTrips.forEach(trip => {
-      if(trip.date.includes(thisYear)) {
-        result = result + this.tripsObj.estimatedTripCost(trip.id);
+      if(trip.date.includes(thisYear) && trip.status === "approved") {
+        result = result + this.tripsObj.estimatedTripCost(trip);
       }
     });
 
