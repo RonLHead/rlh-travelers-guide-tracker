@@ -246,13 +246,22 @@ function confirmTrip(trip) {
 confirmButton.addEventListener("click", (e) => {
   const newTrip = createNewTripRequest();
   confirmTrip(newTrip);
+  clearInputForms()
 });
 
 cancelButton.addEventListener("click", (e) => {
   hide(confirmTripWrapper);
   removeBlur(tripsContainer);
   show(tripsContainer);
+  clearInputForms()
 });
+
+function clearInputForms() {
+  tripRequestStartDate.value = '';
+  tripRequestDuration.value = '';
+  tripRequestTravelerNum.value = '';
+  destinationsId.value = '';
+}
 
 //onload display
 window.onload = (event) => {
