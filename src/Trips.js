@@ -1,4 +1,4 @@
-import Destinations from './Destinations';
+import Destinations from "./Destinations";
 
 class Trips {
   constructor(tripsAPI, destinationsAPI) {
@@ -7,12 +7,12 @@ class Trips {
   }
 
   findTrip(tripID) {
-    if(!this.tripsData.trips.map(trip => trip.id).includes(tripID)) {
+    if (!this.tripsData.trips.map((trip) => trip.id).includes(tripID)) {
       return `Trip ${tripID} doesn't exist!`;
     }
 
     let result = this.tripsData.trips.reduce((acc, data) => {
-      if(tripID === data.id) {
+      if (tripID === data.id) {
         acc = data;
       }
       return acc;
@@ -23,8 +23,8 @@ class Trips {
 
   todaysDate() {
     let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
     let yyyy = today.getFullYear();
 
     let newToday = `${yyyy}/${mm}/${dd}`;
@@ -35,26 +35,24 @@ class Trips {
     const newTripID = this.tripsData.trips.length;
     const today = this.todaysDate();
 
-    if(numTravelers > 9) {
+    if (numTravelers > 9) {
       return "Can only request a trip for 9 travelers or less.";
-    } else if(tripLength > 365) {
+    } else if (tripLength > 365) {
       return "Cannot request a trip to last more than one year.";
-    } else if(startDate < today) {
+    } else if (startDate < today) {
       return "Cannot set the start date to earlier than today. Please select a different start date.";
     }
 
     const newTrip = {
-      "id": newTripID + 1,
-      "userID": userId,
-      "destinationID": destID,
-      "travelers": numTravelers,
-      "date": startDate,
-      "duration": tripLength,
-      "status": "pending",
-      "suggestedActivities": [
-
-      ]
-    }
+      id: newTripID + 1,
+      userID: userId,
+      destinationID: destID,
+      travelers: numTravelers,
+      date: startDate,
+      duration: tripLength,
+      status: "pending",
+      suggestedActivities: [],
+    };
 
     this.tripsData.trips.push(newTrip);
 
@@ -62,12 +60,11 @@ class Trips {
   }
 
   pendingTripCost(tripId) {
-    let newTrip = this.tripsData.trips.find(trip => {
+    let newTrip = this.tripsData.trips.find((trip) => {
       return trip.id === tripId;
     });
 
-
-    if(!newTrip) {
+    if (!newTrip) {
       return "Pending trip request doesn't exist. Please request a new trip.";
     }
 
@@ -77,12 +74,16 @@ class Trips {
   }
 
   estimatedTripCost(trip) {
-    let tripDestination = this.destinationsObj.destinationsData.destinations.find(dest => dest.id === trip.destinationID);
-    let flightCost = trip.travelers * tripDestination.estimatedFlightCostPerPerson;
-    let lodgingCost = trip.duration * tripDestination.estimatedLodgingCostPerDay;
-    let totalEstimatedCost = (flightCost * 2) + lodgingCost;
+    let tripDestination = this.destinationsObj.destinationsData.destinations.find(
+      (dest) => dest.id === trip.destinationID
+    );
+    let flightCost =
+      trip.travelers * tripDestination.estimatedFlightCostPerPerson;
+    let lodgingCost =
+      trip.duration * tripDestination.estimatedLodgingCostPerDay;
+    let totalEstimatedCost = flightCost * 2 + lodgingCost;
 
-    totalEstimatedCost = totalEstimatedCost + (totalEstimatedCost * 0.10);
+    totalEstimatedCost = totalEstimatedCost + totalEstimatedCost * 0.1;
 
     return totalEstimatedCost;
   }
