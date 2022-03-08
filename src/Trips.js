@@ -36,9 +36,9 @@ class Trips {
     const today = this.todaysDate();
 
     if (numTravelers > 9) {
-      return "Can only request a trip for 9 travelers or less.";
+      return "Can only request a trip for 9 travelers or less. Please re-enter with the correct number of travelers.";
     } else if (tripLength > 365) {
-      return "Cannot request a trip to last more than one year.";
+      return "Cannot request a trip to last more than one year. Please enter a duration for one year or less.";
     } else if (startDate < today) {
       return "Cannot set the start date to earlier than today. Please select a different start date.";
     }

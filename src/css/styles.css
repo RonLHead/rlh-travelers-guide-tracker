@@ -198,6 +198,10 @@ h1 {
   font-size: 20px;
 }
 
+.margin-left-5 {
+  margin-left: 5%;
+}
+
 .no-margin-top {
   margin-top: 0;
 }
