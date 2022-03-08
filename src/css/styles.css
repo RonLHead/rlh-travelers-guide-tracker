@@ -76,10 +76,6 @@ h1 {
   font-weight: bold;
 }
 
-.remove {
-  display: none;
-}
-
 .trip-box {
   position: relative;
   display: flex;
@@ -105,50 +101,6 @@ h1 {
   font-size: 40px;
   margin-left: 10px;
   margin-right: 10px;
-}
-
-.confirm-trip-box {
-  display: flex;
-  padding-top: 3%;
-  margin-top: 1%;
-  margin-right: 3%;
-  flex: 50%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.trip-request-background {
-  background-color: #CAEBF2;
-}
-
-.confirm-destination-image {
-  max-width: 55%;
-  max-height: 40%;
-  margin-left: 3%;
-  margin-right: 2%;
-  margin-top: 1%;
-}
-
-.confirm-trip-text {
-  width: 95%;
-  padding-left: 2px;
-  padding-right: 2px;
-  margin-top: 0;
-  font-size: 20px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.confirm-trip-text-margin {
-  margin-right: 3%;
-}
-
-.button-row {
-  margin-top: 5%;
-  margin-bottom: 1%;
 }
 
 /* trips-container */
@@ -201,6 +153,55 @@ h1 {
 
 .scroll-content {
   overflow: auto;
+}
+
+/* DOM dynamic */
+.remove {
+  display: none;
+}
+
+.confirm-trip-box {
+  display: flex;
+  padding-top: 3%;
+  margin-top: 1%;
+  margin-right: 3%;
+  flex: 50%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.trip-request-background {
+  background-color: #CAEBF2;
+}
+
+.confirm-destination-image {
+  max-width: 55%;
+  max-height: 40%;
+  margin-left: 3%;
+  margin-right: 2%;
+  margin-top: 1%;
+}
+
+.confirm-trip-text {
+  width: 95%;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.confirm-trip-text-margin {
+  margin-right: 3%;
+}
+
+.button-row {
+  margin-top: 5%;
+  margin-bottom: 1%;
 }
 
 .no-trip-info {
