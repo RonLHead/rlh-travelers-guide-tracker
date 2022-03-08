@@ -1,12 +1,11 @@
 body,
 html {
   width: 100%;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   color: #404040;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 
 h1 {
   font-size: 45px;
@@ -18,16 +17,16 @@ h1 {
   padding-top: 4px;
   padding-left: 4px;
   padding-bottom: 2px;
-  background: linear-gradient(70deg, #F93C43 30%, #CAEBF2  30%);
+  background: linear-gradient(70deg, #f93c43 30%, #caebf2 30%);
 }
 
 .white-font-color {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 /* requestForm */
 .request-form {
-  background-color: #A9A9A9;
+  background-color: #a9a9a9;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 5px;
@@ -51,7 +50,7 @@ h1 {
 
 .form-submit-button {
   font-weight: bold;
-  background-color: #F93C43;
+  background-color: #f93c43;
   align: center;
 }
 
@@ -83,12 +82,12 @@ h1 {
   flex: 50%;
   flex-direction: column;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding-bottom: 20px;
 }
 
 .shadow {
-  box-shadow: 0 8px 8px -4px #A9A9A9;
+  box-shadow: 0 8px 8px -4px #a9a9a9;
 }
 
 .align-row {
@@ -131,7 +130,7 @@ h1 {
 }
 
 .trip-background {
-  background-color: #EFEFEF;
+  background-color: #efefef;
 }
 
 .trip-container {
@@ -172,7 +171,7 @@ h1 {
 }
 
 .trip-request-background {
-  background-color: #CAEBF2;
+  background-color: #caebf2;
 }
 
 .confirm-destination-image {
