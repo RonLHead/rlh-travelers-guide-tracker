@@ -33,7 +33,6 @@ class Trips {
 
   requestNewTrip(userId, startDate, tripLength, numTravelers, destID) {
     const newTripID = this.tripsData.trips.length;
-    console.log(newTripID)
     const today = this.todaysDate();
 
     if (numTravelers > 9) {
@@ -56,7 +55,6 @@ class Trips {
     };
 
     this.tripsData.trips.push(newTrip);
-    console.log(newTripID)
     return newTrip;
   }
 

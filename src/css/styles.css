@@ -4,6 +4,9 @@ html {
   background-color: #efefef;
   color: #404040;
   margin: 0;
+}
+
+html, .calendar-styling {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -58,6 +61,10 @@ h1 {
   font-size: 20px;
 }
 
+.calendar-styling{
+  width: 12%;
+}
+
 /* confirmTripWrapper */
 .confirm-trip-wrapper {
   position: absolute;
@@ -106,6 +113,7 @@ h1 {
 .trips-wrapper {
   margin-top: 1%;
   display: flex;
+  flex: 50%;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
@@ -114,8 +122,8 @@ h1 {
   margin-bottom: 1%;
 }
 
-@media (max-width: 800px) {
-  .trips-container {
+@media (max-width: 900px) {
+  .trips-wrapper {
     flex-direction: column;
   }
 }
@@ -134,6 +142,7 @@ h1 {
 }
 
 .trip-container {
+  /* flex: 50%; */
   position: relative;
   margin-bottom: 10px;
   width: 80%;
