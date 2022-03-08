@@ -37,7 +37,8 @@ const password = document.getElementById("password");
 
 //global variables
 let travelersRepo;
-const user = 2;
+let user = "";
+console.log(user)
 
 //functions
 function instantNewTraveler(userId) {
@@ -265,18 +266,40 @@ cancelButton.addEventListener("click", (e) => {
 
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
-  if(username.value && password.value) {
+  if(username.value === "traveler50" && password.value === "travel") {
     hide(login);
     show(welcomeBanner);
     show(tripsWrapper);
     show(requestForm);
-    clearLoginForm();
+    let parseUser = username.value.split("r");
+    let result = parseUser.pop()
+    // console.log(typeof parseInt(result))
+    user = parseInt(result);
+    console.log("user after reassigned", user)
+    // let result = parseUser.split("").forEach(char => {
+    //   console.log(char, typeof char)
+    // })
+    // let parseArray = parseUser.forEach(char => {
+    //   console.log(char === 5)
+    //   let result = []
+    //   if(typeof char === 'number') {
+    //     result.push(char.value)
+    //   }
+    //   return result;
+    // })
+    // console.log(result)
+    // user = parseUser.includes(5 && 0)
+    // console.log(user)
+    setTimeout((e) => {
+      onload(e);
+    }, 1000)
+    console.log("userafter onload", user)
   }
 })
 
 
 //onload display
-window.onload = (event) => {
+const onload = (event) => {
   Promise.all([destinations, trips, travelers])
     .then((data) => {
       travelersRepo = new Travelers(data[2], data[1], data[0]);
