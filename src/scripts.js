@@ -286,7 +286,7 @@ submitButton.addEventListener("click", (e) => {
     if(user === 50) {
       onload()
     }
-  } else {
+  } else if(username.value && password.value){
     hide(login)
     show(errorLogin);
   }
