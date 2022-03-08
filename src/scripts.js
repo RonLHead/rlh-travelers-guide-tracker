@@ -35,6 +35,7 @@ const login = document.getElementById("login");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 const errorLogin = document.getElementById("errorLogin");
+
 //global variables
 let travelersRepo;
 let user = "";
