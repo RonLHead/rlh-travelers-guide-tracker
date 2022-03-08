@@ -14,7 +14,7 @@ h1 {
   font-size: 45px;
 }
 
-h2 {
+.confirm-trip-title {
   margin-top: 3px;
   font-size: 60px;
   margin-bottom: 5px;
@@ -255,4 +255,10 @@ h2 {
 .button-row {
   margin-top: 5%;
   margin-bottom: 1%;
+}
+
+.destinations-style {
+  background-color: white;
+  width: 15%;
+  color: #666666;
 }

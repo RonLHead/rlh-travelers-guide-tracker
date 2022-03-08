@@ -18,9 +18,9 @@ const tripRequestDuration = document.getElementById("tripRequestDuration");
 const tripRequestTravelerNum = document.getElementById(
   "tripRequestTravelerNum"
 );
-const destinationId = document.getElementById("destinationId");
+const destinationsId = document.getElementById("destinationsId");
 const errorTag = document.getElementById("errorTag");
-const destinationsList = document.getElementById("destinationsList");
+// const destinationsList = document.getElementById("destinationsList");
 const confirmTripWrapper = document.getElementById("confirmTripWrapper");
 const confirmTripImage = document.getElementById("confirmTripImage");
 const confirmTripDest = document.getElementById("confirmTripDest");
@@ -31,7 +31,7 @@ const confirmTripCost = document.getElementById("confirmTripCost");
 const confirmButton = document.getElementById("confirmButton");
 const confirmTripText = document.getElementById("confirmTripText");
 const cancelButton = document.getElementById("cancelButton");
-
+// const destinationsList = document.getElementById("destinationsList")
 //global variables
 let travelersRepo;
 const user = 3;
@@ -44,7 +44,7 @@ function instantNewTraveler(userId) {
 function loadDestinations() {
   let result = travelersRepo.tripsObj.destinationsObj.destinationsData.destinations.forEach(
     (dest) => {
-      destinationsList.innerHTML += `<option>${dest.id}. ${dest.destination}`;
+      destinationsId.innerHTML += `<option value="${dest.id}">${dest.destination}</option>`;
     }
   );
   return result;
@@ -198,12 +198,13 @@ function confirmTripRequest(trip) {
 }
 
 function createNewTripRequest() {
+  console.log(parseInt(destinationsId.value))
   const newTrip = travelersRepo.tripsObj.requestNewTrip(
     user,
     tripRequestStartDate.value.replaceAll("-", "/"),
     parseInt(tripRequestDuration.value),
     parseInt(tripRequestTravelerNum.value),
-    parseInt(destinationId.value)
+    parseInt(destinationsId.value)
   );
   console.log(newTrip);
   return newTrip;
@@ -245,16 +246,7 @@ function confirmTrip(trip) {
 confirmButton.addEventListener("click", (e) => {
   const newTrip = createNewTripRequest();
   confirmTrip(newTrip);
-  //   const newTrip = createNewTripRequest();
-  //   addTrip(newTrip);
-  //   displayTravelersPendingTrips(user);
-  //   e.target.reset();
-  //
 });
-
-// function cancelTripRequest() {
-//
-// }
 
 cancelButton.addEventListener("click", (e) => {
   hide(confirmTripWrapper);

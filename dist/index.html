@@ -16,14 +16,17 @@
       <input placeholder="Date: Year/Month/Day" type="text" name="date" value="" id="tripRequestStartDate" class="input-style" required>
       <input placeholder="Duration" type="number" name="duration" value="" id="tripRequestDuration" class="input-style" min="1" required>
       <input placeholder="Number of Travelers" type="number" name="number_of_travelers" value="" id="tripRequestTravelerNum" min="1" class="input-style" required>
-      <input placeholder="Destinations" list="destinationsList" name="destinations" value="" id="destinationId" class="input-style">
+      <!-- <input placeholder="Destinations" list="destinationsList" name="destinations" value="" id="destinationId" class="input-style"> -->
+      <select class="input-style destinations-style" name="destinationsList" id="destinationsId">
+        <!-- <options id="destinationsList"></options> -->
+      </select>
       <button type="submit" class="input-style form-submit-button" id="submitButton">Request Trip</button>
-      <datalist id="destinationsList">
+      <!-- <datalist id="destinationsList"> -->
     </form>
   </section>
     <section class="confirm-trip-wrapper remove" id="confirmTripWrapper">
       <section class="trip-box shadow">
-        <h2>Confirm Trip</h2>
+        <p class="confirm-trip-title">Confirm Trip</p>
         <div class="align-row" id="confirmTripImage">
         </div>
         <div class="align-row button-row">
