@@ -35,6 +35,7 @@ const login = document.getElementById("login");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 const errorLogin = document.getElementById("errorLogin");
+const confirmInvalidLogin = document.getElementById("confirmInvalidLogin");
 
 //global variables
 let travelersRepo;
@@ -274,7 +275,6 @@ cancelButton.addEventListener("click", (e) => {
   clearInputForms();
 });
 
-
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
   if(username.value === "traveler50" && password.value === "travel") {
@@ -289,13 +289,15 @@ submitButton.addEventListener("click", (e) => {
   } else {
     hide(login)
     show(errorLogin);
-    setTimeout(() => {
-      hide(errorLogin)
-      show(login);
-      clearLoginForm()
-    }, 3500)
   }
-})
+});
+
+confirmInvalidLogin.addEventListener("click", (e) => {
+  e.preventDefault();
+  clearLoginForm();
+  hide(errorLogin);
+  show(login);
+});
 
 //onload display
 const onload = (event) => {

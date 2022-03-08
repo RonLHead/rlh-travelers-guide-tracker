@@ -30,6 +30,10 @@ h1 {
   width: 40%
 }
 
+.button-width2 {
+  width: 30%;
+}
+
 .text-center {
   text-align: center;
 }
