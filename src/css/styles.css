@@ -4,6 +4,9 @@ html {
   background-color: #efefef;
   color: #404040;
   margin: 0;
+}
+
+html, .calendar-styling {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -56,6 +59,10 @@ h1 {
 
 .font-20 {
   font-size: 20px;
+}
+
+.calendar-styling{
+  width: 12%;
 }
 
 /* confirmTripWrapper */
