@@ -115,7 +115,7 @@ describe('Travelers', () => {
     travelers.tripsObj.requestNewTrip(4, "2022/10/15", 8, 2, 4);
     expect(travelers.tripsPending(4)).to.deep.equal([
       {
-        "id": 13,
+        "id": 15,
         "userID": 4,
         "destinationID": 49,
         "travelers": 1,

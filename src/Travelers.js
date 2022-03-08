@@ -36,7 +36,7 @@ class Travelers {
 
 
   pastTrips(travelerId) {
-    const today = this.destinationsObj.todaysDate();
+    const today = this.tripsObj.todaysDate();
     const allTrips = this.travelerAllTrips(travelerId);
     let result = [];
 
@@ -52,7 +52,7 @@ class Travelers {
   }
 
   upcomingTrips(travelerId) {
-    const today = this.destinationsObj.todaysDate();
+    const today = this.tripsObj.todaysDate();
     const allTrips = this.travelerAllTrips(travelerId);
     let result = [];
 

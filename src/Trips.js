@@ -57,12 +57,11 @@ class Trips {
     }
 
     this.tripsData.trips.push(newTrip);
-    
+
     return newTrip;
   }
 
   pendingTripCost(tripId) {
-    console.log(tripId)
     let newTrip = this.tripsData.trips.find(trip => {
       return trip.id === tripId;
     });
