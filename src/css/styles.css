@@ -58,7 +58,7 @@ h1 {
 
 /* confirmTripWrapper */
 .confirm-trip-title {
-  margin-top: 3px;
+  margin-top: 3%;
   font-size: 60px;
   margin-bottom: 5px;
 }
@@ -225,6 +225,7 @@ h1 {
   display: flex;
   padding-top: 3%;
   margin-top: 1%;
+  margin-right: 3%;
   flex: 50%;
   flex-direction: column;
   align-items: center;
