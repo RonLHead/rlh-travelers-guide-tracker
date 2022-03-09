@@ -1,4 +1,4 @@
-# Traveler's Guide Travel Tracker
+# Traveler's Guide Tracker
 ![image](/src/images/travelers-guide-main-page.JPG)
 
 ### Project Description
