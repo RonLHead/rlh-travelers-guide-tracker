@@ -3,7 +3,7 @@
 
 ### Project Description
 
-The Traveler's Guide Travel Guide is a travel app that allows a user to sign in, view their trips (past, upcoming, and pending trips), and total spent this year. The app also allows a user to request a trip, see the estimated cost of the trip, then confirm or cancel it.
+The Traveler's Guide Tracker is a travel app that allows a user to sign in, view their trips (past, upcoming, and pending), and total spent this year. The app also allows a user to request a trip, see the estimated cost of the trip, and then confirm or cancel it.
 
 #### Contributor
 - [RonLHead](https://github.com/RonLHead)
