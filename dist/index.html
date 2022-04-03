@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/css/styles.css" />
+    <title>Traveler's Guide Trip Tracker</title>
+  </head>
+  <header>
+    <h1 class="welcome-banner white-font-color remove" id="welcomeBanner">
+      Welcome User!
+    </h1>
+  </header>
+  <body>
+    <form class="confirm-trip-wrapper font-20" id="login">
+      <section class="trip-container destinations-style border-radius-5 shadow">
+        <article class="trip-box">
+          <p class="welcome-banner trip-title white-font-color padding-right-5 border-radius-5 shadow">Enter Credentials</p>
+          <div class="request-form border-radius-5 margin-above">
+            <input class="text-center input-style border-radius-5 trip-title confirm-trip-text margin-left" placeholder="username" type="text" name="username" value="" required id="username">
+            <input class="text-center input-style border-radius-5 trip-title confirm-trip-text margin-left" placeholder="password" type="password" name="password" value="" required id="password">
+          </div>
+          <button
+            type="submit"
+            class="form-submit-button border-radius-5 shadow font-20 margin-above button-width white-font-color"
+            id="submitButton">
+            Submit
+          </button>
+      </article>
+      </section>
+    </form>
+    <form class="confirm-trip-wrapper font-20 remove" id="errorLogin">
+      <section class="trip-container destinations-style border-radius-5 shadow">
+        <article class="trip-box">
+          <p class="trip-title text-center">Invalid username and/or password. Please try again</p>
+          <button
+            type="submit"
+            class="form-submit-button border-radius-5 shadow font-20 margin-above button-width2 white-font-color"
+            id="confirmInvalidLogin">
+            OK
+          </button>
+        </article>
+      </section>
+    </form>
+    <form class="request-form remove" id="requestForm">
+      <input
+        placeholder="Date: Year/Month/Day"
+        type="date"
+        name="date"
+        value=""
+        id="tripRequestStartDate"
+        class="input-style border-radius-5 calendar-styling destinations-style"
+        required
+      />
+      <input
+        placeholder="Duration"
+        type="number"
+        name="duration"
+        value=""
+        id="tripRequestDuration"
+        class="input-style border-radius-5"
+        min="1"
+        required
+      />
+      <input
+        placeholder="Number of Travelers"
+        type="number"
+        name="number_of_travelers"
+        value=""
+        id="tripRequestTravelerNum"
+        min="1"
+        class="input-style border-radius-5"
+        required
+      />
+      <select
+        class="input-style border-radius-5 destinations-style"
+        name="destinationsList"
+        id="destinationsId"
+      >
+      </select>
+      <button
+        type="submit"
+        class="input-style border-radius-5 form-submit-button white-font-color font-20"
+        id="submitButton"
+      >
+        Request Trip
+      </button>
+    </form>
+    <section class="confirm-trip-wrapper remove" id="confirmTripWrapper">
+      <section class="trip-box border-radius-5 shadow">
+        <p class="confirm-trip-title">Confirm Trip</p>
+        <div class="align-row" id="confirmTripImage"></div>
+        <div class="align-row button-row" id="confirmButtonsRow">
+          <button
+            type="submit"
+            name="no_button"
+            class="input-style border-radius-5 form-submit-button margin-buttons shadow"
+            id="cancelButton"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            name="yes_button"
+            class="input-style border-radius-5 form-submit-button margin-buttons shadow"
+            id="confirmButton"
+          >
+            Confirm
+          </button>
+        </div>
+      </section>
+    </section>
+    <section class="trips-wrapper requestForm remove" id="tripsWrapper">
+      <p id="errorTag"></p>
+      <section
+        class="scroll-content shadow trip-box border-radius-5 trip-box-height"
+        id="pastTrips"
+      >
+        <h2 class="trip-title">Past Trips</h2>
+      </section>
+      <section
+        class="scroll-content shadow trip-box border-radius-5 trip-box-height"
+        id="upcomingTrips"
+      >
+        <h2 class="trip-title">Upcoming Trips</h2>
+      </section>
+      <section
+        class="scroll-content shadow trip-box border-radius-5 trip-box-height"
+        id="pendingTrips"
+      >
+        <h2 class="trip-title">Pending Trips</h2>
+      </section>
+      <section
+        class="shadow trip-box border-radius-5 trip-box-height"
+        id="totalSpentThisYear"
+      >
+        <h2 class="trip-title">Total Spent 2022</h2>
+      </section>
+    </section>
+    <script src="bundle.js"></script>
+  </body>
+</html>
